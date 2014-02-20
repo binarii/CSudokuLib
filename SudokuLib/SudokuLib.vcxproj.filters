@@ -12,9 +12,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\SudokuEngine.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="src\TimerClass.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
@@ -26,9 +23,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\SudokuEngine.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\TimerClass.h">
       <Filter>Utilities</Filter>
     </ClInclude>
