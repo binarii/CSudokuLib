@@ -73,6 +73,14 @@
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\SudokuEngine.cpp" />
+    <ClCompile Include="src\TimerClass.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\SudokuEngine.h" />
+    <ClInclude Include="src\TimerClass.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
