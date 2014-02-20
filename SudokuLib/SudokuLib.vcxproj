@@ -74,12 +74,16 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\BitCount.cpp" />
     <ClCompile Include="src\SudokuEngine.cpp" />
     <ClCompile Include="src\TimerClass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\BitCount.h" />
     <ClInclude Include="src\SudokuEngine.h" />
     <ClInclude Include="src\TimerClass.h" />
+    <ClInclude Include="src\Types.h" />
+    <ClInclude Include="src\SudokuBoard.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

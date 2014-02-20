@@ -18,12 +18,24 @@
     <ClCompile Include="src\TimerClass.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="src\BitCount.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\SudokuEngine.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="src\TimerClass.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Types.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SudokuBoard.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BitCount.h">
       <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
