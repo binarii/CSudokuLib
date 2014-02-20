@@ -38,7 +38,6 @@ namespace sudoku
 
 		// Get board stats
 		int GetSetCount();
-		int GetCellValue(CELL_INDEX pos);
 
 		// Get cell stats
 		BITMASK GetCellMask(CELL_INDEX pos);
@@ -73,12 +72,11 @@ namespace sudoku
 	};
 
 	template <int boxSize>
-	inline BITMASK Board<boxSize>::UpdateCellPossible(CELL_INDEX pos)
+	inline void Board<boxSize>::UpdateCellPossible(CELL_INDEX pos)
 	{
 		m_possible[pos] = ( (~(m_rowConflicts[m_rowReference[pos]] |
 		                       m_colConflicts[m_colReference[pos]] |
 							   m_boxConflicts[m_boxReference[pos]])) & MASK);
-		return m_possible[pos];
 	}
 
 	template <int boxSize>
@@ -100,6 +98,30 @@ namespace sudoku
 		m_colConflicts[m_colReference[pos]] &= val;
 		m_boxConflicts[m_boxReference[pos]] &= val;
 		m_setCount--;
+	}
+	
+	template <int boxSize>
+	inline int Board<boxSize>::GetSetCount()
+	{
+		return m_setCount;
+	}
+	
+	template <int boxSize>
+	inline BITMASK Board<boxSize>::GetCellMask(CELL_INDEX pos)
+	{
+		return m_board[pos];
+	}
+	
+	template <int boxSize>
+	inline BITMASK Board<boxSize>::GetCellPossible(CELL_INDEX pos)
+	{
+		return m_possible[pos];
+	}
+	
+	template <int boxSize>
+	inline CELL_INDEX Board<boxSize>::IterateGroups(UNIT_INDEX unit, UNIT_INDEX pos)
+	{
+		return m_groups[unit][pos];
 	}
 }
 

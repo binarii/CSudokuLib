@@ -21,6 +21,9 @@
     <ClCompile Include="src\BitCount.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="src\SudokuBoard.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\SudokuEngine.h">
