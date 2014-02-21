@@ -2,26 +2,48 @@
 #define _TIMER_H_
 
 #include <Windows.h>
-#pragma comment(lib, "user32.lib")
 
 class Timer
 {
 public:
-	Timer();
-	Timer(const Timer& other);
-	~Timer();
+	Timer() { Initialize(); }
+	~Timer() {}
 
-	bool Initialize();
-	void Update();
+	bool Initialize()
+	{
+		QueryPerformanceFrequency((LARGE_INTEGER*)&m_frequency);
+		if(m_frequency == 0)
+			return false;
 
-	float GetTimeMs();
-	float GetTimeSeconds();
+		m_ticksPerMs = (double)(m_frequency / 1000);
+		QueryPerformanceCounter((LARGE_INTEGER*)&m_startTime);
+
+		return true;
+
+	}
+
+	void StartTimer()
+	{
+		QueryPerformanceCounter((LARGE_INTEGER*)&m_startTime);
+	}
+
+	double GetTime()
+	{
+		INT64 currentTime;
+		double timeDifference;
+
+		QueryPerformanceCounter((LARGE_INTEGER*)&currentTime);
+
+		timeDifference = (double)(currentTime - m_startTime);
+		
+		return timeDifference / m_ticksPerMs;
+	}
 
 private:
 	INT64 m_frequency;
-	float m_ticksPerMs;
 	INT64 m_startTime;
-	float m_frameTime;
+	double m_ticksPerMs;
 };
+
 
 #endif
