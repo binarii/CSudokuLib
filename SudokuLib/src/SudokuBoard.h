@@ -36,6 +36,9 @@ namespace sudoku
 		// Make sure to call before getting cell possible
 		void UpdateCellPossible(CELL_INDEX pos);
 
+		// Make a cell have no possibilities (if it is already set)
+		void IgnoreCellPossible(CELL_INDEX pos);
+
 		// Get board stats
 		int GetSetCount();
 
@@ -77,6 +80,12 @@ namespace sudoku
 		m_possible[pos] = ( (~(m_rowConflicts[m_rowReference[pos]] |
 		                       m_colConflicts[m_colReference[pos]] |
 							   m_boxConflicts[m_boxReference[pos]])) & MASK);
+	}
+
+	template <int boxSize>
+	inline void Board<boxSize>::IgnoreCellPossible(CELL_INDEX pos)
+	{
+		m_possible[pos] = 0;
 	}
 
 	template <int boxSize>
