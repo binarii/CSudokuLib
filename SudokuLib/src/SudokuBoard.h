@@ -15,7 +15,7 @@
 // Switch off using precomputed bitcount vs function
 // Should only be used in sudoku namespace
 #define BITCOUNT(x) \
-	((BOX < 4) ? bitcount::BitCountArray[x] : bitcount::BitCount())
+	((BOX < 4) ? bitcount::BitCountArray[x] : bitcount::BitCount(x))
 
 
 namespace sudoku

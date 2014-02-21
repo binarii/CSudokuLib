@@ -75,12 +75,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BitCount.cpp" />
-    <ClCompile Include="src\TimerClass.cpp" />
+    <ClCompile Include="src\QuickSolve.cpp" />
     <ClCompile Include="src\SudokuBoard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BitCount.h" />
-    <ClInclude Include="src\TimerClass.h" />
+    <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\Types.h" />
     <ClInclude Include="src\SudokuBoard.h" />
     <ClInclude Include="src\QuickSolve.h" />

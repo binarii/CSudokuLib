@@ -2,6 +2,7 @@
 #define _QUICKSOLVE_H_
 
 #include "Types.h"
+#include "Timer.h"
 
 namespace sudoku
 {
@@ -18,14 +19,17 @@ namespace sudoku
 		~QuickSolve();
 
 		int Solve(Board<boxSize>& board);
+		double GetSolveTime();
 
 	private:
 		int BacktrackSolve(Board<boxSize>& board);
-		int FindSingles(CELL_INDEX& pos, BITMASK& value);
+		int FindSingles(Board<boxSize>& board, CELL_INDEX& pos, BITMASK& value);
 
 	private:
 		int m_maxSolutions;
 		double m_solveTime;
+
+		Timer m_timer;
 	};
 }
 
