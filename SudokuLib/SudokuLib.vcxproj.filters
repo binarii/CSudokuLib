@@ -35,5 +35,8 @@
     <ClInclude Include="src\BitCount.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="src\QuickSolve.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -83,6 +83,7 @@
     <ClInclude Include="src\TimerClass.h" />
     <ClInclude Include="src\Types.h" />
     <ClInclude Include="src\SudokuBoard.h" />
+    <ClInclude Include="src\QuickSolve.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
