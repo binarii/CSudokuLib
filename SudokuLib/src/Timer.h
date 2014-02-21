@@ -1,15 +1,15 @@
-#ifndef _TIMERCLASS_H_
-#define _TIMERCLASS_H_
+#ifndef _TIMER_H_
+#define _TIMER_H_
 
 #include <Windows.h>
 #pragma comment(lib, "user32.lib")
 
-class TimerClass
+class Timer
 {
 public:
-	TimerClass();
-	TimerClass(const TimerClass& other);
-	~TimerClass();
+	Timer();
+	Timer(const Timer& other);
+	~Timer();
 
 	bool Initialize();
 	void Update();

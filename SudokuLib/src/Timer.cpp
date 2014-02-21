@@ -1,21 +1,21 @@
-#include "TimerClass.h"
+#include "Timer.h"
 
-TimerClass::TimerClass()
+Timer::Timer()
+{
+	Initialize();
+}
+
+Timer::Timer(const Timer& other)
 {
 
 }
 
-TimerClass::TimerClass(const TimerClass& other)
+Timer::~Timer()
 {
 
 }
 
-TimerClass::~TimerClass()
-{
-
-}
-
-bool TimerClass::Initialize()
+bool Timer::Initialize()
 {
 	QueryPerformanceFrequency((LARGE_INTEGER*)&m_frequency);
 	if(m_frequency == 0)
@@ -30,7 +30,7 @@ bool TimerClass::Initialize()
 	return true;
 }
 
-void TimerClass::Update()
+void Timer::Update()
 {
 	INT64 currentTime;
 	float timeDifference;
@@ -44,12 +44,12 @@ void TimerClass::Update()
 	m_startTime = currentTime;
 }
 
-float TimerClass::GetTimeMs()
+float Timer::GetTimeMs()
 {
 	return m_frameTime;
 }
 
-float TimerClass::GetTimeSeconds()
+float Timer::GetTimeSeconds()
 {
 	return (m_frameTime / 1000.0f);
 }
