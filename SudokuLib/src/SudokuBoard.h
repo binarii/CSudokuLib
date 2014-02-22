@@ -25,6 +25,7 @@ namespace sudoku
 	{
 	public:
 		Board();
+		Board(const Board<boxSize>& other);
 		~Board();
 
 		void Reset();

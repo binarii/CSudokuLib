@@ -9,6 +9,22 @@ namespace sudoku
 		SetCachedArrays();
 		Reset();
 	}
+
+	template<int boxSize>
+	Board<boxSize>::Board(const Board<boxSize>& other)
+	{
+		m_setCount = other.m_setCount;
+
+		memcpy(m_board, other.m_board, sizeof(m_board));
+		memcpy(m_possible, other.m_possible, sizeof(m_possible));
+		memcpy(m_rowConflicts, other.m_rowConflicts, sizeof(m_rowConflicts));
+		memcpy(m_colConflicts, other.m_colConflicts, sizeof(m_colConflicts));
+		memcpy(m_boxConflicts, other.m_boxConflicts, sizeof(m_boxConflicts));
+		memcpy(m_rowReference, other.m_rowReference, sizeof(m_rowReference));
+		memcpy(m_colReference, other.m_colReference, sizeof(m_colReference));
+		memcpy(m_boxReference, other.m_boxReference, sizeof(m_boxReference));
+		memcpy(m_groups, other.m_groups, sizeof(m_groups));
+	}
 	
 	template <int boxSize>
 	Board<boxSize>::~Board()
