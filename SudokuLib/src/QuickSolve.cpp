@@ -103,6 +103,7 @@ namespace sudoku
 			}
 		}
 
+
 		for(i = 0; i < UNIT*3; ++i)
 		{
 			BITMASK once = 0;
@@ -130,8 +131,9 @@ namespace sudoku
 
 			if(!once) // If none are seen only once, continue
 				continue;
-
+			
 			// Find the hidden single
+			once &= -once; // Get least set bit
 			for(j = 0; j < UNIT; ++j)
 			{
 				pos = board.IterateGroups(i, j);
@@ -141,6 +143,7 @@ namespace sudoku
 					return 1;
 				}
 			}
+			
 		}
 
 		pos = savePos;
