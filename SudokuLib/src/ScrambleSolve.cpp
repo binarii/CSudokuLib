@@ -65,6 +65,8 @@ namespace sudoku
 				possible &= ~cellOrder[i];
 			}
 		}
+
+		return 0;
 	}
 
 	template class ScrambleSolve<2>;
