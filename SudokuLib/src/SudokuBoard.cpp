@@ -41,6 +41,18 @@ namespace sudoku
 		memset(&m_boxConflicts, 0, sizeof(m_boxConflicts));
 		m_setCount = 0;
 	}
+		
+	template <int boxSize>
+	void Board<boxSize>::Copy(const Board<boxSize>& other)
+	{
+		m_setCount = other.m_setCount;
+
+		memcpy(m_board, other.m_board, sizeof(m_board));
+		memcpy(m_possible, other.m_possible, sizeof(m_possible));
+		memcpy(m_rowConflicts, other.m_rowConflicts, sizeof(m_rowConflicts));
+		memcpy(m_colConflicts, other.m_colConflicts, sizeof(m_colConflicts));
+		memcpy(m_boxConflicts, other.m_boxConflicts, sizeof(m_boxConflicts));
+	}
 
 	template <int boxSize>
 	void Board<boxSize>::SetCachedArrays()

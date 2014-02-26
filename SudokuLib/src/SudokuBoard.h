@@ -29,6 +29,7 @@ namespace sudoku
 		~Board();
 
 		void Reset();
+		void Copy(const Board<boxSize>& other);
 
 		// Board Modifiers
 		void SetCell(CELL_INDEX pos, BITMASK val);
