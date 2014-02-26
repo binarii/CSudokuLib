@@ -13,6 +13,14 @@ namespace sudoku
 	template <int boxSize>
 	class QuickSolve;
 
+	enum MinimizeType
+	{
+		MT_NONE,
+		MT_HORIZONTAL,
+		MT_VERTICAL,
+		MT_DIAGONAL
+	};
+
 	template <int boxSize>
 	class MinimizeBoard
 	{
@@ -20,7 +28,7 @@ namespace sudoku
 		MinimizeBoard();
 		~MinimizeBoard();
 
-		void Minimize(Board<boxSize>& board);
+		void Minimize(Board<boxSize>& board, MinimizeType type);
 
 		double GetSolveTime();
 

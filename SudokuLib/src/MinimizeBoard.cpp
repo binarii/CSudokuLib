@@ -19,11 +19,18 @@ namespace sudoku
 	}
 
 	template <int boxSize>
-	void MinimizeBoard<boxSize>::Minimize(Board<boxSize>& board)
+	void MinimizeBoard<boxSize>::Minimize(Board<boxSize>& board, MinimizeType type)
 	{
 		m_timer.StartTimer();
 
-		MinimizeNone(board);
+		if(type == MT_NONE)
+			MinimizeNone(board);
+		else if(type == MT_HORIZONTAL)
+			MinimizeHoriz(board);
+		else if(type == MT_VERTICAL)
+			MinimizeVert(board);		
+		else if(type == MT_DIAGONAL)
+			MinimizeDiag(board);
 
 		m_solveTime = m_timer.GetTime();
 	}
@@ -47,19 +54,73 @@ namespace sudoku
 	template <int boxSize>
 	void MinimizeBoard<boxSize>::MinimizeHoriz(Board<boxSize>& board)
 	{
+		const int centerIndex = (UNIT / 2 + 1) * UNIT;
 
+		CELL_INDEX shuffleArray[centerIndex];
+		for(int i = 0; i < centerIndex; i++) shuffleArray[i] = i;
+		util::ArrayShuffle<CELL_INDEX>(shuffleArray, centerIndex);
+
+		int x, y;
+		CELL_INDEX digArray[centerIndex * 2];
+
+		for(int i = 0; i < centerIndex; i++)
+		{
+			digArray[i*2] = shuffleArray[i];
+
+			x = shuffleArray[i] % UNIT;
+			y = UNIT - (shuffleArray[i] / UNIT) - 1;
+			digArray[i*2 + 1] = x + y * UNIT;
+		}
+
+		MinimizePattern(board, digArray, centerIndex, 2);
 	}
 
 	template <int boxSize>
 	void MinimizeBoard<boxSize>::MinimizeVert(Board<boxSize>& board)
 	{
+		const int centerIndex = (UNIT / 2 + 1) * UNIT;
 
+		CELL_INDEX shuffleArray[centerIndex];
+		for(int i = 0; i < centerIndex; i++) shuffleArray[i] = i;
+		util::ArrayShuffle<CELL_INDEX>(shuffleArray, centerIndex);
+
+		int x, y;
+		CELL_INDEX digArray[centerIndex * 2];
+
+		for(int i = 0; i < centerIndex; i++)
+		{
+			x = (shuffleArray[i] / UNIT);
+			y = shuffleArray[i] % UNIT;
+
+			digArray[i*2] = x + y * UNIT;
+
+			y = shuffleArray[i] % UNIT;
+			x = UNIT - (shuffleArray[i] / UNIT) - 1;
+			digArray[i*2 + 1] = x + y * UNIT;
+		}
+
+		MinimizePattern(board, digArray, centerIndex, 2);
 	}
 
 	template <int boxSize>
 	void MinimizeBoard<boxSize>::MinimizeDiag(Board<boxSize>& board)
 	{
+		const int centerIndex = (UNIT / 2 + 1) * UNIT;
 
+		CELL_INDEX shuffleArray[centerIndex];
+		for(int i = 0; i < centerIndex; i++) shuffleArray[i] = i;
+		util::ArrayShuffle<CELL_INDEX>(shuffleArray, centerIndex);
+
+		int x, y;
+		CELL_INDEX digArray[centerIndex * 2];
+
+		for(int i = 0; i < centerIndex; i++)
+		{
+			digArray[i*2] = shuffleArray[i];
+			digArray[i*2 + 1] = (GRID - shuffleArray[i] - 1);
+		}
+
+		MinimizePattern(board, digArray, centerIndex, 2);
 	}
 
 	template <int boxSize>
@@ -74,7 +135,8 @@ namespace sudoku
 			// Make a copy of the board and dig cells
 			boardCpy.Copy(board);
 			for(int j = 0; j < rate; j++)
-				boardCpy.ClearCell(digArray[i + j]);
+				if(boardCpy.GetCellMask(digArray[i + j]) != 0)
+					boardCpy.ClearCell(digArray[i + j]);
 
 			// Check if it is still unique
 			solutionCount = m_solver.Solve(boardCpy);
@@ -82,7 +144,8 @@ namespace sudoku
 			// If it is unique we can dig these cells
 			if(solutionCount == 1)
 				for(int j = 0; j < rate; j++)
-					board.ClearCell(digArray[i + j]);
+					if(board.GetCellMask(digArray[i + j]) != 0)
+						board.ClearCell(digArray[i + j]);
 		}
 	}
 
