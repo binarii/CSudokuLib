@@ -7,6 +7,15 @@
     <Filter Include="Utilities">
       <UniqueIdentifier>{db4c67bd-3275-43d9-ab17-f2e1e0870c09}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Grading">
+      <UniqueIdentifier>{7d3c80e4-571d-479e-aab2-a41d1d4ba799}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Generating">
+      <UniqueIdentifier>{a9b9688e-4902-49f3-a133-0381f873dcc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Solving">
+      <UniqueIdentifier>{ad288a52-cc2b-46de-ab14-c90f48444c00}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -19,13 +28,13 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="src\QuickSolve.cpp">
-      <Filter>Core</Filter>
+      <Filter>Core\Solving</Filter>
     </ClCompile>
     <ClCompile Include="src\ScrambleSolve.cpp">
-      <Filter>Core</Filter>
+      <Filter>Core\Solving</Filter>
     </ClCompile>
     <ClCompile Include="src\MinimizeBoard.cpp">
-      <Filter>Core</Filter>
+      <Filter>Core\Generating</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -38,20 +47,20 @@
     <ClInclude Include="src\BitCount.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="src\QuickSolve.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\Timer.h">
       <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ScrambleSolve.h">
-      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Util.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="src\QuickSolve.h">
+      <Filter>Core\Solving</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ScrambleSolve.h">
+      <Filter>Core\Solving</Filter>
+    </ClInclude>
     <ClInclude Include="src\MinimizeBoard.h">
-      <Filter>Core</Filter>
+      <Filter>Core\Generating</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
