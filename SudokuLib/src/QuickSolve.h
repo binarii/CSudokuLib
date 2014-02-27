@@ -21,6 +21,7 @@ namespace sudoku
 		int Solve(Board<boxSize>& board);
 		double GetSolveTime();
 
+		void SetMaxSolutionCount(int count);
 	private:
 		int BacktrackSolve(Board<boxSize>& board);
 		int FindSingles(Board<boxSize>& board, CELL_INDEX& pos, BITMASK& value);

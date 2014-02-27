@@ -31,6 +31,12 @@ namespace sudoku
 	{
 		return m_solveTime;
 	}
+		
+	template <int boxSize>
+	void QuickSolve<boxSize>::SetMaxSolutionCount(int count)
+	{
+		m_maxSolutions = count;
+	}
 
 	template <int boxSize>
 	int QuickSolve<boxSize>::BacktrackSolve(Board<boxSize>& board)

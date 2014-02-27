@@ -21,6 +21,12 @@
     <ClCompile Include="src\QuickSolve.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\ScrambleSolve.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MinimizeBoard.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Types.h">
@@ -37,6 +43,15 @@
     </ClInclude>
     <ClInclude Include="src\Timer.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ScrambleSolve.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Util.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MinimizeBoard.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
