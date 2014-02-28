@@ -44,8 +44,6 @@ namespace sudoku
 	private:
 		double m_solveTime;
 		Timer m_timer;
-
-		QuickSolve<boxSize> m_solver;
 	};
 }
 

@@ -3,13 +3,13 @@
 #include "QuickSolve.h"
 #include "Util.h"
 
+
 namespace sudoku
 {
 	template <int boxSize>
 	MinimizeBoard<boxSize>::MinimizeBoard()
 	{
 		m_solveTime = 0.0;
-		m_solver.SetMaxSolutionCount(2);
 	}
 
 	template <int boxSize>
@@ -128,6 +128,8 @@ namespace sudoku
 	{
 		int solutionCount;
 		Board<boxSize> boardCpy(board);
+		QuickSolve<boxSize> solver;
+		solver.SetMaxSolutionCount(2);
 
 		for(int i = 0; i < n; i++)
 		{
@@ -138,7 +140,7 @@ namespace sudoku
 					boardCpy.ClearCell(digArray[i + j]);
 
 			// Check if it is still unique
-			solutionCount = m_solver.Solve(boardCpy);
+			solutionCount = solver.Solve(boardCpy);
 
 			// If it is unique we can dig these cells
 			if(solutionCount == 1)
