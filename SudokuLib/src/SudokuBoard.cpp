@@ -1,6 +1,19 @@
 #include "SudokuBoard.h"
 #include <memory> // memset
 
+
+// Defines for constants (based on template)
+#define BOX  (boxSize)          // Box side length
+#define UNIT (BOX * BOX)        // Unit side length (row, col)
+#define GRID (UNIT * UNIT)      // Grid size (typical is 81)
+#define MASK ((1<<(UNIT+1))-2)  // Mask for all bits except 0
+
+
+// Switch off using precomputed bitcount vs function
+// Should only be used in sudoku namespace
+#define BITCOUNT(x) \
+	((BOX < 4) ? bitcount::BitCountArray[x] : bitcount::BitCount(x))
+
 namespace sudoku
 {
 	template <int boxSize>

@@ -1,6 +1,17 @@
 #include "QuickSolve.h"
 #include "SudokuBoard.h"
 
+// Defines for constants (based on template)
+#define BOX  (boxSize)          // Box side length
+#define UNIT (BOX * BOX)        // Unit side length (row, col)
+#define GRID (UNIT * UNIT)      // Grid size (typical is 81)
+#define MASK ((1<<(UNIT+1))-2)  // Mask for all bits except 0
+
+// Switch off using precomputed bitcount vs function
+// Should only be used in sudoku namespace
+#define BITCOUNT(x) \
+	((BOX < 4) ? bitcount::BitCountArray[x] : bitcount::BitCount(x))
+
 namespace sudoku
 {
 	template <int boxSize>
@@ -75,7 +86,7 @@ namespace sudoku
 
 		for(i = 0; i < GRID; ++i)
 		{
-			if(board.GetCellMask(i) != 0)
+			if(board.GetCellValue(i) != 0)
 			{
 				board.IgnoreCellPossible(i);
 				continue;
@@ -123,7 +134,7 @@ namespace sudoku
 
 				// Get possible mask and value mask
 				BITMASK possible = board.GetCellPossible(x);
-				BITMASK boardVal = board.GetCellMask(x);
+				BITMASK boardVal = board.GetCellValue(x);
 
 				all |= (possible | boardVal);
 				twice |= (once & possible);

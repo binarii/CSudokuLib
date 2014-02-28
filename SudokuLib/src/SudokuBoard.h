@@ -11,13 +11,6 @@
 #define GRID (UNIT * UNIT)      // Grid size (typical is 81)
 #define MASK ((1<<(UNIT+1))-2)  // Mask for all bits except 0
 
-
-// Switch off using precomputed bitcount vs function
-// Should only be used in sudoku namespace
-#define BITCOUNT(x) \
-	((BOX < 4) ? bitcount::BitCountArray[x] : bitcount::BitCount(x))
-
-
 namespace sudoku
 {
 	template <int boxSize>
@@ -36,25 +29,25 @@ namespace sudoku
 		void ClearCell(CELL_INDEX pos);
 
 		// Make sure to call before getting cell possible
-		void UpdateCellPossible(CELL_INDEX pos);
+		virtual void UpdateCellPossible(CELL_INDEX pos);
 
 		// Make a cell have no possibilities (if it is already set)
-		void IgnoreCellPossible(CELL_INDEX pos);
+		virtual void IgnoreCellPossible(CELL_INDEX pos);
 
 		// Get board stats
 		int GetSetCount();
 
 		// Get cell stats
-		BITMASK GetCellMask(CELL_INDEX pos);
+		BITMASK GetCellValue(CELL_INDEX pos);
 		BITMASK GetCellPossible(CELL_INDEX pos);
 
 		// Help iteration through cells
 		CELL_INDEX IterateGroups(UNIT_INDEX unit, UNIT_INDEX pos);
 
-	private:
+	protected:
 		void SetCachedArrays();
 
-	private:
+	protected:
 		int m_setCount;
 		BITMASK m_board[GRID];           // Stores the game board
 
@@ -118,7 +111,7 @@ namespace sudoku
 	}
 	
 	template <int boxSize>
-	inline BITMASK Board<boxSize>::GetCellMask(CELL_INDEX pos)
+	inline BITMASK Board<boxSize>::GetCellValue(CELL_INDEX pos)
 	{
 		return m_board[pos];
 	}
@@ -135,5 +128,10 @@ namespace sudoku
 		return m_groups[unit][pos];
 	}
 }
+
+#undef BOX 
+#undef UNIT
+#undef GRID
+#undef MASK
 
 #endif

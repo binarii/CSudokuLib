@@ -2,6 +2,12 @@
 #include "SudokuBoard.h"
 #include "Util.h"
 
+// Defines for constants (based on template)
+#define BOX  (boxSize)          // Box side length
+#define UNIT (BOX * BOX)        // Unit side length (row, col)
+#define GRID (UNIT * UNIT)      // Grid size (typical is 81)
+#define MASK ((1<<(UNIT+1))-2)  // Mask for all bits except 0
+
 namespace sudoku
 {	
 	template <int boxSize>

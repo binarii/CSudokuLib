@@ -3,6 +3,12 @@
 #include "QuickSolve.h"
 #include "Util.h"
 
+// Defines for constants (based on template)
+#define BOX  (boxSize)          // Box side length
+#define UNIT (BOX * BOX)        // Unit side length (row, col)
+#define GRID (UNIT * UNIT)      // Grid size (typical is 81)
+#define MASK ((1<<(UNIT+1))-2)  // Mask for all bits except 0
+
 namespace sudoku
 {
 	template <int boxSize>
@@ -135,7 +141,7 @@ namespace sudoku
 			// Make a copy of the board and dig cells
 			boardCpy.Copy(board);
 			for(int j = 0; j < rate; j++)
-				if(boardCpy.GetCellMask(digArray[i + j]) != 0)
+				if(boardCpy.GetCellValue(digArray[i + j]) != 0)
 					boardCpy.ClearCell(digArray[i + j]);
 
 			// Check if it is still unique
@@ -144,7 +150,7 @@ namespace sudoku
 			// If it is unique we can dig these cells
 			if(solutionCount == 1)
 				for(int j = 0; j < rate; j++)
-					if(board.GetCellMask(digArray[i + j]) != 0)
+					if(board.GetCellValue(digArray[i + j]) != 0)
 						board.ClearCell(digArray[i + j]);
 		}
 	}
