@@ -79,6 +79,7 @@
     <ClCompile Include="src\BitCount.cpp" />
     <ClCompile Include="src\NakedPair.cpp" />
     <ClCompile Include="src\NakedSingle.cpp" />
+    <ClCompile Include="src\NakedTriple.cpp" />
     <ClCompile Include="src\NotchedBoard.cpp" />
     <ClCompile Include="src\QuickSolve.cpp" />
     <ClCompile Include="src\ScrambleSolve.cpp" />
@@ -88,6 +89,7 @@
   <ItemGroup>
     <ClInclude Include="src\HiddenSingle.h" />
     <ClInclude Include="src\NakedPair.h" />
+    <ClInclude Include="src\NakedTriple.h" />
     <ClInclude Include="src\NotchedBoard.h" />
     <ClInclude Include="src\MinimizeBoard.h" />
     <ClInclude Include="src\NakedSingle.h" />

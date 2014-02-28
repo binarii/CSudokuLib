@@ -57,6 +57,9 @@
     <ClCompile Include="src\NakedPair.cpp">
       <Filter>Core\Grading\Techniques</Filter>
     </ClCompile>
+    <ClCompile Include="src\NakedTriple.cpp">
+      <Filter>Core\Grading\Techniques</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Types.h">
@@ -105,6 +108,9 @@
       <Filter>Core\Grading\Techniques</Filter>
     </ClInclude>
     <ClInclude Include="src\NakedPair.h">
+      <Filter>Core\Grading\Techniques</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NakedTriple.h">
       <Filter>Core\Grading\Techniques</Filter>
     </ClInclude>
   </ItemGroup>
