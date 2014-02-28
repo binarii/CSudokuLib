@@ -9,10 +9,9 @@
 namespace sudoku
 {
 	
-	NakedPair::NakedPair()
+	NakedPair::NakedPair() :
+		Technique(ST_NAKED_PAIR)
 	{
-		m_cost = 3;
-		m_useCount = 0;
 	}
 
 	NakedPair::~NakedPair()

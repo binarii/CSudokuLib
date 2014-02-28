@@ -45,6 +45,7 @@ namespace sudoku
 	{
 		// Start the clock
 		m_timer.StartTimer();
+		Reset();
 
 		NotchedBoard copy(board);
 
@@ -93,6 +94,5 @@ namespace sudoku
 	{
 		for(int i = 0; i < m_techniques.size(); i++)
 			m_techniques[i]->ResetCount();
-
 	}
 }

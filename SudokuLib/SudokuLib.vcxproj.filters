@@ -60,6 +60,12 @@
     <ClCompile Include="src\NakedTriple.cpp">
       <Filter>Core\Grading\Techniques</Filter>
     </ClCompile>
+    <ClCompile Include="src\Util.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TechniqueConstants.cpp">
+      <Filter>Core\Grading</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Types.h">
@@ -89,9 +95,6 @@
     <ClInclude Include="src\SudokuGrader.h">
       <Filter>Core\Grading</Filter>
     </ClInclude>
-    <ClInclude Include="src\SudokuTechnique.h">
-      <Filter>Core\Grading\Techniques</Filter>
-    </ClInclude>
     <ClInclude Include="src\NakedSingle.h">
       <Filter>Core\Grading\Techniques</Filter>
     </ClInclude>
@@ -112,6 +115,12 @@
     </ClInclude>
     <ClInclude Include="src\NakedTriple.h">
       <Filter>Core\Grading\Techniques</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TechniqueConstants.h">
+      <Filter>Core\Grading</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SudokuTechnique.h">
+      <Filter>Core\Grading</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

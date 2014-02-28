@@ -9,10 +9,9 @@
 namespace sudoku
 {
 	
-	NakedTriple::NakedTriple()
+	NakedTriple::NakedTriple() :
+		Technique(ST_NAKED_TRIPLE)
 	{
-		m_cost = 4;
-		m_useCount = 0;
 	}
 
 	NakedTriple::~NakedTriple()

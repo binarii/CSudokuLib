@@ -9,10 +9,9 @@
 namespace sudoku
 {
 	
-	HiddenSingle::HiddenSingle()
+	HiddenSingle::HiddenSingle() :
+		Technique(ST_HIDDEN_SINGLE)
 	{
-		m_cost = 2;
-		m_useCount = 0;
 	}
 
 	HiddenSingle::~HiddenSingle()

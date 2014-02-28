@@ -85,6 +85,8 @@
     <ClCompile Include="src\ScrambleSolve.cpp" />
     <ClCompile Include="src\SudokuBoard.cpp" />
     <ClCompile Include="src\SudokuGrader.cpp" />
+    <ClCompile Include="src\TechniqueConstants.cpp" />
+    <ClCompile Include="src\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\HiddenSingle.h" />
@@ -97,6 +99,7 @@
     <ClInclude Include="src\PuzzleIndexing.h" />
     <ClInclude Include="src\SudokuGrader.h" />
     <ClInclude Include="src\SudokuTechnique.h" />
+    <ClInclude Include="src\TechniqueConstants.h" />
     <ClInclude Include="src\Util.h" />
     <ClInclude Include="src\ScrambleSolve.h" />
     <ClInclude Include="src\BitCount.h" />

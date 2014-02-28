@@ -8,10 +8,9 @@
 
 namespace sudoku
 {	
-	NakedSingle::NakedSingle()
+	NakedSingle::NakedSingle() :
+		Technique(ST_NAKED_SINGLE)
 	{
-		m_cost = 1;
-		m_useCount = 0;
 	}
 
 	NakedSingle::~NakedSingle()
