@@ -74,8 +74,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\HiddenSingle.cpp" />
     <ClCompile Include="src\MinimizeBoard.cpp" />
     <ClCompile Include="src\BitCount.cpp" />
+    <ClCompile Include="src\NakedPair.cpp" />
     <ClCompile Include="src\NakedSingle.cpp" />
     <ClCompile Include="src\NotchedBoard.cpp" />
     <ClCompile Include="src\QuickSolve.cpp" />
@@ -84,6 +86,8 @@
     <ClCompile Include="src\SudokuGrader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\HiddenSingle.h" />
+    <ClInclude Include="src\NakedPair.h" />
     <ClInclude Include="src\NotchedBoard.h" />
     <ClInclude Include="src\MinimizeBoard.h" />
     <ClInclude Include="src\NakedSingle.h" />

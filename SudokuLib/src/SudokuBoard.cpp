@@ -1,8 +1,6 @@
 #include "SudokuBoard.h"
 #include <memory> // memset
 
-
-
 // Switch off using precomputed bitcount vs function
 // Should only be used in sudoku namespace
 #define BITCOUNT(x) \

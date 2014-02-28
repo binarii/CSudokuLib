@@ -51,6 +51,12 @@
     <ClCompile Include="src\NotchedBoard.cpp">
       <Filter>Core\Grading</Filter>
     </ClCompile>
+    <ClCompile Include="src\HiddenSingle.cpp">
+      <Filter>Core\Grading\Techniques</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NakedPair.cpp">
+      <Filter>Core\Grading\Techniques</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Types.h">
@@ -94,6 +100,12 @@
     </ClInclude>
     <ClInclude Include="src\PuzzleIndexing.h">
       <Filter>Core\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HiddenSingle.h">
+      <Filter>Core\Grading\Techniques</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NakedPair.h">
+      <Filter>Core\Grading\Techniques</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

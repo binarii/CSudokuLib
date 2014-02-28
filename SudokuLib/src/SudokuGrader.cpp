@@ -4,6 +4,8 @@
 
 // techniques
 #include "NakedSingle.h"
+#include "HiddenSingle.h"
+#include "NakedPair.h"
 
 #define GRID 81
 #define UNIT 9
@@ -16,6 +18,12 @@ namespace sudoku
 		Technique* technique;
 
 		technique = new NakedSingle();
+		m_techniques.push_back(technique);
+
+		technique = new HiddenSingle();
+		m_techniques.push_back(technique);
+
+		technique = new NakedPair();
 		m_techniques.push_back(technique);
 	}
 
@@ -36,7 +44,6 @@ namespace sudoku
 
 		NotchedBoard copy(board);
 
-
 		// Get board in a good state
 		for(int i = 0; i < GRID; i++)
 		{
@@ -47,7 +54,7 @@ namespace sudoku
 
 		int count = 1;
 
-		while((count > 0) || (copy.GetSetCount() != 81))
+		while((count > 0) && (copy.GetSetCount() != 81))
 		{
 			count = 0;
 			for(int i = 0; i < m_techniques.size(); i++)
@@ -70,10 +77,10 @@ namespace sudoku
 
 	int Grader::GetDifficulty()
 	{
-		int difficulty;
+		int difficulty = 0;
 
 		for(int i = 0; i < m_techniques.size(); i++)
-			difficulty = m_techniques[i]->GetCost() * m_techniques[i]->GetCount();
+			difficulty += m_techniques[i]->GetCost() * m_techniques[i]->GetCount();
 
 		return difficulty;
 	}

@@ -7,7 +7,6 @@
  * for use in generating puzzles.
  */
 
-
 #include "Types.h"
 #include "Timer.h"
 #include "PuzzleDimensions.h"
