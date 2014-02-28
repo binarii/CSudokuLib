@@ -3,13 +3,13 @@
 #include "QuickSolve.h"
 #include "Util.h"
 
+
 namespace sudoku
 {
 	template <int boxSize>
 	MinimizeBoard<boxSize>::MinimizeBoard()
 	{
 		m_solveTime = 0.0;
-		m_solver.SetMaxSolutionCount(2);
 	}
 
 	template <int boxSize>
@@ -111,7 +111,6 @@ namespace sudoku
 		for(int i = 0; i < centerIndex; i++) shuffleArray[i] = i;
 		util::ArrayShuffle<CELL_INDEX>(shuffleArray, centerIndex);
 
-		int x, y;
 		CELL_INDEX digArray[centerIndex * 2];
 
 		for(int i = 0; i < centerIndex; i++)
@@ -129,22 +128,24 @@ namespace sudoku
 	{
 		int solutionCount;
 		Board<boxSize> boardCpy(board);
+		QuickSolve<boxSize> solver;
+		solver.SetMaxSolutionCount(2);
 
 		for(int i = 0; i < n; i++)
 		{
 			// Make a copy of the board and dig cells
 			boardCpy.Copy(board);
 			for(int j = 0; j < rate; j++)
-				if(boardCpy.GetCellMask(digArray[i + j]) != 0)
+				if(boardCpy.GetCellValue(digArray[i + j]) != 0)
 					boardCpy.ClearCell(digArray[i + j]);
 
 			// Check if it is still unique
-			solutionCount = m_solver.Solve(boardCpy);
+			solutionCount = solver.Solve(boardCpy);
 
 			// If it is unique we can dig these cells
 			if(solutionCount == 1)
 				for(int j = 0; j < rate; j++)
-					if(board.GetCellMask(digArray[i + j]) != 0)
+					if(board.GetCellValue(digArray[i + j]) != 0)
 						board.ClearCell(digArray[i + j]);
 		}
 	}

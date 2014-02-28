@@ -3,6 +3,7 @@
 
 #include "Types.h"
 #include "Timer.h"
+#include "PuzzleDimensions.h"
 
 namespace sudoku
 {
@@ -12,7 +13,7 @@ namespace sudoku
 
 	// Solving class
 	template <int boxSize>
-	class QuickSolve
+	class QuickSolve : PuzzleDimensions<boxSize>
 	{
 	public:
 		QuickSolve();

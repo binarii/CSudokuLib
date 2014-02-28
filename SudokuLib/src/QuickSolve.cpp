@@ -1,6 +1,11 @@
 #include "QuickSolve.h"
 #include "SudokuBoard.h"
 
+// Switch off using precomputed bitcount vs function
+// Should only be used in sudoku namespace
+#define BITCOUNT(x) \
+	((BOX < 4) ? bitcount::BitCountArray[x] : bitcount::BitCount(x))
+
 namespace sudoku
 {
 	template <int boxSize>
@@ -75,7 +80,7 @@ namespace sudoku
 
 		for(i = 0; i < GRID; ++i)
 		{
-			if(board.GetCellMask(i) != 0)
+			if(board.GetCellValue(i) != 0)
 			{
 				board.IgnoreCellPossible(i);
 				continue;
@@ -123,7 +128,7 @@ namespace sudoku
 
 				// Get possible mask and value mask
 				BITMASK possible = board.GetCellPossible(x);
-				BITMASK boardVal = board.GetCellMask(x);
+				BITMASK boardVal = board.GetCellValue(x);
 
 				all |= (possible | boardVal);
 				twice |= (once & possible);

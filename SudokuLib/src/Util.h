@@ -5,15 +5,24 @@
 #include <time.h>
 
 namespace sudoku
-{
+{	
+	// Forward the board class
+	template <int boxSize>
+	class Board;
+
 	namespace util
 	{
 		static bool Initialize()
 		{
-			srand(time(NULL));
+			srand((unsigned int)time(NULL));
 
 			return true;
 		}
+
+		void LoadBoard(Board<3>& board, std::string puzzle);
+		void PrintBoard(Board<3>& board, std::ostream& stream);
+		std::string GetBoardString(Board<3>& board);
+
 
 		template <class T>
 		static void ArrayShuffle(T* arr, int n)

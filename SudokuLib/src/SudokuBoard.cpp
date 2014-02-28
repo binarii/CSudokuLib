@@ -1,12 +1,17 @@
 #include "SudokuBoard.h"
 #include <memory> // memset
 
+// Switch off using precomputed bitcount vs function
+// Should only be used in sudoku namespace
+#define BITCOUNT(x) \
+	((BOX < 4) ? bitcount::BitCountArray[x] : bitcount::BitCount(x))
+
 namespace sudoku
 {
 	template <int boxSize>
 	Board<boxSize>::Board()
 	{
-		SetCachedArrays();
+		InitializeDimensions();
 		Reset();
 	}
 
@@ -20,10 +25,8 @@ namespace sudoku
 		memcpy(m_rowConflicts, other.m_rowConflicts, sizeof(m_rowConflicts));
 		memcpy(m_colConflicts, other.m_colConflicts, sizeof(m_colConflicts));
 		memcpy(m_boxConflicts, other.m_boxConflicts, sizeof(m_boxConflicts));
-		memcpy(m_rowReference, other.m_rowReference, sizeof(m_rowReference));
-		memcpy(m_colReference, other.m_colReference, sizeof(m_colReference));
-		memcpy(m_boxReference, other.m_boxReference, sizeof(m_boxReference));
-		memcpy(m_groups, other.m_groups, sizeof(m_groups));
+
+		InitializeDimensions();
 	}
 	
 	template <int boxSize>
@@ -52,24 +55,6 @@ namespace sudoku
 		memcpy(m_rowConflicts, other.m_rowConflicts, sizeof(m_rowConflicts));
 		memcpy(m_colConflicts, other.m_colConflicts, sizeof(m_colConflicts));
 		memcpy(m_boxConflicts, other.m_boxConflicts, sizeof(m_boxConflicts));
-	}
-
-	template <int boxSize>
-	void Board<boxSize>::SetCachedArrays()
-	{
-		for(int i = 0; i < GRID; i++)
-		{
-			int col = i % UNIT;
-			int row = i / UNIT;
-			int box = ((col / BOX) * BOX) + (row / BOX);
-			int boxIndex = (col % BOX) + (row % BOX) * BOX;
-			m_rowReference[i] = row;
-			m_colReference[i] = col;
-			m_boxReference[i] = box;
-			m_groups[row + UNIT*0][col] = i;
-			m_groups[col + UNIT*1][row] = i;
-			m_groups[box + UNIT*2][boxIndex] = i;
-		}
 	}
 
 	template class Board<2>;
