@@ -10,7 +10,7 @@ namespace sudoku
 	{
 		static bool Initialize()
 		{
-			srand(time(NULL));
+			srand((unsigned int)time(NULL));
 
 			return true;
 		}

@@ -19,6 +19,9 @@
     <Filter Include="Core\Grading\Techniques">
       <UniqueIdentifier>{56c0b594-67ef-4418-a872-dcfb5bb6f4e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Constants">
+      <UniqueIdentifier>{fd2679d1-cd1f-4b0d-a753-8b22af611b53}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -85,6 +88,12 @@
     </ClInclude>
     <ClInclude Include="src\NotchedBoard.h">
       <Filter>Core\Grading</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PuzzleDimensions.h">
+      <Filter>Core\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PuzzleIndexing.h">
+      <Filter>Core\Constants</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

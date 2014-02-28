@@ -1,8 +1,6 @@
 #include "NotchedBoard.h"
 #include <memory>
 
-#define MASK ((1 << (9 + 1)) - 2)
-
 namespace sudoku
 {	
 	NotchedBoard::NotchedBoard() :

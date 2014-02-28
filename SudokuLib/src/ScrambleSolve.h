@@ -10,6 +10,7 @@
 
 #include "Types.h"
 #include "Timer.h"
+#include "PuzzleDimensions.h"
 
 namespace sudoku
 {
@@ -18,7 +19,7 @@ namespace sudoku
 	class Board;
 
 	template <int boxSize>
-	class ScrambleSolve
+	class ScrambleSolve : public PuzzleDimensions<boxSize>
 	{
 	public:
 		ScrambleSolve();

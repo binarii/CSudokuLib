@@ -3,6 +3,7 @@
 
 #include "Types.h"
 #include "Timer.h"
+#include "PuzzleDimensions.h"
 
 namespace sudoku
 {
@@ -22,7 +23,7 @@ namespace sudoku
 	};
 
 	template <int boxSize>
-	class MinimizeBoard
+	class MinimizeBoard : PuzzleDimensions<boxSize>
 	{
 	public:
 		MinimizeBoard();

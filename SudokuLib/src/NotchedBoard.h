@@ -3,8 +3,6 @@
 
 #include "SudokuBoard.h"
 
-#define GRID 81
-
 namespace sudoku
 {
 	class NotchedBoard : public Board<3>
@@ -25,5 +23,4 @@ namespace sudoku
 	};
 }
 
-#undef GRID
 #endif

@@ -87,6 +87,8 @@
     <ClInclude Include="src\NotchedBoard.h" />
     <ClInclude Include="src\MinimizeBoard.h" />
     <ClInclude Include="src\NakedSingle.h" />
+    <ClInclude Include="src\PuzzleDimensions.h" />
+    <ClInclude Include="src\PuzzleIndexing.h" />
     <ClInclude Include="src\SudokuGrader.h" />
     <ClInclude Include="src\SudokuTechnique.h" />
     <ClInclude Include="src\Util.h" />

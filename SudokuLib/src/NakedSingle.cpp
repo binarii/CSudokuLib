@@ -1,10 +1,6 @@
 #include "NakedSingle.h"
 #include "NotchedBoard.h"
 
-#define GRID 81
-#define BOX 3
-#define UNIT 9
-
 // Switch off using precomputed bitcount vs function
 // Should only be used in sudoku namespace
 #define BITCOUNT(x) \
