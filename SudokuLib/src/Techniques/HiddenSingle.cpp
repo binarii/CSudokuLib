@@ -1,5 +1,5 @@
 #include "HiddenSingle.h"
-#include "NotchedBoard.h"
+#include "../NotchedBoard.h"
 
 // Switch off using precomputed bitcount vs function
 // Should only be used in sudoku namespace

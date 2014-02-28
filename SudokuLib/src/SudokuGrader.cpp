@@ -3,10 +3,10 @@
 #include "NotchedBoard.h"
 
 // techniques
-#include "NakedSingle.h"
-#include "HiddenSingle.h"
-#include "NakedPair.h"
-#include "NakedTriple.h"
+#include "Techniques\NakedSingle.h"
+#include "Techniques\HiddenSingle.h"
+#include "Techniques\NakedPair.h"
+#include "Techniques\NakedTriple.h"
 
 #define GRID 81
 #define UNIT 9

@@ -42,28 +42,28 @@
     <ClCompile Include="src\MinimizeBoard.cpp">
       <Filter>Core\Generating</Filter>
     </ClCompile>
-    <ClCompile Include="src\NakedSingle.cpp">
-      <Filter>Core\Grading\Techniques</Filter>
-    </ClCompile>
     <ClCompile Include="src\SudokuGrader.cpp">
       <Filter>Core\Grading</Filter>
     </ClCompile>
     <ClCompile Include="src\NotchedBoard.cpp">
       <Filter>Core\Grading</Filter>
     </ClCompile>
-    <ClCompile Include="src\HiddenSingle.cpp">
-      <Filter>Core\Grading\Techniques</Filter>
-    </ClCompile>
-    <ClCompile Include="src\NakedPair.cpp">
-      <Filter>Core\Grading\Techniques</Filter>
-    </ClCompile>
-    <ClCompile Include="src\NakedTriple.cpp">
-      <Filter>Core\Grading\Techniques</Filter>
-    </ClCompile>
     <ClCompile Include="src\Util.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="src\TechniqueConstants.cpp">
+    <ClCompile Include="src\Techniques\HiddenSingle.cpp">
+      <Filter>Core\Grading\Techniques</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Techniques\NakedPair.cpp">
+      <Filter>Core\Grading\Techniques</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Techniques\NakedSingle.cpp">
+      <Filter>Core\Grading\Techniques</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Techniques\NakedTriple.cpp">
+      <Filter>Core\Grading\Techniques</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Techniques\TechniqueConstants.cpp">
       <Filter>Core\Grading</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,9 +95,6 @@
     <ClInclude Include="src\SudokuGrader.h">
       <Filter>Core\Grading</Filter>
     </ClInclude>
-    <ClInclude Include="src\NakedSingle.h">
-      <Filter>Core\Grading\Techniques</Filter>
-    </ClInclude>
     <ClInclude Include="src\NotchedBoard.h">
       <Filter>Core\Grading</Filter>
     </ClInclude>
@@ -107,19 +104,22 @@
     <ClInclude Include="src\PuzzleIndexing.h">
       <Filter>Core\Constants</Filter>
     </ClInclude>
-    <ClInclude Include="src\HiddenSingle.h">
+    <ClInclude Include="src\Techniques\HiddenSingle.h">
       <Filter>Core\Grading\Techniques</Filter>
     </ClInclude>
-    <ClInclude Include="src\NakedPair.h">
+    <ClInclude Include="src\Techniques\NakedPair.h">
       <Filter>Core\Grading\Techniques</Filter>
     </ClInclude>
-    <ClInclude Include="src\NakedTriple.h">
+    <ClInclude Include="src\Techniques\NakedSingle.h">
       <Filter>Core\Grading\Techniques</Filter>
     </ClInclude>
-    <ClInclude Include="src\TechniqueConstants.h">
+    <ClInclude Include="src\Techniques\NakedTriple.h">
+      <Filter>Core\Grading\Techniques</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Techniques\SudokuTechnique.h">
       <Filter>Core\Grading</Filter>
     </ClInclude>
-    <ClInclude Include="src\SudokuTechnique.h">
+    <ClInclude Include="src\Techniques\TechniqueConstants.h">
       <Filter>Core\Grading</Filter>
     </ClInclude>
   </ItemGroup>

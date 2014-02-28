@@ -1,7 +1,7 @@
 #ifndef _SUDOKUTECHNIQUE_H_
 #define _SUDOKUTECHNIQUE_H_
 
-#include "PuzzleDimensions.h"
+#include "../PuzzleDimensions.h"
 #include "TechniqueConstants.h"
 
 namespace sudoku

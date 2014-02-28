@@ -1,7 +1,7 @@
 #ifndef _NAKEDPAIR_H_
 #define _NAKEDPAIR_H_
 
-#include "Types.h"
+#include "../Types.h"
 #include "SudokuTechnique.h"
 
 namespace sudoku

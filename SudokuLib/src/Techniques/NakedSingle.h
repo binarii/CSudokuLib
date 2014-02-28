@@ -1,7 +1,7 @@
 #ifndef _NAKEDSINGLE_H_
 #define _NAKEDSINGLE_H_
 
-#include "Types.h"
+#include "../Types.h"
 #include "SudokuTechnique.h"
 
 namespace sudoku
