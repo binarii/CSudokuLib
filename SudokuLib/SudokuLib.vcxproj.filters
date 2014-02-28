@@ -16,6 +16,9 @@
     <Filter Include="Core\Solving">
       <UniqueIdentifier>{ad288a52-cc2b-46de-ab14-c90f48444c00}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Grading\Techniques">
+      <UniqueIdentifier>{56c0b594-67ef-4418-a872-dcfb5bb6f4e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -35,6 +38,15 @@
     </ClCompile>
     <ClCompile Include="src\MinimizeBoard.cpp">
       <Filter>Core\Generating</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NakedSingle.cpp">
+      <Filter>Core\Grading\Techniques</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SudokuGrader.cpp">
+      <Filter>Core\Grading</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NotchedBoard.cpp">
+      <Filter>Core\Grading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +73,18 @@
     </ClInclude>
     <ClInclude Include="src\MinimizeBoard.h">
       <Filter>Core\Generating</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SudokuGrader.h">
+      <Filter>Core\Grading</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SudokuTechnique.h">
+      <Filter>Core\Grading\Techniques</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NakedSingle.h">
+      <Filter>Core\Grading\Techniques</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NotchedBoard.h">
+      <Filter>Core\Grading</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

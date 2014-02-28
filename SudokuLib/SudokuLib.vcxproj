@@ -76,12 +76,19 @@
   <ItemGroup>
     <ClCompile Include="src\MinimizeBoard.cpp" />
     <ClCompile Include="src\BitCount.cpp" />
+    <ClCompile Include="src\NakedSingle.cpp" />
+    <ClCompile Include="src\NotchedBoard.cpp" />
     <ClCompile Include="src\QuickSolve.cpp" />
     <ClCompile Include="src\ScrambleSolve.cpp" />
     <ClCompile Include="src\SudokuBoard.cpp" />
+    <ClCompile Include="src\SudokuGrader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\NotchedBoard.h" />
     <ClInclude Include="src\MinimizeBoard.h" />
+    <ClInclude Include="src\NakedSingle.h" />
+    <ClInclude Include="src\SudokuGrader.h" />
+    <ClInclude Include="src\SudokuTechnique.h" />
     <ClInclude Include="src\Util.h" />
     <ClInclude Include="src\ScrambleSolve.h" />
     <ClInclude Include="src\BitCount.h" />
