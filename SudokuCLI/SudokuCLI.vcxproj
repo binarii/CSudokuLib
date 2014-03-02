@@ -41,13 +41,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Ryan\Documents\Visual Studio 2012\Projects\Repository\Sudoku\SudokuLib\src;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Ryan\Documents\Visual Studio 2012\Projects\Repository\Sudoku\SudokuLib\bin\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\SudokuLib\src;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\SudokuLib\bin\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>D:\Ryan\Documents\Visual Studio 2012\Projects\Repository\Sudoku\SudokuLib\src;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Ryan\Documents\Visual Studio 2012\Projects\Repository\Sudoku\SudokuLib\bin\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\SudokuLib\src;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\SudokuLib\bin\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
