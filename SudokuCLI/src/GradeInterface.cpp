@@ -73,6 +73,7 @@ void Grade(CLI_Input& input)
 				totalGrade += (diff != -1) ? diff : 0;
 			}
 
+			(*input.output) << std::endl;
 			(*input.output) << "Finished Solving File." << std::endl;
 			(*input.output) << "Total Solve Time: " << time << std::endl;
 			(*input.output) << "Average Solve Time: " << time / (double)totalCount << std::endl;
