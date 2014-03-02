@@ -13,6 +13,10 @@ namespace sudoku
 		Board(other)
 	{
 		memset(&m_boardMask, 0, sizeof(m_boardMask));
+
+		for(int i = 0; i < GRID; i++)
+			if(m_board[i] != 0)
+				m_boardMask[i] = MASK;
 	}
 
 	NotchedBoard::~NotchedBoard()
