@@ -28,7 +28,10 @@ namespace sudoku
 		BITMASK poss2;
 		BITMASK poss3;
 		BITMASK combine;
-		int useCount = 0;
+		int useCount = 0;		
+
+		for(int i = 0; i < UNIT; i++)
+			board.UpdateCellPossible(i);
 
 		for(int i = 0; i < UNIT*3; ++i)
 		{
@@ -47,6 +50,9 @@ namespace sudoku
 					{						
 						cell3 = board.IterateGroups(i, c3);
 						poss3 = board.GetCellPossible(cell3);
+
+						if(poss1 == 0 || poss2 == 0 || poss3 == 0)
+							continue;
 
 						combine = cell1 | cell2 | cell3;
 

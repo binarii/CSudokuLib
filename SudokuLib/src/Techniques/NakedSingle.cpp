@@ -42,7 +42,7 @@ namespace sudoku
 			{
 				// Play move and clear possible
 				board.SetCell(i, possible);
-				board.IgnoreCellPossible(i);
+				board.MaskCell(i, MASK);
 
 				m_useCount++;
 				useCount++;

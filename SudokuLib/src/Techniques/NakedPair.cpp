@@ -27,6 +27,9 @@ namespace sudoku
 		BITMASK poss2;
 		int useCount = 0;
 
+		for(int i = 0; i < UNIT; i++)
+			board.UpdateCellPossible(i);
+
 		for(int i = 0; i < UNIT*3; ++i)
 		{
 			for(int j = 0; j < UNIT-1; ++j)
@@ -50,11 +53,12 @@ namespace sudoku
 								continue;
 
 							mask |= board.GetCellPossible(board.IterateGroups(i, u)) & poss2;
-							board.MaskCell(board.IterateGroups(i, u), poss2);	
+							board.MaskCell(board.IterateGroups(i, u), poss2);
+							board.UpdateCellPossible(board.IterateGroups(i, u));
 						}
 
 						if(mask)
-						{							
+						{
 							m_useCount++;
 							useCount++;
 						}

@@ -26,7 +26,6 @@ namespace sudoku
 
 		for(int i = 0; i < UNIT*3; ++i)
 		{
-
 			BITMASK once = 0;
 			BITMASK twice = 0;
 			BITMASK all = 0;
@@ -37,6 +36,7 @@ namespace sudoku
 				x = board.IterateGroups(i, j);
 
 				// Get possible mask and value mask
+				board.UpdateCellPossible(x);
 				BITMASK possible = board.GetCellPossible(x);
 				BITMASK boardVal = board.GetCellValue(x);
 
@@ -59,7 +59,7 @@ namespace sudoku
 				{
 					// Play move and clear possible
 					board.SetCell(x, once);
-					board.IgnoreCellPossible(x);
+					board.MaskCell(x, MASK);
 
 					m_useCount++;
 					useCount++;					

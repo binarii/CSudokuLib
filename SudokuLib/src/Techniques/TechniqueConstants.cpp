@@ -7,12 +7,14 @@ const char* StrategyName[ST_TOTAL] =
 	"Hidden Single",
 	"Naked Pair",
 	"Naked Triple",
+	"Hidden Pair",
 };
 
 const int StrategyWeight[ST_TOTAL] = 
 {
 	1,
-	2,
+	1,
 	3,
-	4,
+	3,
+	5,
 };

@@ -66,6 +66,9 @@
     <ClCompile Include="src\Techniques\TechniqueConstants.cpp">
       <Filter>Core\Grading</Filter>
     </ClCompile>
+    <ClCompile Include="src\Techniques\HiddenPair.cpp">
+      <Filter>Core\Grading\Techniques</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Types.h">
@@ -121,6 +124,9 @@
     </ClInclude>
     <ClInclude Include="src\Techniques\TechniqueConstants.h">
       <Filter>Core\Grading</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Techniques\HiddenPair.h">
+      <Filter>Core\Grading\Techniques</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

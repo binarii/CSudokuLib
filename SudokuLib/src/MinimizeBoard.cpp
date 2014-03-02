@@ -136,8 +136,8 @@ namespace sudoku
 			// Make a copy of the board and dig cells
 			boardCpy.Copy(board);
 			for(int j = 0; j < rate; j++)
-				if(boardCpy.GetCellValue(digArray[i + j]) != 0)
-					boardCpy.ClearCell(digArray[i + j]);
+				if(boardCpy.GetCellValue(digArray[i*rate + j]) != 0)
+					boardCpy.ClearCell(digArray[i*rate + j]);
 
 			// Check if it is still unique
 			solutionCount = solver.Solve(boardCpy);
@@ -145,8 +145,8 @@ namespace sudoku
 			// If it is unique we can dig these cells
 			if(solutionCount == 1)
 				for(int j = 0; j < rate; j++)
-					if(board.GetCellValue(digArray[i + j]) != 0)
-						board.ClearCell(digArray[i + j]);
+					if(board.GetCellValue(digArray[i*rate + j]) != 0)
+						board.ClearCell(digArray[i*rate + j]);
 		}
 	}
 

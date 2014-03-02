@@ -74,6 +74,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Techniques\HiddenPair.cpp" />
     <ClCompile Include="src\Techniques\HiddenSingle.cpp" />
     <ClCompile Include="src\MinimizeBoard.cpp" />
     <ClCompile Include="src\BitCount.cpp" />
@@ -89,6 +90,7 @@
     <ClCompile Include="src\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Techniques\HiddenPair.h" />
     <ClInclude Include="src\Techniques\HiddenSingle.h" />
     <ClInclude Include="src\Techniques\NakedPair.h" />
     <ClInclude Include="src\Techniques\NakedTriple.h" />
