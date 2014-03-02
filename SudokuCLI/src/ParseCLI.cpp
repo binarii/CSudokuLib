@@ -7,6 +7,7 @@ void ParseGeneration(std::vector<std::string> args, std::ofstream& file, GEN_Inp
 {
 	input.output = &std::cout;
 	input.count = 10;
+	input.genType = 0;
 
 	for(int i = 1; i < args.size(); i++)
 	{

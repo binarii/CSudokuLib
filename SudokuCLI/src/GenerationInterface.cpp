@@ -59,7 +59,7 @@ int GenerateSingle(GEN_Input& input, double& timeAccum)
 	board.Reset();
 
 	scrambler.solve(board);
-	minimizer.Minimize(board, sudoku::MT_NONE);
+	minimizer.Minimize(board, (sudoku::MinimizeType)input.genType);
 
 	int clueCount = board.GetSetCount();
 	double solveTime = scrambler.GetSolveTime() + minimizer.GetSolveTime();
