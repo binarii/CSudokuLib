@@ -27,10 +27,7 @@ namespace sudoku
 		CELL_INDEX cell2;
 		BITMASK poss1;
 		BITMASK poss2;
-		BITMASK combined;		
-
-		for(int i = 0; i < UNIT; i++)
-			board.UpdateCellPossible(i);
+		BITMASK combined;
 
 		for(int u = 0; u < UNIT*3; ++u)
 		{

@@ -13,84 +13,105 @@ namespace sudoku
 	template <int subsetSize, int UNIT>
 	int FindNakedSubset(NotchedBoard& board)
 	{
-		CELL_INDEX cellIndex[subsetSize];
-		BITMASK candidates[subsetSize];
+		CELL_INDEX cell1, cell2, cell3, cell4, x;
+		BITMASK poss1, poss2, poss3, poss4;
 		BITMASK combined;
-
-		int indices[subsetSize];
 		int useCount = 0;
-		
-		// Update the boards possibility matrix
-		for(int i = 0; i < UNIT; i++)
-			board.UpdateCellPossible(i);
+
+		const int UNITmSIZE = UNIT - subsetSize;		
 
 		// For every group
 		for(int g = 0; g < UNIT*3; g++)
 		{
-			// Reset the index array
-			for(int i = 0; i < subsetSize; i++)
-				indices[i] = i;
-
-			// While the base index is below proper limit
-			// eg last index of count 3 = {6, 7, 8}, check for 6
-			while(indices[0] < (UNIT - subsetSize + 1))
+			for(int c1 = 0; c1 < (UNITmSIZE + 1) && subsetSize > 0; ++c1)
 			{
-				combined = 0;
-				for(int i = 0; i < subsetSize; i++)
-				{
-					cellIndex[i] = board.IterateGroups(g, indices[i]);
-					candidates[i]  = board.GetCellPossible(cellIndex[i]);
-					combined |= candidates[i];
+				cell1 = board.IterateGroups(g, c1);
+				poss1 = board.GetCellPossible(cell1);
+				if(poss1 == 0) continue; // All cells need be empty
 
-					if(candidates[i] == 0)
+				for(int c2 = c1+1; c2 < (UNITmSIZE + 2) && subsetSize > 1; ++c2)
+				{
+					cell2 = board.IterateGroups(g, c2);
+					poss2 = board.GetCellPossible(cell2);
+					if(poss2 == 0) continue; // All cells need be empty
+
+
+					// IF SUBSET SIZE IS TWO -----------------------------
+					if(subsetSize == 2)
 					{
-						combined = 0;
-						break;
+						combined = poss1 | poss2;
+						if(BITCOUNT(combined) == 2)
+						{
+							BITMASK mask = 0;
+							for(int i = 0; i < UNIT; ++i)
+							{
+								if(i == c1 || i == c2) continue;
+								x = board.IterateGroups(g, i);
+								mask |= board.GetCellPossible(x) & combined;
+								board.MaskCell(x, combined);
+							} if(mask) useCount++;							
+						}
+					} // -------------------------------------------------
+
+
+					// IF SUBSET SIZE IS GREATER THAN TWO
+					for(int c3 = c2+1; c3 < (UNITmSIZE + 3) && subsetSize > 2; ++c3)
+					{
+						cell3 = board.IterateGroups(g, c3);
+						poss3 = board.GetCellPossible(cell3);
+						if(poss3 == 0) continue; // All cells need be empty
+						
+
+						// IF SUBSET SIZE IS THREE ---------------------------
+						if(subsetSize == 3)
+						{
+							combined = poss1 | poss2 | poss3;
+							if(BITCOUNT(combined) == 3)
+							{
+								BITMASK mask = 0;
+								for(int i = 0; i < UNIT; ++i)
+								{
+									if(i == c1 || i == c2 || i == c3) continue;
+									x = board.IterateGroups(g, i);
+									mask |= board.GetCellPossible(x) & combined;
+									board.MaskCell(x, combined);
+								} if(mask) useCount++;							
+							}
+						} // -------------------------------------------------
+
+
+						// IF SUBSET SIZE IS GREATER THAN THREE
+						for(int c4 = c3+1; c4 < (UNITmSIZE + 4) && subsetSize > 3; ++c4)
+						{
+							cell4 = board.IterateGroups(g, c4);
+							poss4 = board.GetCellPossible(cell4);
+							if(poss4 == 0) continue; // All cells need be empty
+							
+
+							// IF SUBSET SIZE IS FOUR ----------------------------
+							if(subsetSize == 4)
+							{
+								combined = poss1 | poss2 | poss3 | poss4;
+								if(BITCOUNT(combined) == 4)
+								{
+									BITMASK mask = 0;
+									for(int i = 0; i < UNIT; ++i)
+									{
+										if(i == c1 || i == c2 || i == c3 || i == c4) continue;
+										x = board.IterateGroups(g, i);
+										mask |= board.GetCellPossible(x) & combined;
+										board.MaskCell(x, combined);
+									} if(mask) useCount++;							
+								}
+							} // -------------------------------------------------
+
+						}
 					}
 				}
-
-				// found naked subset
-				if(BITCOUNT(combined) == subsetSize)
-				{
-					BITMASK mask = 0;
-					for(int i = 0; i < UNIT; i++)
-					{
-						bool seen = false;
-
-						CELL_INDEX x = board.IterateGroups(g, i);
-						for(int j = 0; j < subsetSize; j++)
-							if(x == cellIndex[j])
-								seen = true;
-
-						if(seen) continue;
-
-						mask |= board.GetCellPossible(x) & combined;
-						board.MaskCell(x, combined);
-					}
-
-					if(mask)
-						useCount++;
-				}
-				
-				// Do incrementing logic
-				indices[subsetSize-1]++;
-				for(int i = subsetSize - 1; i > 0; i--)
-				{
-					if(indices[i] >= (UNIT - subsetSize + i + 1))
-					{
-						indices[i-1]++;
-						indices[i] = -1;
-					}
-				}
-
-				for(int i = 1; i < subsetSize; i++)
-					if(indices[i] == -1)
-						indices[i] = indices[i-1]+1;
 			}
 		}
 		return useCount;
-	}
-	
+	}	
 }
 
 #endif

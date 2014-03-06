@@ -30,8 +30,6 @@ namespace sudoku
 			if(board.GetCellValue(i) != 0)
 				continue;
 
-			// Get the possible values
-			board.UpdateCellPossible(i);
 			BITMASK possible = board.GetCellPossible(i);
 
 			// Get the bit count for the cell

@@ -12,7 +12,7 @@ namespace sudoku
 {
 	
 	NakedQuad::NakedQuad() :
-		Technique(ST_NAKED_TRIPLE)
+		Technique(ST_NAKED_QUAD)
 	{
 	}
 

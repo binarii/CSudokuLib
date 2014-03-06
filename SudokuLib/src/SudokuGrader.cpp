@@ -73,6 +73,10 @@ namespace sudoku
 
 		while((count > 0) && (copy.GetSetCount() != 81))
 		{
+			// Default cell updater
+			for(int i = 0; i < 81; i++)
+				copy.UpdateCellPossible(i);
+
 			count = 0;
 			for(int i = 0; i < m_techniques.size(); i++)
 			{
