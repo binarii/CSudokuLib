@@ -8,6 +8,7 @@
 #include "Techniques\NakedPair.h"
 #include "Techniques\NakedTriple.h"
 #include "Techniques\HiddenPair.h"
+#include "Techniques\HiddenTriple.h"
 
 #define GRID 81
 #define UNIT 9
@@ -32,6 +33,9 @@ namespace sudoku
 		m_techniques.push_back(technique);
 		
 		technique = new HiddenPair();
+		m_techniques.push_back(technique);
+		
+		technique = new HiddenTriple();
 		m_techniques.push_back(technique);
 	}
 
@@ -90,6 +94,17 @@ namespace sudoku
 
 		for(int i = 0; i < m_techniques.size(); i++)
 			difficulty += m_techniques[i]->GetCost() * m_techniques[i]->GetCount();
+
+		return difficulty;
+	}
+		
+	int Grader::GetMaxTechnique()
+	{
+		int difficulty = 0;
+
+		for(int i = 0; i < m_techniques.size(); i++)
+			if(m_techniques[i]->GetCount() > 0)
+				difficulty = max(m_techniques[i]->GetCost(), difficulty);
 
 		return difficulty;
 	}

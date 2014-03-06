@@ -32,26 +32,26 @@ namespace sudoku
 		for(int i = 0; i < UNIT; i++)
 			board.UpdateCellPossible(i);
 
-		for(int i = 0; i < UNIT*3; i++)
+		for(int u = 0; u < UNIT*3; ++u)
 		{
-			for(int j = 0; j < UNIT-1; j++)
+			for(int c1 = 0; c1 < UNIT-1; ++c1)
 			{
-				cell1 = board.IterateGroups(i, j);
+				cell1 = board.IterateGroups(u, c1);
 				poss1 = board.GetCellPossible(cell1);
-				for(int k = j+1; k < UNIT; k++)
+				for(int c2 = c1+1; c2 < UNIT; ++c2)
 				{
-					cell2 = board.IterateGroups(i, k);
+					cell2 = board.IterateGroups(u, c2);
 					poss2 = board.GetCellPossible(cell2);
 
 					combined = poss1 | poss2;
 					int cBitcount = BITCOUNT(combined);
 
-					for(int u = 0; u < UNIT; u++)
+					for(int i = 0; i < UNIT; i++)
 					{
-						if(u == j || u == k)
+						if(i == c1 || i == c2)
 							continue;
 
-						combined &= ~board.GetCellPossible(board.IterateGroups(i, u));
+						combined &= ~board.GetCellPossible(board.IterateGroups(u, i));
 					}
 
 					if(BITCOUNT(combined) == 2 && cBitcount != 2)
