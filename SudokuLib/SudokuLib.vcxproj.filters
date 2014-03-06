@@ -72,6 +72,9 @@
     <ClCompile Include="src\Techniques\HiddenTriple.cpp">
       <Filter>Core\Grading\Techniques</Filter>
     </ClCompile>
+    <ClCompile Include="src\Techniques\NakedQuad.cpp">
+      <Filter>Core\Grading\Techniques</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Types.h">
@@ -135,6 +138,9 @@
       <Filter>Core\Grading\Techniques</Filter>
     </ClInclude>
     <ClInclude Include="src\Techniques\SubsetFinder.h">
+      <Filter>Core\Grading\Techniques</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Techniques\NakedQuad.h">
       <Filter>Core\Grading\Techniques</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,6 +9,7 @@
 #include "Techniques\NakedTriple.h"
 #include "Techniques\HiddenPair.h"
 #include "Techniques\HiddenTriple.h"
+#include "Techniques\NakedQuad.h"
 
 #define GRID 81
 #define UNIT 9
@@ -36,6 +37,9 @@ namespace sudoku
 		m_techniques.push_back(technique);
 		
 		technique = new HiddenTriple();
+		m_techniques.push_back(technique);
+		
+		technique = new NakedQuad();
 		m_techniques.push_back(technique);
 	}
 

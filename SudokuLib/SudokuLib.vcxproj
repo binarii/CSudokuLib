@@ -80,6 +80,7 @@
     <ClCompile Include="src\BitCount.cpp" />
     <ClCompile Include="src\Techniques\HiddenTriple.cpp" />
     <ClCompile Include="src\Techniques\NakedPair.cpp" />
+    <ClCompile Include="src\Techniques\NakedQuad.cpp" />
     <ClCompile Include="src\Techniques\NakedSingle.cpp" />
     <ClCompile Include="src\Techniques\NakedTriple.cpp" />
     <ClCompile Include="src\NotchedBoard.cpp" />
@@ -91,6 +92,7 @@
     <ClCompile Include="src\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Techniques\NakedQuad.h" />
     <ClInclude Include="src\Techniques\SubsetFinder.h" />
     <ClInclude Include="src\Techniques\HiddenPair.h" />
     <ClInclude Include="src\Techniques\HiddenSingle.h" />
