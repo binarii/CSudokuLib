@@ -16,25 +16,33 @@ namespace
 int GradeSingle(CLI_Input& input, int index, double& timeAccum)
 {	
 	sudoku::util::LoadBoard(board, input.puzzle);
+	sudoku::Board<3> boardCopy(board);
 
 	bool solution = grader.Evaluate(board);
 	double time = grader.GetSolveTime();
-	int grade = solution ? grader.GetDifficulty() : -1;
+	int difficulty = solution ? grader.GetDifficulty() : -1;
+	int grade = grader.GetMaxTechnique();
 	timeAccum += time;
 
 	if(input.singleLine)
 	{
 		(*input.output) << std::setw(6)  << index << std::setw(12) << time 
-			            << std::setw(14) << grade << std::endl;
+			            << std::setw(14) << difficulty 
+						<< std::setw(12) << grade << std::endl;
+		if(input.printBoard)
+		{
+			(*input.output) << sudoku::util::GetBoardString(boardCopy) << "\t";
+			(*input.output) << sudoku::util::GetBoardString(board) << std::endl;
+		}
 	}
 	else
 	{
 		(*input.output) << "Puzzle Index: " << index << std::endl;
 		(*input.output) << "Solve Time:   " << time << std::endl;
-		(*input.output) << "Difficulty:   " << grade << std::endl;
+		(*input.output) << "Difficulty:   " << difficulty << std::endl;
 	}
 
-	return grade;
+	return difficulty;
 }
 
 void Grade(CLI_Input& input)
@@ -42,7 +50,8 @@ void Grade(CLI_Input& input)
 	if(input.singleLine)
 	{
 		(*input.output) << std::setw(6) << "Puzzle" << std::setw(12) << "Time" 
-			            << std::setw(14) << "Difficulty" << std::endl;
+			            << std::setw(14) << "Difficulty" 
+						<< std::setw(12) << "Grade" << std::endl;
 	}
 
 	if(input.puzzle != "")

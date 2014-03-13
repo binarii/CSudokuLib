@@ -1,5 +1,6 @@
 #include "GenerationInterface.h"
 
+#include <QuickSolve.h>
 #include <SudokuBoard.h>
 #include <MinimizeBoard.h>
 #include <ScrambleSolve.h>
@@ -52,6 +53,7 @@ namespace
 	sudoku::Board<3> board;
 	sudoku::MinimizeBoard<3> minimizer;
 	sudoku::ScrambleSolve<3> scrambler;
+	sudoku::QuickSolve<3> solver;
 }
 
 int GenerateSingle(GEN_Input& input, double& timeAccum)
@@ -65,7 +67,14 @@ int GenerateSingle(GEN_Input& input, double& timeAccum)
 	double solveTime = scrambler.GetSolveTime() + minimizer.GetSolveTime();
 	timeAccum += solveTime;
 
-	(*input.output) << sudoku::util::GetBoardString(board) << std::endl;
+	(*input.output) << sudoku::util::GetBoardString(board);
+	if(input.printSolution)
+	{
+		solver.Solve(board);
+		(*input.output) << "\t" << sudoku::util::GetBoardString(board);
+	}
+	(*input.output) << std::endl;
+
 
 	return clueCount;
 }

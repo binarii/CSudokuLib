@@ -40,10 +40,15 @@ bool SolveSingle(CLI_Input& input, int index, double& timeAccum)
 		(*input.output) << "Solutions:    " << solutions << std::endl;
 	}
 
-	if(input.printBoard)
+	if(input.printBoard && !input.singleLine)
 	{
 		sudoku::util::PrintBoard(boardCopy, (*input.output));
 		sudoku::util::PrintBoard(board,     (*input.output));
+	}
+	else if(input.printBoard && input.singleLine)
+	{
+		(*input.output) << sudoku::util::GetBoardString(boardCopy) << "\t";
+		(*input.output) << sudoku::util::GetBoardString(board) << std::endl;
 	}
 
 	return solutions > 0;

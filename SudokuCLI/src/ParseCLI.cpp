@@ -8,6 +8,7 @@ void ParseGeneration(std::vector<std::string> args, std::ofstream& file, GEN_Inp
 	input.output = &std::cout;
 	input.count = 10;
 	input.genType = 0;
+	input.printSolution = false;
 
 	for(int i = 1; i < args.size(); i++)
 	{
@@ -41,6 +42,10 @@ void ParseGeneration(std::vector<std::string> args, std::ofstream& file, GEN_Inp
 
 				input.output = &file;
 			}
+		}
+		else if(args[i] == "-print")
+		{
+			input.printSolution = true;
 		}
 	}
 }

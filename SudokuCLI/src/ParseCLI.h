@@ -22,6 +22,7 @@ struct GEN_Input
 	std::ostream* output;
 	int count;
 	int genType;
+	bool printSolution;
 };
 
 void ParseGeneration(std::vector<std::string> args, std::ofstream& file, GEN_Input& input);
