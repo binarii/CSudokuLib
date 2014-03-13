@@ -22,6 +22,12 @@
     <Filter Include="Core\Constants">
       <UniqueIdentifier>{fd2679d1-cd1f-4b0d-a753-8b22af611b53}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Grading\Techniques\Naked">
+      <UniqueIdentifier>{7890931b-316a-4d24-821e-55b2c0e3c2e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Grading\Techniques\Hidden">
+      <UniqueIdentifier>{abfdc7f0-c6dc-4e2d-95db-a546266b4e14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -51,23 +57,29 @@
     <ClCompile Include="src\Util.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="src\Techniques\HiddenSingle.cpp">
-      <Filter>Core\Grading\Techniques</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Techniques\NakedPair.cpp">
-      <Filter>Core\Grading\Techniques</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Techniques\NakedSingle.cpp">
-      <Filter>Core\Grading\Techniques</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Techniques\NakedTriple.cpp">
-      <Filter>Core\Grading\Techniques</Filter>
-    </ClCompile>
     <ClCompile Include="src\Techniques\TechniqueConstants.cpp">
       <Filter>Core\Grading</Filter>
     </ClCompile>
     <ClCompile Include="src\Techniques\HiddenPair.cpp">
-      <Filter>Core\Grading\Techniques</Filter>
+      <Filter>Core\Grading\Techniques\Hidden</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Techniques\HiddenSingle.cpp">
+      <Filter>Core\Grading\Techniques\Hidden</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Techniques\HiddenTriple.cpp">
+      <Filter>Core\Grading\Techniques\Hidden</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Techniques\NakedPair.cpp">
+      <Filter>Core\Grading\Techniques\Naked</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Techniques\NakedQuad.cpp">
+      <Filter>Core\Grading\Techniques\Naked</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Techniques\NakedSingle.cpp">
+      <Filter>Core\Grading\Techniques\Naked</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Techniques\NakedTriple.cpp">
+      <Filter>Core\Grading\Techniques\Naked</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,26 +119,35 @@
     <ClInclude Include="src\PuzzleIndexing.h">
       <Filter>Core\Constants</Filter>
     </ClInclude>
-    <ClInclude Include="src\Techniques\HiddenSingle.h">
-      <Filter>Core\Grading\Techniques</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Techniques\NakedPair.h">
-      <Filter>Core\Grading\Techniques</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Techniques\NakedSingle.h">
-      <Filter>Core\Grading\Techniques</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Techniques\NakedTriple.h">
-      <Filter>Core\Grading\Techniques</Filter>
-    </ClInclude>
     <ClInclude Include="src\Techniques\SudokuTechnique.h">
       <Filter>Core\Grading</Filter>
     </ClInclude>
     <ClInclude Include="src\Techniques\TechniqueConstants.h">
       <Filter>Core\Grading</Filter>
     </ClInclude>
-    <ClInclude Include="src\Techniques\HiddenPair.h">
+    <ClInclude Include="src\Techniques\SubsetFinder.h">
       <Filter>Core\Grading\Techniques</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Techniques\HiddenPair.h">
+      <Filter>Core\Grading\Techniques\Hidden</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Techniques\HiddenSingle.h">
+      <Filter>Core\Grading\Techniques\Hidden</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Techniques\HiddenTriple.h">
+      <Filter>Core\Grading\Techniques\Hidden</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Techniques\NakedPair.h">
+      <Filter>Core\Grading\Techniques\Naked</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Techniques\NakedQuad.h">
+      <Filter>Core\Grading\Techniques\Naked</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Techniques\NakedSingle.h">
+      <Filter>Core\Grading\Techniques\Naked</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Techniques\NakedTriple.h">
+      <Filter>Core\Grading\Techniques\Naked</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

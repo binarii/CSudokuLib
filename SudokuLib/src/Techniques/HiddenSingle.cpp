@@ -24,16 +24,16 @@ namespace sudoku
 		CELL_INDEX x;
 		int useCount = 0;
 
-		for(int i = 0; i < UNIT*3; ++i)
+		for(int u = 0; u < UNIT*3; ++u)
 		{
 			BITMASK once = 0;
 			BITMASK twice = 0;
 			BITMASK all = 0;
 
-			for(int j = 0; j < UNIT; ++j)
+			for(int c1 = 0; c1 < UNIT; ++c1)
 			{
 				// Get the board position
-				x = board.IterateGroups(i, j);
+				x = board.IterateGroups(u, c1);
 
 				// Get possible mask and value mask
 				board.UpdateCellPossible(x);
@@ -52,9 +52,9 @@ namespace sudoku
 			
 			// Find the hidden single
 			once &= -once; // Get least set bit
-			for(int j = 0; j < UNIT; ++j)
+			for(int i = 0; i < UNIT; ++i)
 			{
-				x = board.IterateGroups(i, j);
+				x = board.IterateGroups(u, i);
 				if(board.GetCellPossible(x) & once)
 				{
 					// Play move and clear possible

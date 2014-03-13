@@ -1,4 +1,4 @@
-#include "NakedPair.h"
+#include "NakedQuad.h"
 #include "../NotchedBoard.h"
 
 #include "SubsetFinder.h"
@@ -11,21 +11,21 @@
 namespace sudoku
 {
 	
-	NakedPair::NakedPair() :
-		Technique(ST_NAKED_PAIR)
+	NakedQuad::NakedQuad() :
+		Technique(ST_NAKED_QUAD)
 	{
 	}
 
-	NakedPair::~NakedPair()
+	NakedQuad::~NakedQuad()
 	{
 
 	}
 
-	int NakedPair::Step(NotchedBoard& board)
+	int NakedQuad::Step(NotchedBoard& board)
 	{	
 		int useCount = 0;
 
-		useCount = FindNakedSubset<2, UNIT>(board);
+		useCount = FindNakedSubset<4, UNIT>(board);
 		m_useCount += useCount;
 
 		return useCount;

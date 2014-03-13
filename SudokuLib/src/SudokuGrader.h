@@ -24,6 +24,7 @@ namespace sudoku
 
 		double GetSolveTime();
 		int GetDifficulty();
+		int GetMaxTechnique();
 
 	private:
 		void Reset();
