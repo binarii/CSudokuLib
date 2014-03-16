@@ -12,7 +12,7 @@ namespace sudoku
 		NakedSingle();
 		~NakedSingle();
 
-		int Step(NotchedBoard& board);
+		int Step(Board<3>& board);
 	};
 }
 

@@ -14,21 +14,22 @@
 namespace sudoku
 {
 	// Forward the board class
-	template <int boxSize>
+	template <int size>
 	class Board;
 
-	template <int boxSize>
-	class ScrambleSolve : public PuzzleDimensions<boxSize>
+
+	template <int size>
+	class ScrambleSolve : public PuzzleDimensions<size>
 	{
 	public:
 		ScrambleSolve();
 		~ScrambleSolve();
 
-		int solve(Board<boxSize>& board);
+		int solve(Board<size>& board);
 		double GetSolveTime();
 
 	private:
-		int BacktrackSolve(Board<boxSize>& board);
+		int BacktrackSolve(Board<size>& board);
 
 	private:
 		double m_solveTime;

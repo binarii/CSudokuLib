@@ -8,10 +8,10 @@
 namespace sudoku
 {
 	// Forward the board class
-	template <int boxSize>
+	template <int size>
 	class Board;
 
-	template <int boxSize>
+	template <int size>
 	class QuickSolve;
 
 	enum MinimizeType
@@ -22,24 +22,24 @@ namespace sudoku
 		MT_DIAGONAL
 	};
 
-	template <int boxSize>
-	class MinimizeBoard : PuzzleDimensions<boxSize>
+	template <int size>
+	class MinimizeBoard : PuzzleDimensions<size>
 	{
 	public:
 		MinimizeBoard();
 		~MinimizeBoard();
 
-		void Minimize(Board<boxSize>& board, MinimizeType type);
+		void Minimize(Board<size>& board, MinimizeType type);
 
 		double GetSolveTime();
 
 	private:
-		void MinimizeNone(Board<boxSize>& board);
-		void MinimizeHoriz(Board<boxSize>& board);
-		void MinimizeVert(Board<boxSize>& board);
-		void MinimizeDiag(Board<boxSize>& board);
+		void MinimizeNone(Board<size>& board);
+		void MinimizeHoriz(Board<size>& board);
+		void MinimizeVert(Board<size>& board);
+		void MinimizeDiag(Board<size>& board);
 
-		void MinimizePattern(Board<boxSize>& board, CELL_INDEX* digArray, int n, int rate);
+		void MinimizePattern(Board<size>& board, CELL_INDEX* digArray, int n, int rate);
 
 	private:
 		double m_solveTime;

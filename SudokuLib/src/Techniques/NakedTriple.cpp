@@ -1,5 +1,5 @@
 #include "NakedTriple.h"
-#include "../NotchedBoard.h"
+#include "../Board.h"
 
 #include "SubsetFinder.h"
 
@@ -16,7 +16,7 @@ namespace sudoku
 
 	}
 
-	int NakedTriple::Step(NotchedBoard& board)
+	int NakedTriple::Step(Board<3>& board)
 	{	
 		int useCount = 0;
 

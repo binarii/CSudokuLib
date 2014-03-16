@@ -12,7 +12,7 @@ namespace sudoku
 		HiddenTriple();
 		~HiddenTriple();
 
-		int Step(NotchedBoard& board);
+		int Step(Board<3>& board);
 	};
 }
 

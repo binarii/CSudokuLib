@@ -74,6 +74,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Board.cpp" />
     <ClCompile Include="src\Techniques\HiddenPair.cpp" />
     <ClCompile Include="src\Techniques\HiddenSingle.cpp" />
     <ClCompile Include="src\MinimizeBoard.cpp" />
@@ -83,15 +84,14 @@
     <ClCompile Include="src\Techniques\NakedQuad.cpp" />
     <ClCompile Include="src\Techniques\NakedSingle.cpp" />
     <ClCompile Include="src\Techniques\NakedTriple.cpp" />
-    <ClCompile Include="src\NotchedBoard.cpp" />
     <ClCompile Include="src\QuickSolve.cpp" />
     <ClCompile Include="src\ScrambleSolve.cpp" />
-    <ClCompile Include="src\SudokuBoard.cpp" />
     <ClCompile Include="src\SudokuGrader.cpp" />
     <ClCompile Include="src\Techniques\TechniqueConstants.cpp" />
     <ClCompile Include="src\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Board.h" />
     <ClInclude Include="src\Sudoku.h" />
     <ClInclude Include="src\Techniques\NakedQuad.h" />
     <ClInclude Include="src\Techniques\SubsetFinder.h" />
@@ -100,7 +100,6 @@
     <ClInclude Include="src\Techniques\HiddenTriple.h" />
     <ClInclude Include="src\Techniques\NakedPair.h" />
     <ClInclude Include="src\Techniques\NakedTriple.h" />
-    <ClInclude Include="src\NotchedBoard.h" />
     <ClInclude Include="src\MinimizeBoard.h" />
     <ClInclude Include="src\Techniques\NakedSingle.h" />
     <ClInclude Include="src\PuzzleDimensions.h" />
@@ -113,7 +112,6 @@
     <ClInclude Include="src\BitCount.h" />
     <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\Types.h" />
-    <ClInclude Include="src\SudokuBoard.h" />
     <ClInclude Include="src\QuickSolve.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

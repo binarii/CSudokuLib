@@ -8,24 +8,24 @@
 namespace sudoku
 {
 	// Forward the board class
-	template <int boxSize>
+	template <int size>
 	class Board;
 
 	// Solving class
-	template <int boxSize>
-	class QuickSolve : PuzzleDimensions<boxSize>
+	template <int size>
+	class QuickSolve : public PuzzleDimensions<size>
 	{
 	public:
 		QuickSolve();
 		~QuickSolve();
 
-		int Solve(Board<boxSize>& board);
+		int Solve(Board<size>& board);
 		double GetSolveTime();
 
 		void SetMaxSolutionCount(int count);
 	private:
-		int BacktrackSolve(Board<boxSize>& board);
-		int FindSingles(Board<boxSize>& board, CELL_INDEX& pos, BITMASK& value);
+		int BacktrackSolve(Board<size>& board);
+		int FindSingles(Board<size>& board, CELL_INDEX& pos, BITMASK& value);
 
 	private:
 		int m_maxSolutions;

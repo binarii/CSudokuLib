@@ -11,12 +11,12 @@ namespace sudoku
 	void Initialize()
 	{
 		util::Initialize();
-		bitcount::Initialize;
+		bitcount::Initialize();
 
-		PuzzleIndexing<2>::InitIndexing();
-		PuzzleIndexing<3>::InitIndexing();
-		PuzzleIndexing<4>::InitIndexing();
-		PuzzleIndexing<5>::InitIndexing();
+		PuzzleIndexing<2>::Initialize();
+		PuzzleIndexing<3>::Initialize();
+		PuzzleIndexing<4>::Initialize();
+		PuzzleIndexing<5>::Initialize();
 	}
 }
 

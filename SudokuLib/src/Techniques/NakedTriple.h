@@ -12,7 +12,7 @@ namespace sudoku
 		NakedTriple();
 		~NakedTriple();
 
-		int Step(NotchedBoard& board);
+		int Step(Board<3>& board);
 	};
 }
 

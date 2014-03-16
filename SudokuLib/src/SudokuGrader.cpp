@@ -1,6 +1,5 @@
 #include "SudokuGrader.h"
-#include "SudokuBoard.h"
-#include "NotchedBoard.h"
+#include "Board.h"
 
 // techniques
 #include "Techniques\NakedSingle.h"
@@ -59,28 +58,26 @@ namespace sudoku
 		m_timer.StartTimer();
 		Reset();
 
-		NotchedBoard copy(board);
-
 		// Get board in a good state
 		for(int i = 0; i < GRID; i++)
 		{
-			copy.UpdateCellPossible(i);
-			if(copy.GetCellValue(i) != 0)
-				copy.IgnoreCellPossible(i);
+			if(board.GetValue(i) != 0)
+				board.Mask(i, board.MASK);
+			board.UpdateCandidates(i);
 		}
 
 		int count = 1;
 
-		while((count > 0) && (copy.GetSetCount() != 81))
+		while((count > 0) && (!board.BoardFull()))
 		{
 			// Default cell updater
 			for(int i = 0; i < 81; i++)
-				copy.UpdateCellPossible(i);
+				board.UpdateCandidates(i);
 
 			count = 0;
 			for(int i = 0; i < m_techniques.size(); i++)
 			{
-				count = m_techniques[i]->Step(copy);
+				count = m_techniques[i]->Step(board);
 				if(count > 0)
 					break;
 			}
@@ -88,7 +85,7 @@ namespace sudoku
 
 
 		m_solveTime = m_timer.GetTime();
-		return copy.GetSetCount() == GRID;
+		return board.BoardFull();
 	}
 
 	double Grader::GetSolveTime()

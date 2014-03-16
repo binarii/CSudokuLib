@@ -1,5 +1,7 @@
 #include "QuickSolve.h"
-#include "SudokuBoard.h"
+
+#include "Board.h"
+#include "BitCount.h"
 
 // Switch off using precomputed bitcount vs function
 // Should only be used in sudoku namespace
@@ -8,21 +10,21 @@
 
 namespace sudoku
 {
-	template <int boxSize>
-	QuickSolve<boxSize>::QuickSolve()
+	template <int size>
+	QuickSolve<size>::QuickSolve()
 	{
 		m_maxSolutions = 1;
 		m_solveTime = 0.0;
 	}
 
-	template <int boxSize>
-	QuickSolve<boxSize>::~QuickSolve()
+	template <int size>
+	QuickSolve<size>::~QuickSolve()
 	{
 
 	}
 
-	template <int boxSize>
-	int QuickSolve<boxSize>::Solve(Board<boxSize>& board)
+	template <int size>
+	int QuickSolve<size>::Solve(Board<size>& board)
 	{
 		m_timer.StartTimer();
 		int solutionCount = BacktrackSolve(board);
@@ -31,22 +33,22 @@ namespace sudoku
 		return solutionCount;
 	}
 	
-	template <int boxSize>
-	double QuickSolve<boxSize>::GetSolveTime()
+	template <int size>
+	double QuickSolve<size>::GetSolveTime()
 	{
 		return m_solveTime;
 	}
 		
-	template <int boxSize>
-	void QuickSolve<boxSize>::SetMaxSolutionCount(int count)
+	template <int size>
+	void QuickSolve<size>::SetMaxSolutionCount(int count)
 	{
 		m_maxSolutions = count;
 	}
 
-	template <int boxSize>
-	int QuickSolve<boxSize>::BacktrackSolve(Board<boxSize>& board)
+	template <int size>
+	int QuickSolve<size>::BacktrackSolve(Board<size>& board)
 	{
-		if(board.GetSetCount() == GRID) return 1;
+		if(board.BoardFull()) return 1;
 
 		BITMASK val = 0;
 		CELL_INDEX pos = INT_MAX;
@@ -57,19 +59,19 @@ namespace sudoku
 
 		for(int i = (val & -val); val; i = (val & -val))
 		{
-			board.SetCell(pos, i);
+			board.Set(pos, i);
 			solutionsFound += BacktrackSolve(board);
 			if(solutionsFound >= m_maxSolutions)
 				return solutionsFound;
-			board.ClearCell(pos);
+			board.Remove(pos);
 			val &= ~i;
 		}
 
 		return solutionsFound;
 	}
 
-	template <int boxSize>
-	int QuickSolve<boxSize>::FindSingles(Board<boxSize>& board, CELL_INDEX& pos, BITMASK& value)
+	template <int size>
+	int QuickSolve<size>::FindSingles(Board<size>& board, CELL_INDEX& pos, BITMASK& value)
 	{
 		int count;
 		int savePos = -1;
@@ -80,15 +82,13 @@ namespace sudoku
 
 		for(i = 0; i < GRID; ++i)
 		{
-			if(board.GetCellValue(i) != 0)
-			{
-				board.IgnoreCellPossible(i);
-				continue;
-			}
-
 			// Update and get possibilities for cell i
-			board.UpdateCellPossible(i);
-			BITMASK possible = board.GetCellPossible(i);
+			board.UpdateCandidates(i);
+			
+			if(board.GetValue(i) != 0)
+				continue;
+
+			BITMASK possible = board.GetCandidates(i);
 
 			// Get the bit count for the cell
 			count = BITCOUNT(possible);
@@ -127,8 +127,8 @@ namespace sudoku
 				x = board.Iterate(i, j);
 
 				// Get possible mask and value mask
-				BITMASK possible = board.GetCellPossible(x);
-				BITMASK boardVal = board.GetCellValue(x);
+				BITMASK possible = board.GetCandidates(x);
+				BITMASK boardVal = board.GetValue(x);
 
 				all |= (possible | boardVal);
 				twice |= (once & possible);
@@ -148,7 +148,7 @@ namespace sudoku
 			for(j = 0; j < UNIT; ++j)
 			{
 				pos = board.Iterate(i, j);
-				if(board.GetCellPossible(pos) & once)
+				if(board.GetCandidates(pos) & once)
 				{
 					value = once;
 					return 1;
@@ -166,5 +166,4 @@ namespace sudoku
 	template class QuickSolve<3>;
 	template class QuickSolve<4>;
 	template class QuickSolve<5>;
-
 }

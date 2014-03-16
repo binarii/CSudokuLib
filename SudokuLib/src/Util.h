@@ -15,15 +15,15 @@ namespace sudoku
 		static bool Initialize()
 		{
 			srand((unsigned int)time(NULL));
-
 			return true;
 		}
 
+		// External operators to display or load boards
 		void LoadBoard(Board<3>& board, std::string puzzle);
 		void PrintBoard(Board<3>& board, std::ostream& stream);
 		std::string GetBoardString(Board<3>& board);
 
-
+		// Fischer-Yates shuffle
 		template <class T>
 		static void ArrayShuffle(T* arr, int n)
 		{

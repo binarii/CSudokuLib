@@ -1,23 +1,23 @@
 #include "ScrambleSolve.h"
-#include "SudokuBoard.h"
+#include "Board.h"
 #include "Util.h"
 
 namespace sudoku
 {	
-	template <int boxSize>
-	ScrambleSolve<boxSize>::ScrambleSolve()
+	template <int size>
+	ScrambleSolve<size>::ScrambleSolve()
 	{
 		m_solveTime = 0.0;
 	}
 
-	template <int boxSize>
-	ScrambleSolve<boxSize>::~ScrambleSolve()
+	template <int size>
+	ScrambleSolve<size>::~ScrambleSolve()
 	{
 
 	}
 
-	template <int boxSize>
-	int ScrambleSolve<boxSize>::solve(Board<boxSize>& board)
+	template <int size>
+	int ScrambleSolve<size>::solve(Board<size>& board)
 	{
 		m_timer.StartTimer();
 		int solutionCount = BacktrackSolve(board);
@@ -26,24 +26,24 @@ namespace sudoku
 		return solutionCount;
 	}
 
-	template <int boxSize>
-	double ScrambleSolve<boxSize>::GetSolveTime()
+	template <int size>
+	double ScrambleSolve<size>::GetSolveTime()
 	{
 		return m_solveTime;
 	}
 
-	template <int boxSize>
-	int ScrambleSolve<boxSize>::BacktrackSolve(Board<boxSize>& board)
+	template <int size>
+	int ScrambleSolve<size>::BacktrackSolve(Board<size>& board)
 	{
-		if(board.GetSetCount() == GRID)
+		if(board.BoardFull())
 			return 1;
 
 		int solutionsFound = 0;
-		CELL_INDEX pos = board.GetSetCount();
+		CELL_INDEX pos = board.GetFilledCount();
 
 		// Get the possible values for the cell
-		board.UpdateCellPossible(pos);
-		BITMASK possible = board.GetCellPossible(pos);
+		board.UpdateCandidates(pos);
+		BITMASK possible = board.GetCandidates(pos);
 
 		// Choose the order to try values
 		BITMASK cellOrder[UNIT];
@@ -56,11 +56,11 @@ namespace sudoku
 		{
 			if(cellOrder[i] & possible)
 			{
-				board.SetCell(pos, cellOrder[i]);
+				board.Set(pos, cellOrder[i]);
 				solutionsFound = BacktrackSolve(board);
 				if(solutionsFound > 0)
 					return solutionsFound;
-				board.ClearCell(pos);
+				board.Remove(pos);
 
 				possible &= ~cellOrder[i];
 			}

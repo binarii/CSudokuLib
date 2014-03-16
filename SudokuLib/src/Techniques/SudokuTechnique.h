@@ -7,7 +7,8 @@
 namespace sudoku
 {
 	// Forward the board class
-	class NotchedBoard;
+	template <int size>
+	class Board;
 
 	class Technique : public PuzzleDimensions<3>
 	{
@@ -19,7 +20,7 @@ namespace sudoku
 			m_cost = StrategyWeight[t];
 		}
 
-		virtual int Step(NotchedBoard& board) = 0;
+		virtual int Step(Board<3>& board) = 0;
 
 		void ResetCount() { m_useCount = 0; }
 		int GetCount() { return m_useCount; }
@@ -28,9 +29,7 @@ namespace sudoku
 	protected:
 		int m_useCount;
 		int m_cost;
-
 		const char* m_name;
-
 	};
 }
 

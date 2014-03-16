@@ -1,5 +1,6 @@
 #include "HiddenSingle.h"
-#include "../NotchedBoard.h"
+#include "../Board.h"
+#include "../BitCount.h"
 
 // Switch off using precomputed bitcount vs function
 // Should only be used in sudoku namespace
@@ -19,7 +20,7 @@ namespace sudoku
 
 	}
 
-	int HiddenSingle::Step(NotchedBoard& board)
+	int HiddenSingle::Step(Board<3>& board)
 	{	
 		CELL_INDEX x;
 		int useCount = 0;
@@ -36,9 +37,9 @@ namespace sudoku
 				x = board.Iterate(u, c1);
 
 				// Get possible mask and value mask
-				board.UpdateCellPossible(x);
-				BITMASK possible = board.GetCellPossible(x);
-				BITMASK boardVal = board.GetCellValue(x);
+				board.UpdateCandidates(x);
+				BITMASK possible = board.GetCandidates(x);
+				BITMASK boardVal = board.GetValue(x);
 
 				all |= (possible | boardVal);
 				twice |= (once & possible);
@@ -55,11 +56,11 @@ namespace sudoku
 			for(int i = 0; i < UNIT; ++i)
 			{
 				x = board.Iterate(u, i);
-				if(board.GetCellPossible(x) & once)
+				if(board.GetCandidates(x) & once)
 				{
 					// Play move and clear possible
-					board.SetCell(x, once);
-					board.MaskCell(x, MASK);
+					board.Set(x, once);
+					board.Mask(x, MASK);
 
 					m_useCount++;
 					useCount++;					
