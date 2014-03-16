@@ -35,16 +35,16 @@ namespace sudoku
 		{
 			for(int c1 = 0; c1 < UNIT-2; ++c1)
 			{
-				cell1 = board.IterateGroups(u, c1);
+				cell1 = board.Iterate(u, c1);
 				poss1 = board.GetCellPossible(cell1);
 				for(int c2 = c1+1; c2 < UNIT-1; ++c2)
 				{
-					cell2 = board.IterateGroups(u, c2);
+					cell2 = board.Iterate(u, c2);
 					poss2 = board.GetCellPossible(cell2);
 					for(int c3 = c2+1; c3 < UNIT; ++c3)
 					{
 
-						cell3 = board.IterateGroups(u, c3);
+						cell3 = board.Iterate(u, c3);
 						poss3 = board.GetCellPossible(cell3);
 					
 						combined = poss1 | poss2 | poss3;
@@ -55,7 +55,7 @@ namespace sudoku
 							if(i == c1 || i == c2 || i == c3)
 								continue;
 
-							combined &= ~board.GetCellPossible(board.IterateGroups(u, i));
+							combined &= ~board.GetCellPossible(board.Iterate(u, i));
 						}
 
 						if(BITCOUNT(combined) == 3 && cBitcount != 3)

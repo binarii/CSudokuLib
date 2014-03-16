@@ -11,7 +11,7 @@ namespace sudoku
 	template <int boxSize>
 	Board<boxSize>::Board()
 	{
-		InitializeDimensions();
+		InitIndexing();
 		Reset();
 	}
 
@@ -26,7 +26,7 @@ namespace sudoku
 		memcpy(m_colConflicts, other.m_colConflicts, sizeof(m_colConflicts));
 		memcpy(m_boxConflicts, other.m_boxConflicts, sizeof(m_boxConflicts));
 
-		InitializeDimensions();
+		InitIndexing();
 	}
 	
 	template <int boxSize>

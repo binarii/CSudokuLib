@@ -6,12 +6,12 @@
 
 namespace sudoku
 {
-	template <int boxSize>
-	class PuzzleIndexing : public PuzzleDimensions<boxSize>
+	template <int size>
+	class PuzzleIndexing : public PuzzleDimensions<size>
 	{
 	public:
-		void InitializeDimensions();
-		CELL_INDEX IterateGroups(UNIT_INDEX unit, UNIT_INDEX pos);
+		static void InitIndexing();
+		CELL_INDEX Iterate(UNIT_INDEX unit, UNIT_INDEX pos);
 
 	private:
 		static bool m_initialized;
@@ -27,26 +27,26 @@ namespace sudoku
 		 * second value is the index into this array (typically 0-8), the 
 		 * result will be an index on the board of this element.
 		 */
-		static CELL_INDEX m_groups[UNIT*3][UNIT];
+		static CELL_INDEX m_groups[UNIT * 3][UNIT];
 	};
 	
-	template <int boxSize>
-	bool PuzzleIndexing<boxSize>::m_initialized = false;
+	template <int size>
+	bool PuzzleIndexing<size>::m_initialized = false;
 
-	template <int boxSize>
-	UNIT_INDEX PuzzleIndexing<boxSize>::m_rowReference[PuzzleIndexing<boxSize>::GRID];
+	template <int size>
+	UNIT_INDEX PuzzleIndexing<size>::m_rowReference[PuzzleIndexing<size>::GRID];
 
-	template <int boxSize>
-	UNIT_INDEX PuzzleIndexing<boxSize>::m_colReference[PuzzleIndexing<boxSize>::GRID];
+	template <int size>
+	UNIT_INDEX PuzzleIndexing<size>::m_colReference[PuzzleIndexing<size>::GRID];
 
-	template <int boxSize>
-	UNIT_INDEX PuzzleIndexing<boxSize>::m_boxReference[PuzzleIndexing<boxSize>::GRID];
+	template <int size>
+	UNIT_INDEX PuzzleIndexing<size>::m_boxReference[PuzzleIndexing<size>::GRID];
 
-	template <int boxSize>
-	UNIT_INDEX PuzzleIndexing<boxSize>::m_groups[PuzzleIndexing<boxSize>::UNIT * 3][PuzzleIndexing<boxSize>::UNIT];
+	template <int size>
+	UNIT_INDEX PuzzleIndexing<size>::m_groups[PuzzleIndexing<size>::UNIT * 3][PuzzleIndexing<size>::UNIT];
 
-	template <int boxSize>
-	void PuzzleIndexing<boxSize>::InitializeDimensions()
+	template <int size>
+	void PuzzleIndexing<size>::InitIndexing()
 	{
 		if(m_initialized)
 			return;
@@ -67,7 +67,7 @@ namespace sudoku
 	}
 	
 	template <int boxSize>
-	inline CELL_INDEX PuzzleIndexing<boxSize>::IterateGroups(UNIT_INDEX unit, UNIT_INDEX pos)
+	inline CELL_INDEX PuzzleIndexing<boxSize>::Iterate(UNIT_INDEX unit, UNIT_INDEX pos)
 	{
 		return m_groups[unit][pos];
 	}

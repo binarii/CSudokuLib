@@ -124,7 +124,7 @@ namespace sudoku
 			for(j = 0; j < UNIT; ++j)
 			{
 				// Get the board position
-				x = board.IterateGroups(i, j);
+				x = board.Iterate(i, j);
 
 				// Get possible mask and value mask
 				BITMASK possible = board.GetCellPossible(x);
@@ -147,7 +147,7 @@ namespace sudoku
 			once &= -once; // Get least set bit
 			for(j = 0; j < UNIT; ++j)
 			{
-				pos = board.IterateGroups(i, j);
+				pos = board.Iterate(i, j);
 				if(board.GetCellPossible(pos) & once)
 				{
 					value = once;

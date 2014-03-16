@@ -19,14 +19,17 @@
     <Filter Include="Core\Grading\Techniques">
       <UniqueIdentifier>{56c0b594-67ef-4418-a872-dcfb5bb6f4e1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Constants">
-      <UniqueIdentifier>{fd2679d1-cd1f-4b0d-a753-8b22af611b53}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Grading\Techniques\Naked">
       <UniqueIdentifier>{7890931b-316a-4d24-821e-55b2c0e3c2e1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Grading\Techniques\Hidden">
       <UniqueIdentifier>{abfdc7f0-c6dc-4e2d-95db-a546266b4e14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities\Constants">
+      <UniqueIdentifier>{fd2679d1-cd1f-4b0d-a753-8b22af611b53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Board">
+      <UniqueIdentifier>{60b62f4d-e371-40fb-8b95-bc4e8a921d80}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -113,12 +116,6 @@
     <ClInclude Include="src\NotchedBoard.h">
       <Filter>Core\Grading</Filter>
     </ClInclude>
-    <ClInclude Include="src\PuzzleDimensions.h">
-      <Filter>Core\Constants</Filter>
-    </ClInclude>
-    <ClInclude Include="src\PuzzleIndexing.h">
-      <Filter>Core\Constants</Filter>
-    </ClInclude>
     <ClInclude Include="src\Techniques\SudokuTechnique.h">
       <Filter>Core\Grading</Filter>
     </ClInclude>
@@ -148,6 +145,15 @@
     </ClInclude>
     <ClInclude Include="src\Techniques\NakedTriple.h">
       <Filter>Core\Grading\Techniques\Naked</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PuzzleIndexing.h">
+      <Filter>Utilities\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PuzzleDimensions.h">
+      <Filter>Utilities\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sudoku.h">
+      <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

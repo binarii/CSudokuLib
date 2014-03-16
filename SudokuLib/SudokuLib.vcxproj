@@ -92,6 +92,7 @@
     <ClCompile Include="src\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Sudoku.h" />
     <ClInclude Include="src\Techniques\NakedQuad.h" />
     <ClInclude Include="src\Techniques\SubsetFinder.h" />
     <ClInclude Include="src\Techniques\HiddenPair.h" />

@@ -33,7 +33,7 @@ namespace sudoku
 			for(int c1 = 0; c1 < UNIT; ++c1)
 			{
 				// Get the board position
-				x = board.IterateGroups(u, c1);
+				x = board.Iterate(u, c1);
 
 				// Get possible mask and value mask
 				board.UpdateCellPossible(x);
@@ -54,7 +54,7 @@ namespace sudoku
 			once &= -once; // Get least set bit
 			for(int i = 0; i < UNIT; ++i)
 			{
-				x = board.IterateGroups(u, i);
+				x = board.Iterate(u, i);
 				if(board.GetCellPossible(x) & once)
 				{
 					// Play move and clear possible
