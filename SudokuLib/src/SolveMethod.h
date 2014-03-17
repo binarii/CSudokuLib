@@ -2,6 +2,7 @@
 #define _SOLVEMETHOD_H_
 
 #include "Timer.h"
+#include "PuzzleDimensions.h"
 
 namespace sudoku
 {
@@ -17,12 +18,14 @@ namespace sudoku
 		virtual int Solve(Board<size>& board) = 0;
 
 		void StartTimer() { m_timer.StartTimer(); }
-		void StopTimer() { m_solveTime = m_timer.GetTime(); }
-		double GetTime() { return m_solveTime; }
+		void StopTimer()  { m_solveTime = m_timer.GetTime(); }
+		double GetTime()  { return m_solveTime; }
 
 	protected:
 		Timer m_timer;
 		double m_solveTime;
+
+		PuzzleDimensions<size> dim;
 	};
 }
 #endif

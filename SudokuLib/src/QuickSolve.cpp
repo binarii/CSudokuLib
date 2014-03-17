@@ -9,7 +9,7 @@
 // Switch off using precomputed bitcount vs function
 // Should only be used in sudoku namespace
 #define BITCOUNT(x) \
-	((BOX < 4) ? bitcount::BitCountArray[x] : bitcount::BitCount(x))
+	((dim.BOX < 4) ? bitcount::BitCountArray[x] : bitcount::BitCount(x))
 
 namespace sudoku
 {
@@ -93,12 +93,12 @@ namespace sudoku
 	{
 		int count;
 		int savePos = -1;
-		int saveCount = UNIT + 1;
+		int saveCount = dim.UNIT + 1;
 		int i, j, x;
 
 		BITMASK saveVal = 0;
 
-		for(i = 0; i < GRID; ++i)
+		for(i = 0; i < dim.GRID; ++i)
 		{
 			// Update and get possibilities for cell i
 			board.UpdateCandidates(i);
@@ -133,13 +133,13 @@ namespace sudoku
 		}
 
 
-		for(i = 0; i < UNIT*3; ++i)
+		for(i = 0; i < dim.UNIT*3; ++i)
 		{
 			BITMASK once = 0;
 			BITMASK twice = 0;
 			BITMASK all = 0;
 
-			for(j = 0; j < UNIT; ++j)
+			for(j = 0; j < dim.UNIT; ++j)
 			{
 				// Get the board position
 				x = board.Iterate(i, j);
@@ -153,7 +153,7 @@ namespace sudoku
 				once |= possible;
 			}
 
-			if(all != MASK) // hidden zero, board is illegal
+			if(all != dim.MASK) // hidden zero, board is illegal
 				return 0;
 
 			once &= ~twice;
@@ -163,7 +163,7 @@ namespace sudoku
 			
 			// Find the hidden single
 			once &= -once; // Get least set bit
-			for(j = 0; j < UNIT; ++j)
+			for(j = 0; j < dim.UNIT; ++j)
 			{
 				pos = board.Iterate(i, j);
 				if(board.GetCandidates(pos) & once)
@@ -171,13 +171,12 @@ namespace sudoku
 					value = once;
 					return 1;
 				}
-			}
-			
+			}			
 		}
 
 		pos = savePos;
 		value = saveVal;
-		return (saveCount > UNIT) ? 0 : saveCount;
+		return (saveCount > dim.UNIT) ? 0 : saveCount;
 	}
 
 	template class QuickSolve<2>;

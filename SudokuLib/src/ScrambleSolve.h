@@ -19,7 +19,7 @@ namespace sudoku
 
 
 	template <int size>
-	class ScrambleSolve : public PuzzleDimensions<size>, public SolveMethod<size>
+	class ScrambleSolve : public SolveMethod<size>
 	{
 	public:
 		ScrambleSolve();

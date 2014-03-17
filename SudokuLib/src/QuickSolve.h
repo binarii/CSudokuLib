@@ -10,7 +10,7 @@ namespace sudoku
 
 	// Solving class
 	template <int size>
-	class QuickSolve : public PuzzleDimensions<size>, public SolveMethod<size>
+	class QuickSolve : public SolveMethod<size>
 	{
 	public:
 		QuickSolve();

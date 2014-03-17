@@ -40,13 +40,13 @@ namespace sudoku
 		BITMASK possible = board.GetCandidates(pos);
 
 		// Choose the order to try values
-		BITMASK cellOrder[UNIT];
-		for(int i = 0; i < UNIT; i++)
+		BITMASK cellOrder[dim.UNIT];
+		for(int i = 0; i < dim.UNIT; i++)
 			cellOrder[i] = (1 << (i + 1));
-		util::ArrayShuffle<BITMASK>(cellOrder, UNIT);
+		util::ArrayShuffle<BITMASK>(cellOrder, dim.UNIT);
 
 		// Go through values and recursively try them
-		for(int i = 0; i < UNIT; i++)
+		for(int i = 0; i < dim.UNIT; i++)
 		{
 			if(cellOrder[i] & possible)
 			{
