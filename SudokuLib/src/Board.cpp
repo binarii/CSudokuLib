@@ -17,9 +17,9 @@ namespace sudoku
 	{
 		m_setCount = other.m_setCount;
 
-		memcpy(m_board, other.m_board, sizeof(m_board));
-		memcpy(m_boardMask, other.m_boardMask, sizeof(m_boardMask));
-		memcpy(m_candidates, other.m_candidates, sizeof(m_candidates));
+		memcpy(m_board,        other.m_board,        sizeof(m_board));
+		memcpy(m_boardMask,    other.m_boardMask,    sizeof(m_boardMask));
+		memcpy(m_candidates,   other.m_candidates,   sizeof(m_candidates));
 		memcpy(m_rowConflicts, other.m_rowConflicts, sizeof(m_rowConflicts));
 		memcpy(m_colConflicts, other.m_colConflicts, sizeof(m_colConflicts));
 		memcpy(m_boxConflicts, other.m_boxConflicts, sizeof(m_boxConflicts));
@@ -34,8 +34,8 @@ namespace sudoku
 	TEMPLATE
 	void TCLASS::Reset()
 	{
-		memset(&m_board, 0, sizeof(m_board));
-		memset(&m_boardMask, 0, sizeof(m_boardMask));
+		memset(&m_board,        0, sizeof(m_board));
+		memset(&m_boardMask,    0, sizeof(m_boardMask));
 		memset(&m_rowConflicts, 0, sizeof(m_rowConflicts));
 		memset(&m_colConflicts, 0, sizeof(m_colConflicts));
 		memset(&m_boxConflicts, 0, sizeof(m_boxConflicts));
@@ -47,9 +47,9 @@ namespace sudoku
 	{
 		m_setCount = other.m_setCount;
 
-		memcpy(m_board, other.m_board, sizeof(m_board));
-		memcpy(m_boardMask, other.m_boardMask, sizeof(m_boardMask));
-		memcpy(m_candidates, other.m_candidates, sizeof(m_candidates));
+		memcpy(m_board,        other.m_board,        sizeof(m_board));
+		memcpy(m_boardMask,    other.m_boardMask,    sizeof(m_boardMask));
+		memcpy(m_candidates,   other.m_candidates,   sizeof(m_candidates));
 		memcpy(m_rowConflicts, other.m_rowConflicts, sizeof(m_rowConflicts));
 		memcpy(m_colConflicts, other.m_colConflicts, sizeof(m_colConflicts));
 		memcpy(m_boxConflicts, other.m_boxConflicts, sizeof(m_boxConflicts));
@@ -59,5 +59,4 @@ namespace sudoku
 	template class Board<3>;
 	template class Board<4>;
 	template class Board<5>;
-
 }

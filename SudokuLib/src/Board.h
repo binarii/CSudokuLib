@@ -18,28 +18,34 @@ namespace sudoku
 
 	public:
 		void Remove(CELL_INDEX cell);
-		void Set(CELL_INDEX cell, BITMASK val);
-		void Mask(CELL_INDEX cell, BITMASK mask);
+		void Set   (CELL_INDEX cell, BITMASK val);
+		void Mask  (CELL_INDEX cell, BITMASK mask);
+
+
 		void ClearMask(CELL_INDEX cell);
 		void UpdateCandidates(CELL_INDEX cell);
 
-		BITMASK GetValue(CELL_INDEX cell) const;
+
+		BITMASK GetValue     (CELL_INDEX cell) const;
 		BITMASK GetCandidates(CELL_INDEX cell) const;
 
-		bool BoardFull() const;
-		bool BoardValid() const;
-		int GetFilledCount() const;
+
+		bool BoardFull()      const;
+		bool BoardValid()     const;
+		int  GetFilledCount() const;
 
 	private:
-		int m_setCount;
-		BITMASK m_board[GRID];           // Stores the game board
-		BITMASK m_boardMask[GRID];       // Allows masking of cells
+		int        m_setCount;            // Number of filled cells
+		BITMASK    m_board[GRID];         // Stores the game board
+		BITMASK    m_boardMask[GRID];     // Allows masking of cells
 
-		BITMASK m_candidates[GRID];      // Stores candidate values at cell i (from conflicts)
-		BITMASK m_rowConflicts[UNIT];    // Stores the conflicts in row i
-		BITMASK m_colConflicts[UNIT];    // Stores the conflicts in col i
-		BITMASK m_boxConflicts[UNIT];    // Stores the conflicts in box i
+		BITMASK    m_candidates[GRID];    // Stores candidate values at cell i (from conflicts)
+		BITMASK    m_rowConflicts[UNIT];  // Stores the conflicts in row i
+		BITMASK    m_colConflicts[UNIT];  // Stores the conflicts in col i
+		BITMASK    m_boxConflicts[UNIT];  // Stores the conflicts in box i
 	};
+
+
 
 #define TEMPLATE template <int size>
 #define TCLASS Board<size>
