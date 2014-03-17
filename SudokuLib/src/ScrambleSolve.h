@@ -8,8 +8,8 @@
  */
 
 #include "Types.h"
-#include "Timer.h"
 #include "PuzzleDimensions.h"
+#include "SolveMethod.h"
 
 namespace sudoku
 {
@@ -19,21 +19,16 @@ namespace sudoku
 
 
 	template <int size>
-	class ScrambleSolve : public PuzzleDimensions<size>
+	class ScrambleSolve : public PuzzleDimensions<size>, public SolveMethod<size>
 	{
 	public:
 		ScrambleSolve();
 		~ScrambleSolve();
 
-		int solve(Board<size>& board);
-		double GetSolveTime();
+		int Solve(Board<size>& board);
 
 	private:
 		int BacktrackSolve(Board<size>& board);
-
-	private:
-		double m_solveTime;
-		Timer m_timer;
 	};
 };
 

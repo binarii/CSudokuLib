@@ -17,19 +17,13 @@ namespace sudoku
 	}
 
 	template <int size>
-	int ScrambleSolve<size>::solve(Board<size>& board)
+	int ScrambleSolve<size>::Solve(Board<size>& board)
 	{
-		m_timer.StartTimer();
+		StartTimer();
 		int solutionCount = BacktrackSolve(board);
-		m_solveTime = m_timer.GetTime();
+		StopTimer();
 
 		return solutionCount;
-	}
-
-	template <int size>
-	double ScrambleSolve<size>::GetSolveTime()
-	{
-		return m_solveTime;
 	}
 
 	template <int size>

@@ -28,6 +28,9 @@ namespace sudoku
 
 		for(int i = 0; i < GRID; ++i)
 		{
+
+			board.UpdateCandidates(i);
+
 			if(board.GetValue(i) != 0)
 				continue;
 
@@ -41,7 +44,6 @@ namespace sudoku
 			{
 				// Play move and clear possible
 				board.Set(i, possible);
-				board.Mask(i, MASK);
 
 				m_useCount++;
 				useCount++;

@@ -3,6 +3,9 @@
 #include "Board.h"
 #include "BitCount.h"
 
+#include "Techniques\HiddenSingle.h"
+#include "Techniques\NakedSingle.h"
+
 // Switch off using precomputed bitcount vs function
 // Should only be used in sudoku namespace
 #define BITCOUNT(x) \
@@ -23,20 +26,35 @@ namespace sudoku
 
 	}
 
-	template <int size>
-	int QuickSolve<size>::Solve(Board<size>& board)
+	template <>
+	int QuickSolve<3>::Solve(Board<3>& board)
 	{
-		m_timer.StartTimer();
+		StartTimer();
+		NakedSingle ns;
+		HiddenSingle hs;
+		int count = 1;
+
+		while(count > 0 && !board.BoardFull() && m_maxSolutions == 1)
+		{
+			count = 0;
+			count += ns.Step(board);
+			count += hs.Step(board);
+		}
+
 		int solutionCount = BacktrackSolve(board);
-		m_solveTime = m_timer.GetTime();
+		StopTimer();
 
 		return solutionCount;
 	}
-	
+
 	template <int size>
-	double QuickSolve<size>::GetSolveTime()
+	int QuickSolve<size>::Solve(Board<size>& board)
 	{
-		return m_solveTime;
+		StartTimer();
+		int solutionCount = BacktrackSolve(board);
+		StopTimer();
+
+		return solutionCount;
 	}
 		
 	template <int size>

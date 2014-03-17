@@ -60,7 +60,6 @@ namespace sudoku
 				{
 					// Play move and clear possible
 					board.Set(x, once);
-					board.Mask(x, MASK);
 
 					m_useCount++;
 					useCount++;					

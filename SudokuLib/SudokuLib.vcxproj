@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Board.h" />
+    <ClInclude Include="src\SolveMethod.h" />
     <ClInclude Include="src\Sudoku.h" />
     <ClInclude Include="src\Techniques\NakedQuad.h" />
     <ClInclude Include="src\Techniques\SubsetFinder.h" />

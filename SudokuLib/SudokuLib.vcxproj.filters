@@ -149,5 +149,8 @@
     <ClInclude Include="src\Board.h">
       <Filter>Core\Board</Filter>
     </ClInclude>
+    <ClInclude Include="src\SolveMethod.h">
+      <Filter>Core\Solving</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
