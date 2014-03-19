@@ -1,5 +1,5 @@
 #include "HiddenTriple.h"
-#include "../Board.h"
+#include "../BoardAbstract.h"
 #include "../BitCount.h"
 
 // Switch off using precomputed bitcount vs function
@@ -20,7 +20,7 @@ namespace sudoku
 
 	}
 
-	int HiddenTriple::Step(Board<3>& board)
+	int HiddenTriple::Step(BoardAbstract<3>& board)
 	{	
 		int useCount = 0;
 		
@@ -37,16 +37,16 @@ namespace sudoku
 			for(int c1 = 0; c1 < UNIT-2; ++c1)
 			{
 				cell1 = board.Iterate(u, c1);
-				poss1 = board.GetCandidates(cell1);
+				poss1 = board.getCandidates(cell1);
 				for(int c2 = c1+1; c2 < UNIT-1; ++c2)
 				{
 					cell2 = board.Iterate(u, c2);
-					poss2 = board.GetCandidates(cell2);
+					poss2 = board.getCandidates(cell2);
 					for(int c3 = c2+1; c3 < UNIT; ++c3)
 					{
 
 						cell3 = board.Iterate(u, c3);
-						poss3 = board.GetCandidates(cell3);
+						poss3 = board.getCandidates(cell3);
 					
 						combined = poss1 | poss2 | poss3;
 						int cBitcount = BITCOUNT(combined);
@@ -56,14 +56,14 @@ namespace sudoku
 							if(i == c1 || i == c2 || i == c3)
 								continue;
 
-							combined &= ~board.GetCandidates(board.Iterate(u, i));
+							combined &= ~board.getCandidates(board.Iterate(u, i));
 						}
 
 						if(BITCOUNT(combined) == 3 && cBitcount != 3)
 						{
-							board.Mask(cell1, ~combined);
-							board.Mask(cell2, ~combined);
-							board.Mask(cell3, ~combined);
+							board.mask(cell1, ~combined);
+							board.mask(cell2, ~combined);
+							board.mask(cell3, ~combined);
 							useCount++;
 							m_useCount++;
 						}

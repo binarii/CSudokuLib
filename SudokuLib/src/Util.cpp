@@ -1,7 +1,7 @@
 #include "Util.h"
 
 #include "BitCount.h"
-#include "Board.h"
+#include "BoardAbstract.h"
 
 namespace 
 {	
@@ -16,9 +16,9 @@ namespace sudoku
 {
 	namespace util
 	{		
-		void LoadBoard(Board<3>& board, std::string puzzle)
+		void LoadBoard(BoardAbstract<3>& board, std::string puzzle)
 		{
-			board.Reset();
+			board.reset();
 
 			char c;
 			int size = puzzle.length();
@@ -30,21 +30,21 @@ namespace sudoku
 				c = puzzle[i];
 				if((c > '0') && (c <= '9'))
 				{
-					board.Set(i, (1 << (c - '0')));
+					board.set(i, (1 << (c - '0')));
 				}
 				else if((c >= 'a') && (c <= 'z'))
 				{
-					board.Set(i, (1 << (c - 'a' + 10)));
+					board.set(i, (1 << (c - 'a' + 10)));
 				}
 			}
 		}
 
-		void PrintBoard(Board<3>& board, std::ostream& stream)
+		void PrintBoard(BoardAbstract<3>& board, std::ostream& stream)
 		{
 			int boardVals[81];
 
 			for(int i = 0; i < 81; i++)
-				boardVals[i] = getValue(board.GetValue(i));
+				boardVals[i] = getValue(board.getValue(i));
 
 			for(int row = 0; row < 9; row++)
 			{
@@ -67,13 +67,13 @@ namespace sudoku
 			stream << std::endl;
 		}
 
-		std::string GetBoardString(Board<3>& board)
+		std::string GetBoardString(BoardAbstract<3>& board)
 		{
 			std::string result = "";
 
 			for(int i = 0; i < 81; i++)
 			{
-				char c = '0' + getValue(board.GetValue(i));
+				char c = '0' + getValue(board.getValue(i));
 				result += c;
 			}
 

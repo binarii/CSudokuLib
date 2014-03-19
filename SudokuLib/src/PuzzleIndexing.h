@@ -13,7 +13,7 @@ namespace sudoku
 	public:
 		static void Initialize();
 
-		CELL_INDEX Iterate(UNIT_INDEX unit, UNIT_INDEX pos);
+		CELL_INDEX Iterate(UNIT_INDEX unit, UNIT_INDEX pos) const;
 
 	private:
 		static bool m_initialized;
@@ -67,7 +67,7 @@ namespace sudoku
 	}
 	
 	template <int size>
-	inline CELL_INDEX PuzzleIndexing<size>::Iterate(UNIT_INDEX unit, UNIT_INDEX pos)
+	inline CELL_INDEX PuzzleIndexing<size>::Iterate(UNIT_INDEX unit, UNIT_INDEX pos) const
 	{
 		return m_groups[unit * GROUP_WIDTH + pos];
 	}

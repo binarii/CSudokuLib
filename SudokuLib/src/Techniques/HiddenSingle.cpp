@@ -1,5 +1,5 @@
 #include "HiddenSingle.h"
-#include "../Board.h"
+#include "../BoardAbstract.h"
 #include "../BitCount.h"
 
 // Switch off using precomputed bitcount vs function
@@ -20,7 +20,7 @@ namespace sudoku
 
 	}
 
-	int HiddenSingle::Step(Board<3>& board)
+	int HiddenSingle::Step(BoardAbstract<3>& board)
 	{	
 		CELL_INDEX x;
 		int useCount = 0;
@@ -37,9 +37,9 @@ namespace sudoku
 				x = board.Iterate(u, c1);
 
 				// Get possible mask and value mask
-				board.UpdateCandidates(x);
-				BITMASK possible = board.GetCandidates(x);
-				BITMASK boardVal = board.GetValue(x);
+				board.updateCandidates(x);
+				BITMASK possible = board.getCandidates(x);
+				BITMASK boardVal = board.getValue(x);
 
 				all |= (possible | boardVal);
 				twice |= (once & possible);
@@ -56,10 +56,10 @@ namespace sudoku
 			for(int i = 0; i < UNIT; ++i)
 			{
 				x = board.Iterate(u, i);
-				if(board.GetCandidates(x) & once)
+				if(board.getCandidates(x) & once)
 				{
 					// Play move and clear possible
-					board.Set(x, once);
+					board.set(x, once);
 
 					m_useCount++;
 					useCount++;					

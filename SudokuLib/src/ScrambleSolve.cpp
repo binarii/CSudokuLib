@@ -1,5 +1,5 @@
 #include "ScrambleSolve.h"
-#include "Board.h"
+#include "BoardAbstract.h"
 #include "Util.h"
 
 namespace sudoku
@@ -17,7 +17,7 @@ namespace sudoku
 	}
 
 	template <int size>
-	int ScrambleSolve<size>::Solve(Board<size>& board)
+	int ScrambleSolve<size>::Solve(BoardAbstract<size>& board)
 	{
 		StartTimer();
 		int solutionCount = BacktrackSolve(board);
@@ -27,17 +27,17 @@ namespace sudoku
 	}
 
 	template <int size>
-	int ScrambleSolve<size>::BacktrackSolve(Board<size>& board)
+	int ScrambleSolve<size>::BacktrackSolve(BoardAbstract<size>& board)
 	{
-		if(board.BoardFull())
+		if(board.isBoardFull())
 			return 1;
 
 		int solutionsFound = 0;
-		CELL_INDEX pos = board.GetFilledCount();
+		CELL_INDEX pos = board.getFilledCount();
 
 		// Get the possible values for the cell
-		board.UpdateCandidates(pos);
-		BITMASK possible = board.GetCandidates(pos);
+		board.updateCandidates(pos);
+		BITMASK possible = board.getCandidates(pos);
 
 		// Choose the order to try values
 		BITMASK cellOrder[dim.UNIT];
@@ -50,11 +50,11 @@ namespace sudoku
 		{
 			if(cellOrder[i] & possible)
 			{
-				board.Set(pos, cellOrder[i]);
+				board.set(pos, cellOrder[i]);
 				solutionsFound = BacktrackSolve(board);
 				if(solutionsFound > 0)
 					return solutionsFound;
-				board.Remove(pos);
+				board.remove(pos);
 
 				possible &= ~cellOrder[i];
 			}

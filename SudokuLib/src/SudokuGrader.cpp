@@ -1,5 +1,5 @@
 #include "SudokuGrader.h"
-#include "Board.h"
+#include "BoardAbstract.h"
 
 // techniques
 #include "Techniques\NakedSingle.h"
@@ -52,7 +52,7 @@ namespace sudoku
 		m_techniques.clear();
 	}
 
-	bool Grader::Evaluate(Board<3>& board)
+	bool Grader::Evaluate(BoardAbstract<3>& board)
 	{
 		// Start the clock
 		m_timer.StartTimer();
@@ -61,18 +61,18 @@ namespace sudoku
 		// Get board in a good state
 		for(int i = 0; i < GRID; i++)
 		{
-			if(board.GetValue(i) != 0)
-				board.Mask(i, board.MASK);
-			board.UpdateCandidates(i);
+			if(board.getValue(i) != 0)
+				board.mask(i, board.MASK);
+			board.updateCandidates(i);
 		}
 
 		int count = 1;
 
-		while((count > 0) && (!board.BoardFull()))
+		while((count > 0) && (!board.isBoardFull()))
 		{
 			// Default cell updater
 			for(int i = 0; i < 81; i++)
-				board.UpdateCandidates(i);
+				board.updateCandidates(i);
 
 			count = 0;
 			for(int i = 0; i < m_techniques.size(); i++)
@@ -85,7 +85,7 @@ namespace sudoku
 
 
 		m_solveTime = m_timer.GetTime();
-		return board.BoardFull();
+		return board.isBoardFull();
 	}
 
 	double Grader::GetSolveTime()

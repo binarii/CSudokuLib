@@ -31,6 +31,9 @@
     <Filter Include="Core\Board">
       <UniqueIdentifier>{60b62f4d-e371-40fb-8b95-bc4e8a921d80}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{df6dfd21-be87-4b18-98b6-1c0aa71c2583}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -78,14 +81,11 @@
     <ClCompile Include="src\Techniques\NakedTriple.cpp">
       <Filter>Core\Grading\Techniques\Naked</Filter>
     </ClCompile>
-    <ClCompile Include="src\Board.cpp">
+    <ClCompile Include="src\BoardAbstract.cpp">
       <Filter>Core\Board</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Types.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\BitCount.h">
       <Filter>Utilities</Filter>
     </ClInclude>
@@ -146,11 +146,17 @@
     <ClInclude Include="src\Sudoku.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="src\Board.h">
-      <Filter>Core\Board</Filter>
-    </ClInclude>
     <ClInclude Include="src\SolveMethod.h">
       <Filter>Core\Solving</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BoardAbstract.h">
+      <Filter>Core\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Types.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SudokuPrerequisites.h">
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

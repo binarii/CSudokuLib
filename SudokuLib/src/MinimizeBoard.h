@@ -1,19 +1,12 @@
 #ifndef _MINIMIZEBOARD_H_
 #define _MINIMIZEBOARD_H_
 
-#include "Types.h"
+#include "SudokuPrerequisites.h"
 #include "Timer.h"
 #include "PuzzleDimensions.h"
 
 namespace sudoku
 {
-	// Forward the board class
-	template <int size>
-	class Board;
-
-	template <int size>
-	class QuickSolve;
-
 	enum MinimizeType
 	{
 		MT_NONE,
@@ -29,17 +22,17 @@ namespace sudoku
 		MinimizeBoard();
 		~MinimizeBoard();
 
-		void Minimize(Board<size>& board, MinimizeType type);
+		void Minimize(BoardAbstract<size>& board, MinimizeType type);
 
 		double GetSolveTime();
 
 	private:
-		void MinimizeNone(Board<size>& board);
-		void MinimizeHoriz(Board<size>& board);
-		void MinimizeVert(Board<size>& board);
-		void MinimizeDiag(Board<size>& board);
+		void MinimizeNone(BoardAbstract<size>& board);
+		void MinimizeHoriz(BoardAbstract<size>& board);
+		void MinimizeVert(BoardAbstract<size>& board);
+		void MinimizeDiag(BoardAbstract<size>& board);
 
-		void MinimizePattern(Board<size>& board, CELL_INDEX* digArray, int n, int rate);
+		void MinimizePattern(BoardAbstract<size>& board, CELL_INDEX* digArray, int n, int rate);
 
 	private:
 		double m_solveTime;

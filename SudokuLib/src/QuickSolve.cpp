@@ -1,6 +1,6 @@
 #include "QuickSolve.h"
 
-#include "Board.h"
+#include "BoardAbstract.h"
 #include "BitCount.h"
 
 #include "Techniques\HiddenSingle.h"
@@ -27,14 +27,14 @@ namespace sudoku
 	}
 
 	template <>
-	int QuickSolve<3>::Solve(Board<3>& board)
+	int QuickSolve<3>::Solve(BoardAbstract<3>& board)
 	{
 		StartTimer();
 		NakedSingle ns;
 		HiddenSingle hs;
 		int count = 1;
 
-		while(count > 0 && !board.BoardFull() && m_maxSolutions == 1)
+		while(count > 0 && !board.isBoardFull() && m_maxSolutions == 1)
 		{
 			count = 0;
 			count += ns.Step(board);
@@ -48,7 +48,7 @@ namespace sudoku
 	}
 
 	template <int size>
-	int QuickSolve<size>::Solve(Board<size>& board)
+	int QuickSolve<size>::Solve(BoardAbstract<size>& board)
 	{
 		StartTimer();
 		int solutionCount = BacktrackSolve(board);
@@ -64,9 +64,9 @@ namespace sudoku
 	}
 
 	template <int size>
-	int QuickSolve<size>::BacktrackSolve(Board<size>& board)
+	int QuickSolve<size>::BacktrackSolve(BoardAbstract<size>& board)
 	{
-		if(board.BoardFull()) return 1;
+		if(board.isBoardFull()) return 1;
 
 		BITMASK val = 0;
 		CELL_INDEX pos = INT_MAX;
@@ -77,11 +77,11 @@ namespace sudoku
 
 		for(int i = (val & -val); val; i = (val & -val))
 		{
-			board.Set(pos, i);
+			board.set(pos, i);
 			solutionsFound += BacktrackSolve(board);
 			if(solutionsFound >= m_maxSolutions)
 				return solutionsFound;
-			board.Remove(pos);
+			board.remove(pos);
 			val &= ~i;
 		}
 
@@ -89,7 +89,7 @@ namespace sudoku
 	}
 
 	template <int size>
-	int QuickSolve<size>::FindSingles(Board<size>& board, CELL_INDEX& pos, BITMASK& value)
+	int QuickSolve<size>::FindSingles(BoardAbstract<size>& board, CELL_INDEX& pos, BITMASK& value)
 	{
 		int count;
 		int savePos = -1;
@@ -101,12 +101,12 @@ namespace sudoku
 		for(i = 0; i < dim.GRID; ++i)
 		{
 			// Update and get possibilities for cell i
-			board.UpdateCandidates(i);
+			board.updateCandidates(i);
 			
-			if(board.GetValue(i) != 0)
+			if(board.getValue(i) != 0)
 				continue;
 
-			BITMASK possible = board.GetCandidates(i);
+			BITMASK possible = board.getCandidates(i);
 
 			// Get the bit count for the cell
 			count = BITCOUNT(possible);
@@ -145,8 +145,8 @@ namespace sudoku
 				x = board.Iterate(i, j);
 
 				// Get possible mask and value mask
-				BITMASK possible = board.GetCandidates(x);
-				BITMASK boardVal = board.GetValue(x);
+				BITMASK possible = board.getCandidates(x);
+				BITMASK boardVal = board.getValue(x);
 
 				all |= (possible | boardVal);
 				twice |= (once & possible);
@@ -166,7 +166,7 @@ namespace sudoku
 			for(j = 0; j < dim.UNIT; ++j)
 			{
 				pos = board.Iterate(i, j);
-				if(board.GetCandidates(pos) & once)
+				if(board.getCandidates(pos) & once)
 				{
 					value = once;
 					return 1;

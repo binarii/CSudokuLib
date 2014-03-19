@@ -1,5 +1,4 @@
 #include "NakedPair.h"
-#include "../Board.h"
 
 #include "SubsetFinder.h"
 
@@ -16,7 +15,7 @@ namespace sudoku
 
 	}
 
-	int NakedPair::Step(Board<3>& board)
+	int NakedPair::Step(BoardAbstract<3>& board)
 	{	
 		int useCount = 0;
 

@@ -74,7 +74,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Board.cpp" />
+    <ClCompile Include="src\BoardAbstract.cpp" />
     <ClCompile Include="src\Techniques\HiddenPair.cpp" />
     <ClCompile Include="src\Techniques\HiddenSingle.cpp" />
     <ClCompile Include="src\MinimizeBoard.cpp" />
@@ -91,7 +91,7 @@
     <ClCompile Include="src\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Board.h" />
+    <ClInclude Include="src\BoardAbstract.h" />
     <ClInclude Include="src\SolveMethod.h" />
     <ClInclude Include="src\Sudoku.h" />
     <ClInclude Include="src\Techniques\NakedQuad.h" />
@@ -114,6 +114,7 @@
     <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\Types.h" />
     <ClInclude Include="src\QuickSolve.h" />
+    <ClInclude Include="src\SudokuPrerequisites.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

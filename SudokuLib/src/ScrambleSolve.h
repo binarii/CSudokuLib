@@ -7,17 +7,12 @@
  * for use in generating puzzles.
  */
 
-#include "Types.h"
+#include "SudokuPrerequisites.h"
 #include "PuzzleDimensions.h"
 #include "SolveMethod.h"
 
 namespace sudoku
 {
-	// Forward the board class
-	template <int size>
-	class Board;
-
-
 	template <int size>
 	class ScrambleSolve : public SolveMethod<size>
 	{
@@ -25,10 +20,10 @@ namespace sudoku
 		ScrambleSolve();
 		~ScrambleSolve();
 
-		int Solve(Board<size>& board);
+		int Solve(BoardAbstract<size>& board);
 
 	private:
-		int BacktrackSolve(Board<size>& board);
+		int BacktrackSolve(BoardAbstract<size>& board);
 	};
 };
 

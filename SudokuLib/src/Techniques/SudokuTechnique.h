@@ -1,15 +1,12 @@
 #ifndef _SUDOKUTECHNIQUE_H_
 #define _SUDOKUTECHNIQUE_H_
 
+#include "../SudokuPrerequisites.h"
 #include "../PuzzleDimensions.h"
 #include "TechniqueConstants.h"
 
 namespace sudoku
 {
-	// Forward the board class
-	template <int size>
-	class Board;
-
 	class Technique : public PuzzleDimensions<3>
 	{
 	public:
@@ -20,7 +17,7 @@ namespace sudoku
 			m_cost = StrategyWeight[t];
 		}
 
-		virtual int Step(Board<3>& board) = 0;
+		virtual int Step(BoardAbstract<3>& board) = 0;
 
 		void ResetCount() { m_useCount = 0; }
 		int GetCount() { return m_useCount; }

@@ -1,5 +1,5 @@
 #include "NakedSingle.h"
-#include "../Board.h"
+#include "../BoardAbstract.h"
 #include "../BitCount.h"
 
 // Switch off using precomputed bitcount vs function
@@ -19,7 +19,7 @@ namespace sudoku
 
 	}
 
-	int NakedSingle::Step(Board<3>& board)
+	int NakedSingle::Step(BoardAbstract<3>& board)
 	{		
 		int count;
 		int useCount = 0;
@@ -29,12 +29,12 @@ namespace sudoku
 		for(int i = 0; i < GRID; ++i)
 		{
 
-			board.UpdateCandidates(i);
+			board.updateCandidates(i);
 
-			if(board.GetValue(i) != 0)
+			if(board.getValue(i) != 0)
 				continue;
 
-			BITMASK possible = board.GetCandidates(i);
+			BITMASK possible = board.getCandidates(i);
 
 			// Get the bit count for the cell
 			count = BITCOUNT(possible);
@@ -43,7 +43,7 @@ namespace sudoku
 			if(count == 1)
 			{
 				// Play move and clear possible
-				board.Set(i, possible);
+				board.set(i, possible);
 
 				m_useCount++;
 				useCount++;

@@ -1,5 +1,6 @@
 #include "MinimizeBoard.h"
-#include "Board.h"
+
+#include "BoardAbstract.h"
 #include "QuickSolve.h"
 #include "Util.h"
 
@@ -19,7 +20,7 @@ namespace sudoku
 	}
 
 	template <int boxSize>
-	void MinimizeBoard<boxSize>::Minimize(Board<boxSize>& board, MinimizeType type)
+	void MinimizeBoard<boxSize>::Minimize(BoardAbstract<boxSize>& board, MinimizeType type)
 	{
 		m_timer.StartTimer();
 
@@ -42,7 +43,7 @@ namespace sudoku
 	}
 
 	template <int boxSize>
-	void MinimizeBoard<boxSize>::MinimizeNone(Board<boxSize>& board)
+	void MinimizeBoard<boxSize>::MinimizeNone(BoardAbstract<boxSize>& board)
 	{
 		CELL_INDEX digArray[GRID];
 		for(int i = 0; i < GRID; i++) digArray[i] = i;
@@ -52,7 +53,7 @@ namespace sudoku
 	}
 
 	template <int boxSize>
-	void MinimizeBoard<boxSize>::MinimizeHoriz(Board<boxSize>& board)
+	void MinimizeBoard<boxSize>::MinimizeHoriz(BoardAbstract<boxSize>& board)
 	{
 		const int centerIndex = (UNIT / 2 + 1) * UNIT;
 
@@ -76,7 +77,7 @@ namespace sudoku
 	}
 
 	template <int boxSize>
-	void MinimizeBoard<boxSize>::MinimizeVert(Board<boxSize>& board)
+	void MinimizeBoard<boxSize>::MinimizeVert(BoardAbstract<boxSize>& board)
 	{
 		const int centerIndex = (UNIT / 2 + 1) * UNIT;
 
@@ -103,7 +104,7 @@ namespace sudoku
 	}
 
 	template <int boxSize>
-	void MinimizeBoard<boxSize>::MinimizeDiag(Board<boxSize>& board)
+	void MinimizeBoard<boxSize>::MinimizeDiag(BoardAbstract<boxSize>& board)
 	{
 		const int centerIndex = (UNIT / 2 + 1) * UNIT;
 
@@ -124,20 +125,20 @@ namespace sudoku
 
 	template <int boxSize>
 	void MinimizeBoard<boxSize>::MinimizePattern
-		(Board<boxSize>& board, CELL_INDEX* digArray, int n, int rate)
+		(BoardAbstract<boxSize>& board, CELL_INDEX* digArray, int n, int rate)
 	{
 		int solutionCount;
-		Board<boxSize> boardCpy(board);
+		BoardAbstract<boxSize> boardCpy(board);
 		QuickSolve<boxSize> solver;
 		solver.SetMaxSolutionCount(2);
 
 		for(int i = 0; i < n; i++)
 		{
 			// Make a copy of the board and dig cells
-			boardCpy.Copy(board);
+			boardCpy.copy(board);
 			for(int j = 0; j < rate; j++)
-				if(boardCpy.GetValue(digArray[i*rate + j]) != 0)
-					boardCpy.Remove(digArray[i*rate + j]);
+				if(boardCpy.getValue(digArray[i*rate + j]) != 0)
+					boardCpy.remove(digArray[i*rate + j]);
 
 			// Check if it is still unique
 			solutionCount = solver.Solve(boardCpy);
@@ -145,8 +146,8 @@ namespace sudoku
 			// If it is unique we can dig these cells
 			if(solutionCount == 1)
 				for(int j = 0; j < rate; j++)
-					if(board.GetValue(digArray[i*rate + j]) != 0)
-						board.Remove(digArray[i*rate + j]);
+					if(board.getValue(digArray[i*rate + j]) != 0)
+						board.remove(digArray[i*rate + j]);
 		}
 	}
 

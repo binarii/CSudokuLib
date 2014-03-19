@@ -3,16 +3,12 @@
 
 #include "Types.h"
 #include "Timer.h"
+#include "SudokuPrerequisites.h"
 
 #include <vector>
 
 namespace sudoku
 {
-	// Forward the board class
-	template <int boxSize>
-	class Board;
-
-	class Technique;
 
 	class Grader
 	{
@@ -20,7 +16,7 @@ namespace sudoku
 		Grader();
 		~Grader();
 
-		bool Evaluate(Board<3>& board);
+		bool Evaluate(BoardAbstract<3>& board);
 
 		double GetSolveTime();
 		int GetDifficulty();

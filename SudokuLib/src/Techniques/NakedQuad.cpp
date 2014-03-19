@@ -1,5 +1,4 @@
 #include "NakedQuad.h"
-#include "../Board.h"
 
 #include "SubsetFinder.h"
 
@@ -16,7 +15,7 @@ namespace sudoku
 
 	}
 
-	int NakedQuad::Step(Board<3>& board)
+	int NakedQuad::Step(BoardAbstract<3>& board)
 	{	
 		int useCount = 0;
 

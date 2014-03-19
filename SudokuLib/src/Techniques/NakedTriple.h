@@ -1,7 +1,6 @@
 #ifndef _NAKEDTRIPLE_H_
 #define _NAKEDTRIPLE_H_
 
-#include "../Types.h"
 #include "SudokuTechnique.h"
 
 namespace sudoku
@@ -12,7 +11,7 @@ namespace sudoku
 		NakedTriple();
 		~NakedTriple();
 
-		int Step(Board<3>& board);
+		int Step(BoardAbstract<3>& board);
 	};
 }
 
