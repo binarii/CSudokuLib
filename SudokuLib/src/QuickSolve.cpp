@@ -130,7 +130,7 @@ namespace sudoku
 
 			for(j = 0; j < dim.UNIT; ++j) {
 				// Get the board position
-				x = board.Iterate(i, j);
+				x = board.iterate(i, j);
 
 				// Get possible mask and value mask
 				BITMASK possible = board.getCandidates(x);
@@ -155,7 +155,7 @@ namespace sudoku
 			once = getLSB(once); // Get least set bit
 			for(j = 0; j < dim.UNIT; ++j) {
 
-				pos = board.Iterate(i, j);
+				pos = board.iterate(i, j);
 				if(board.getCandidates(pos) & once) {
 					value = once;
 					return 1;

@@ -62,7 +62,7 @@ namespace sudoku {
 			for(int j = 0; j < UNIT; ++j) {
 
 				// Get the board position
-				CELL_INDEX x = Iterate(i, j);
+				CELL_INDEX x = iterate(i, j);
 
 				// Get possible mask and value mask
 				BITMASK boardVal = getValue(x);

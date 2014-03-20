@@ -34,7 +34,7 @@ namespace sudoku
 			for(int c1 = 0; c1 < board.UNIT; ++c1)
 			{
 				// Get the board position
-				x = board.Iterate(u, c1);
+				x = board.iterate(u, c1);
 
 				// Get possible mask and value mask
 				board.updateCandidates(x);
@@ -55,7 +55,7 @@ namespace sudoku
 			once = getLSB(once); // Get least set bit
 			for(int i = 0; i < board.UNIT; ++i)
 			{
-				x = board.Iterate(u, i);
+				x = board.iterate(u, i);
 				if(board.getCandidates(x) & once)
 				{
 					// Play move and clear possible

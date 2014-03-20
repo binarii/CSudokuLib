@@ -4,8 +4,7 @@
 namespace sudoku
 {
 	template <int size>
-	class PuzzleDimensions
-	{
+	class PuzzleDimensions {
 	public:
 		static const int BOX = size;
 		static const int UNIT = BOX * BOX;

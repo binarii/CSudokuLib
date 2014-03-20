@@ -36,16 +36,16 @@ namespace sudoku
 		{
 			for(int c1 = 0; c1 < board.UNIT-2; ++c1)
 			{
-				cell1 = board.Iterate(u, c1);
+				cell1 = board.iterate(u, c1);
 				poss1 = board.getCandidates(cell1);
 				for(int c2 = c1+1; c2 < board.UNIT-1; ++c2)
 				{
-					cell2 = board.Iterate(u, c2);
+					cell2 = board.iterate(u, c2);
 					poss2 = board.getCandidates(cell2);
 					for(int c3 = c2+1; c3 < board.UNIT; ++c3)
 					{
 
-						cell3 = board.Iterate(u, c3);
+						cell3 = board.iterate(u, c3);
 						poss3 = board.getCandidates(cell3);
 					
 						combined = poss1 | poss2 | poss3;
@@ -56,7 +56,7 @@ namespace sudoku
 							if(i == c1 || i == c2 || i == c3)
 								continue;
 
-							combined &= ~board.getCandidates(board.Iterate(u, i));
+							combined &= ~board.getCandidates(board.iterate(u, i));
 						}
 
 						if(BITCOUNT(combined) == 3 && cBitcount != 3)

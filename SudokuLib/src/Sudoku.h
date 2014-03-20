@@ -19,10 +19,10 @@ namespace sudoku
 		util::Initialize();
 		bitcount::Initialize();
 
-		PuzzleIndexing<2>::Initialize();
-		PuzzleIndexing<3>::Initialize();
-		PuzzleIndexing<4>::Initialize();
-		PuzzleIndexing<5>::Initialize();
+		PuzzleIndexing<2>::initialize();
+		PuzzleIndexing<3>::initialize();
+		PuzzleIndexing<4>::initialize();
+		PuzzleIndexing<5>::initialize();
 	}
 }
 

@@ -14,9 +14,9 @@ namespace sudoku
 	// Stores the index of a cell to the grid
 	typedef unsigned int CELL_INDEX;
 
+
 	// Refer a cell to its row, col, and box
-	struct CellReference
-	{
+	struct CellReference {
 		UNIT_INDEX row;
 		UNIT_INDEX col;
 		UNIT_INDEX box;

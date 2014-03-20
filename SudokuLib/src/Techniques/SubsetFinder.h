@@ -26,13 +26,13 @@ namespace sudoku
 		{
 			for(int c1 = 0; c1 < (UNITmSIZE + 1) && subsetSize > 0; ++c1)
 			{
-				cell1 = board.Iterate(g, c1);
+				cell1 = board.iterate(g, c1);
 				poss1 = board.getCandidates(cell1);
 				if(poss1 == 0) continue; // All cells need be empty
 
 				for(int c2 = c1+1; c2 < (UNITmSIZE + 2) && subsetSize > 1; ++c2)
 				{
-					cell2 = board.Iterate(g, c2);
+					cell2 = board.iterate(g, c2);
 					poss2 = board.getCandidates(cell2);
 					if(poss2 == 0) continue; // All cells need be empty
 
@@ -47,7 +47,7 @@ namespace sudoku
 							for(int i = 0; i < UNIT; ++i)
 							{
 								if(i == c1 || i == c2) continue;
-								x = board.Iterate(g, i);
+								x = board.iterate(g, i);
 								mask |= board.getCandidates(x) & combined;
 								board.mask(x, combined);
 							} if(mask) useCount++;							
@@ -58,7 +58,7 @@ namespace sudoku
 					// IF SUBSET SIZE IS GREATER THAN TWO
 					for(int c3 = c2+1; c3 < (UNITmSIZE + 3) && subsetSize > 2; ++c3)
 					{
-						cell3 = board.Iterate(g, c3);
+						cell3 = board.iterate(g, c3);
 						poss3 = board.getCandidates(cell3);
 						if(poss3 == 0) continue; // All cells need be empty
 						
@@ -73,7 +73,7 @@ namespace sudoku
 								for(int i = 0; i < UNIT; ++i)
 								{
 									if(i == c1 || i == c2 || i == c3) continue;
-									x = board.Iterate(g, i);
+									x = board.iterate(g, i);
 									mask |= board.getCandidates(x) & combined;
 									board.mask(x, combined);
 								} if(mask) useCount++;							
@@ -84,7 +84,7 @@ namespace sudoku
 						// IF SUBSET SIZE IS GREATER THAN THREE
 						for(int c4 = c3+1; c4 < (UNITmSIZE + 4) && subsetSize > 3; ++c4)
 						{
-							cell4 = board.Iterate(g, c4);
+							cell4 = board.iterate(g, c4);
 							poss4 = board.getCandidates(cell4);
 							if(poss4 == 0) continue; // All cells need be empty
 							
@@ -99,7 +99,7 @@ namespace sudoku
 									for(int i = 0; i < UNIT; ++i)
 									{
 										if(i == c1 || i == c2 || i == c3 || i == c4) continue;
-										x = board.Iterate(g, i);
+										x = board.iterate(g, i);
 										mask |= board.getCandidates(x) & combined;
 										board.mask(x, combined);
 									} if(mask) useCount++;							

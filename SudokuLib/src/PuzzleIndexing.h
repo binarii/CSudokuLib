@@ -6,14 +6,13 @@
 
 namespace sudoku
 {
-
 	template <int size>
-	class PuzzleIndexing : public PuzzleDimensions<size>
-	{
-	public:
-		static void Initialize();
+	class PuzzleIndexing : public PuzzleDimensions<size> {
 
-		CELL_INDEX Iterate(UNIT_INDEX unit, UNIT_INDEX pos) const;
+	public:
+		static void initialize();
+
+		CELL_INDEX iterate(UNIT_INDEX unit, UNIT_INDEX pos) const;
 
 	private:
 		static bool m_initialized;
@@ -46,7 +45,7 @@ namespace sudoku
 
 
 	template <int size>
-	void PuzzleIndexing<size>::Initialize()
+	void PuzzleIndexing<size>::initialize()
 	{
 		if(m_initialized)
 			return;
@@ -67,7 +66,7 @@ namespace sudoku
 	}
 	
 	template <int size>
-	inline CELL_INDEX PuzzleIndexing<size>::Iterate(UNIT_INDEX unit, UNIT_INDEX pos) const
+	inline CELL_INDEX PuzzleIndexing<size>::iterate(UNIT_INDEX unit, UNIT_INDEX pos) const
 	{
 		return m_groups[unit * GROUP_WIDTH + pos];
 	}
