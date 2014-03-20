@@ -83,7 +83,7 @@ namespace sudoku
 	void Grader::printAnalysis(std::ostream& out) {
 		out << std::endl;
 
-		out << std::setw(30) << "Technique";
+		out << std::left << std::setw(20) << "Technique";
 		out << std::setw(10) << "Cost";
 		out << std::setw(10) << "Count";
 		out << std::setw(15) << "Total Cost";
@@ -98,14 +98,15 @@ namespace sudoku
 			int difficultyCost = cost * count;
 			totalDifficulty += difficultyCost;
 
-			out << std::setw(30) << name;
+			out << std::setw(20) << name;
 			out << std::setw(10) << cost;
 			out << std::setw(10) << count;
 			out << std::setw(15) << difficultyCost;
 			out << std::endl;
 		}
 
-		out << std::setw(30+10+10+15) << totalDifficulty;
+		out << std::setw(20+10+10) << "TOTAL:";
+		out << totalDifficulty;
 		out << std::endl;
 	}
 

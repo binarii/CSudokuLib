@@ -5,10 +5,16 @@
 #include "BitCount.h"
 #include "Util.h"
 
+#include "SudokuPrerequisites.h"
+#include "BoardAbstract.h"
+#include "PuzzleFactory.h"
+#include "QuickSolve.h"
+#include "SudokuGrader.h"
+
 
 namespace sudoku
 {
-	void Initialize()
+	inline void Initialize()
 	{
 		util::Initialize();
 		bitcount::Initialize();

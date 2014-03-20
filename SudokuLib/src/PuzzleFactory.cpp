@@ -1,6 +1,7 @@
 #include "PuzzleFactory.h"
 
 #include "BoardAbstract.h"
+#include "ScrambleSolve.h"
 
 // Include the various different minimizers
 #include "MinimizeMethods\MinCorners.h"
@@ -42,6 +43,17 @@ namespace sudoku
 			delete [] m_minimizers;
 			m_minimizers = 0;
 		}
+	}
+
+	TEMPLATE
+	double TCLASS::generate(BoardAbstract<size> board, SYMMETRY_TYPE symm, int minClues) {
+		board.reset();
+
+		ScrambleSolve<size> solver;
+
+		solver.solve(board);
+
+		return solver.getTime() + minimize(board, symm, minClues);
 	}
 
 	TEMPLATE
