@@ -102,6 +102,9 @@
     <ClCompile Include="src\MinimizeMethods\MinDiagonal.cpp">
       <Filter>Core\Generating\Minimizers</Filter>
     </ClCompile>
+    <ClCompile Include="src\PuzzleFactory.cpp">
+      <Filter>Core\Generating</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BitCount.h">
@@ -190,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="src\MinimizeMethods\MinDiagonal.h">
       <Filter>Core\Generating\Minimizers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PuzzleFactory.h">
+      <Filter>Core\Generating</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

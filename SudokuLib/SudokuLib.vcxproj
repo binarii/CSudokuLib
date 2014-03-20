@@ -81,6 +81,7 @@
     <ClCompile Include="src\MinimizeMethods\MinDiagonal.cpp" />
     <ClCompile Include="src\MinimizeMethods\MinHorizontal.cpp" />
     <ClCompile Include="src\MinimizeMethods\MinVertical.cpp" />
+    <ClCompile Include="src\PuzzleFactory.cpp" />
     <ClCompile Include="src\Techniques\HiddenPair.cpp" />
     <ClCompile Include="src\Techniques\HiddenSingle.cpp" />
     <ClCompile Include="src\BitCount.cpp" />
@@ -103,6 +104,7 @@
     <ClInclude Include="src\MinimizeMethods\MinDiagonal.h" />
     <ClInclude Include="src\MinimizeMethods\MinHorizontal.h" />
     <ClInclude Include="src\MinimizeMethods\MinVertical.h" />
+    <ClInclude Include="src\PuzzleFactory.h" />
     <ClInclude Include="src\SolveMethod.h" />
     <ClInclude Include="src\Sudoku.h" />
     <ClInclude Include="src\Techniques\NakedQuad.h" />
