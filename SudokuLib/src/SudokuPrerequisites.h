@@ -8,7 +8,7 @@ namespace sudoku
 	template <int size>
 	class BoardAbstract;
 
-	class Board;
+	typedef BoardAbstract<3> Board;
 
 	template <int size>
 	class SolveMethod;

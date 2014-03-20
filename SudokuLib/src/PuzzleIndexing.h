@@ -18,7 +18,7 @@ namespace sudoku
 	private:
 		static bool m_initialized;
 
-	public:
+	protected:
 		// Stores the row, col, and box reference for cell i
 		static CellReference m_cellReference[GRID]; 
 

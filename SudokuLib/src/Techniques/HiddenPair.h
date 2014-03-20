@@ -5,13 +5,12 @@
 
 namespace sudoku
 {
-	class HiddenPair : public Technique
-	{
+	class HiddenPair : public Technique {
 	public:
 		HiddenPair();
 		~HiddenPair();
 
-		int Step(BoardAbstract<3>& board);
+		int step(Board& board);
 	};
 }
 

@@ -7,7 +7,7 @@ namespace
 {	
 	int getValue(sudoku::BITMASK mask)
 	{
-		return sudoku::bitcount::BitCount((mask & -mask) -1);
+		return sudoku::bitcount::BitCount(sudoku::getLSB(mask) - 1);
 	}
 }
 

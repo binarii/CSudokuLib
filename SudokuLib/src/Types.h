@@ -22,6 +22,17 @@ namespace sudoku
 		UNIT_INDEX box;
 		UNIT_INDEX buffer;
 	};
+
+
+	// Helpers for different functions 
+	#pragma warning(push)
+	#pragma warning(disable : 4146)
+
+	inline BITMASK getLSB(BITMASK mask) {
+		return (mask & -mask);
+	}
+
+	#pragma warning(pop)
 }
 
 #endif

@@ -1,11 +1,11 @@
 #include "HiddenTriple.h"
+
 #include "../BoardAbstract.h"
 #include "../BitCount.h"
 
-// Switch off using precomputed bitcount vs function
 // Should only be used in sudoku namespace
 #define BITCOUNT(x) \
-	((BOX < 4) ? bitcount::BitCountArray[x] : bitcount::BitCount(x))
+	(bitcount::BitCountArray[x])
 
 namespace sudoku
 {
@@ -20,7 +20,7 @@ namespace sudoku
 
 	}
 
-	int HiddenTriple::Step(BoardAbstract<3>& board)
+	int HiddenTriple::step(Board& board)
 	{	
 		int useCount = 0;
 		
@@ -32,17 +32,17 @@ namespace sudoku
 		BITMASK poss3;
 		BITMASK combined;
 
-		for(int u = 0; u < UNIT*3; ++u)
+		for(int u = 0; u < board.UNIT*3; ++u)
 		{
-			for(int c1 = 0; c1 < UNIT-2; ++c1)
+			for(int c1 = 0; c1 < board.UNIT-2; ++c1)
 			{
 				cell1 = board.Iterate(u, c1);
 				poss1 = board.getCandidates(cell1);
-				for(int c2 = c1+1; c2 < UNIT-1; ++c2)
+				for(int c2 = c1+1; c2 < board.UNIT-1; ++c2)
 				{
 					cell2 = board.Iterate(u, c2);
 					poss2 = board.getCandidates(cell2);
-					for(int c3 = c2+1; c3 < UNIT; ++c3)
+					for(int c3 = c2+1; c3 < board.UNIT; ++c3)
 					{
 
 						cell3 = board.Iterate(u, c3);
@@ -51,7 +51,7 @@ namespace sudoku
 						combined = poss1 | poss2 | poss3;
 						int cBitcount = BITCOUNT(combined);
 
-						for(int i = 0; i < UNIT; i++)
+						for(int i = 0; i < board.UNIT; i++)
 						{
 							if(i == c1 || i == c2 || i == c3)
 								continue;

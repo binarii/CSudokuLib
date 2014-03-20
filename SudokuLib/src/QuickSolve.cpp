@@ -37,8 +37,8 @@ namespace sudoku
 		while(count > 0 && !board.isBoardFull() && m_maxSolutions == 1)
 		{
 			count = 0;
-			count += ns.Step(board);
-			count += hs.Step(board);
+			count += ns.step(board);
+			count += hs.step(board);
 		}
 
 		int solutionCount = BacktrackSolve(board);
@@ -75,7 +75,7 @@ namespace sudoku
 
 		if(count == 0) return 0;
 
-		for(int i = (val & -val); val; i = (val & -val))
+		for(int i = getLSB(val); val; i = getLSB(val))
 		{
 			board.set(pos, i);
 			solutionsFound += BacktrackSolve(board);
@@ -162,7 +162,7 @@ namespace sudoku
 				continue;
 			
 			// Find the hidden single
-			once &= -once; // Get least set bit
+			once = getLSB(once); // Get least set bit
 			for(j = 0; j < dim.UNIT; ++j)
 			{
 				pos = board.Iterate(i, j);

@@ -9,7 +9,6 @@
 
 namespace sudoku
 {
-
 	class Grader
 	{
 	public:

@@ -1,10 +1,10 @@
 #ifndef _SUBSETFINDER_H_
 #define _SUBSETFINDER_H_
 
+#include "../SudokuPrerequisites.h"
 #include "../BoardAbstract.h"
 #include "../BitCount.h"
 
-// Switch off using precomputed bitcount vs function
 // Should only be used in sudoku namespace
 #define BITCOUNT(x) \
 	(bitcount::BitCountArray[x])
@@ -12,7 +12,7 @@
 namespace sudoku
 {
 	template <int subsetSize, int UNIT>
-	int FindNakedSubset(BoardAbstract<3>& board)
+	int findNakedSubset(Board& board)
 	{
 		CELL_INDEX cell1, cell2, cell3, cell4, x;
 		BITMASK poss1, poss2, poss3, poss4;

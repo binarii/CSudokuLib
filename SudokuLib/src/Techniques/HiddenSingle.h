@@ -6,13 +6,12 @@
 
 namespace sudoku
 {
-	class HiddenSingle : public Technique
-	{
+	class HiddenSingle : public Technique {
 	public:
 		HiddenSingle();
 		~HiddenSingle();
 
-		int Step(BoardAbstract<3>& board);
+		int step(Board& board);
 	};
 }
 

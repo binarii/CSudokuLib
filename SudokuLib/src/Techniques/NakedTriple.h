@@ -5,13 +5,12 @@
 
 namespace sudoku
 {
-	class NakedTriple : public Technique
-	{
+	class NakedTriple : public Technique {
 	public:
 		NakedTriple();
 		~NakedTriple();
 
-		int Step(BoardAbstract<3>& board);
+		int step(Board& board);
 	};
 }
 

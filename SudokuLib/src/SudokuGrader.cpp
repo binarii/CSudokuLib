@@ -44,7 +44,7 @@ namespace sudoku
 
 	Grader::~Grader()
 	{
-		for(int i = 0; i < m_techniques.size(); i++)
+		for(unsigned int i = 0; i < m_techniques.size(); i++)
 		{
 			delete m_techniques[i];
 		}
@@ -75,9 +75,9 @@ namespace sudoku
 				board.updateCandidates(i);
 
 			count = 0;
-			for(int i = 0; i < m_techniques.size(); i++)
+			for(unsigned int i = 0; i < m_techniques.size(); i++)
 			{
-				count = m_techniques[i]->Step(board);
+				count = m_techniques[i]->step(board);
 				if(count > 0)
 					break;
 			}
@@ -97,8 +97,8 @@ namespace sudoku
 	{
 		int difficulty = 0;
 
-		for(int i = 0; i < m_techniques.size(); i++)
-			difficulty += m_techniques[i]->GetCost() * m_techniques[i]->GetCount();
+		for(unsigned int i = 0; i < m_techniques.size(); i++)
+			difficulty += m_techniques[i]->getCost() * m_techniques[i]->getCount();
 
 		return difficulty;
 	}
@@ -107,16 +107,16 @@ namespace sudoku
 	{
 		int difficulty = 0;
 
-		for(int i = 0; i < m_techniques.size(); i++)
-			if(m_techniques[i]->GetCount() > 0)
-				difficulty = max(m_techniques[i]->GetCost(), difficulty);
+		for(unsigned int i = 0; i < m_techniques.size(); i++)
+			if(m_techniques[i]->getCount() > 0)
+				difficulty = max(m_techniques[i]->getCost(), difficulty);
 
 		return difficulty;
 	}
 
 	void Grader::Reset()
 	{
-		for(int i = 0; i < m_techniques.size(); i++)
-			m_techniques[i]->ResetCount();
+		for(unsigned int i = 0; i < m_techniques.size(); i++)
+			m_techniques[i]->resetCount();
 	}
 }

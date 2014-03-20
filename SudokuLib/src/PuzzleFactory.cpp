@@ -40,6 +40,7 @@ namespace sudoku
 			}
 
 			delete [] m_minimizers;
+			m_minimizers = 0;
 		}
 	}
 

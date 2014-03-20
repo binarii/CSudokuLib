@@ -15,11 +15,11 @@ namespace sudoku
 
 	}
 
-	int NakedQuad::Step(BoardAbstract<3>& board)
+	int NakedQuad::step(Board& board)
 	{	
 		int useCount = 0;
 
-		useCount = FindNakedSubset<4, UNIT>(board);
+		useCount = findNakedSubset<4, board.UNIT>(board);
 		m_useCount += useCount;
 
 		return useCount;

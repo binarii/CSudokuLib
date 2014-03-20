@@ -1,11 +1,11 @@
 #include "HiddenSingle.h"
+
 #include "../BoardAbstract.h"
 #include "../BitCount.h"
 
-// Switch off using precomputed bitcount vs function
 // Should only be used in sudoku namespace
 #define BITCOUNT(x) \
-	((BOX < 4) ? bitcount::BitCountArray[x] : bitcount::BitCount(x))
+	(bitcount::BitCountArray[x])
 
 namespace sudoku
 {
@@ -20,18 +20,18 @@ namespace sudoku
 
 	}
 
-	int HiddenSingle::Step(BoardAbstract<3>& board)
+	int HiddenSingle::step(Board& board)
 	{	
 		CELL_INDEX x;
 		int useCount = 0;
 
-		for(int u = 0; u < UNIT*3; ++u)
+		for(int u = 0; u < board.UNIT*3; ++u)
 		{
 			BITMASK once = 0;
 			BITMASK twice = 0;
 			BITMASK all = 0;
 
-			for(int c1 = 0; c1 < UNIT; ++c1)
+			for(int c1 = 0; c1 < board.UNIT; ++c1)
 			{
 				// Get the board position
 				x = board.Iterate(u, c1);
@@ -52,8 +52,8 @@ namespace sudoku
 				continue;
 			
 			// Find the hidden single
-			once &= -once; // Get least set bit
-			for(int i = 0; i < UNIT; ++i)
+			once = getLSB(once); // Get least set bit
+			for(int i = 0; i < board.UNIT; ++i)
 			{
 				x = board.Iterate(u, i);
 				if(board.getCandidates(x) & once)

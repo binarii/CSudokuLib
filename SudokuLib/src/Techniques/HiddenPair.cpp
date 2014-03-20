@@ -1,11 +1,11 @@
 #include "HiddenPair.h"
+
 #include "../BoardAbstract.h"
 #include "../BitCount.h"
 
-// Switch off using precomputed bitcount vs function
 // Should only be used in sudoku namespace
 #define BITCOUNT(x) \
-	((BOX < 4) ? bitcount::BitCountArray[x] : bitcount::BitCount(x))
+	(bitcount::BitCountArray[x])
 
 namespace sudoku
 {
@@ -20,7 +20,7 @@ namespace sudoku
 
 	}
 
-	int HiddenPair::Step(BoardAbstract<3>& board)
+	int HiddenPair::step(Board& board)
 	{	
 		int useCount = 0;
 		
@@ -30,13 +30,13 @@ namespace sudoku
 		BITMASK poss2;
 		BITMASK combined;
 
-		for(int u = 0; u < UNIT*3; ++u)
+		for(int u = 0; u < board.UNIT*3; ++u)
 		{
-			for(int c1 = 0; c1 < UNIT-1; ++c1)
+			for(int c1 = 0; c1 < board.UNIT-1; ++c1)
 			{
 				cell1 = board.Iterate(u, c1);
 				poss1 = board.getCandidates(cell1);
-				for(int c2 = c1+1; c2 < UNIT; ++c2)
+				for(int c2 = c1+1; c2 < board.UNIT; ++c2)
 				{
 					cell2 = board.Iterate(u, c2);
 					poss2 = board.getCandidates(cell2);
@@ -44,7 +44,7 @@ namespace sudoku
 					combined = poss1 | poss2;
 					int cBitcount = BITCOUNT(combined);
 
-					for(int i = 0; i < UNIT; i++)
+					for(int i = 0; i < board.UNIT; i++)
 					{
 						if(i == c1 || i == c2)
 							continue;

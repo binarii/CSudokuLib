@@ -1,11 +1,11 @@
 #include "NakedSingle.h"
+
 #include "../BoardAbstract.h"
 #include "../BitCount.h"
 
-// Switch off using precomputed bitcount vs function
 // Should only be used in sudoku namespace
 #define BITCOUNT(x) \
-	((BOX < 4) ? bitcount::BitCountArray[x] : bitcount::BitCount(x))
+	(bitcount::BitCountArray[x])
 
 namespace sudoku
 {	
@@ -19,14 +19,14 @@ namespace sudoku
 
 	}
 
-	int NakedSingle::Step(BoardAbstract<3>& board)
+	int NakedSingle::step(Board& board)
 	{		
 		int count;
 		int useCount = 0;
 
 		BITMASK saveVal = 0;
 
-		for(int i = 0; i < GRID; ++i)
+		for(int i = 0; i < board.GRID; ++i)
 		{
 
 			board.updateCandidates(i);
