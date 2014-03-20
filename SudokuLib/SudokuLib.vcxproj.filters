@@ -34,6 +34,9 @@
     <Filter Include="Headers">
       <UniqueIdentifier>{df6dfd21-be87-4b18-98b6-1c0aa71c2583}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Generating\Minimizers">
+      <UniqueIdentifier>{d47c8d71-9811-491c-b80c-cca31021205f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -47,9 +50,6 @@
     </ClCompile>
     <ClCompile Include="src\ScrambleSolve.cpp">
       <Filter>Core\Solving</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MinimizeBoard.cpp">
-      <Filter>Core\Generating</Filter>
     </ClCompile>
     <ClCompile Include="src\SudokuGrader.cpp">
       <Filter>Core\Grading</Filter>
@@ -84,6 +84,24 @@
     <ClCompile Include="src\BoardAbstract.cpp">
       <Filter>Core\Board</Filter>
     </ClCompile>
+    <ClCompile Include="src\MinimizeMethod.cpp">
+      <Filter>Core\Generating</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MinimizeMethods\MinDefault.cpp">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MinimizeMethods\MinVertical.cpp">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MinimizeMethods\MinHorizontal.cpp">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MinimizeMethods\MinCorners.cpp">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MinimizeMethods\MinDiagonal.cpp">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BitCount.h">
@@ -100,9 +118,6 @@
     </ClInclude>
     <ClInclude Include="src\ScrambleSolve.h">
       <Filter>Core\Solving</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MinimizeBoard.h">
-      <Filter>Core\Generating</Filter>
     </ClInclude>
     <ClInclude Include="src\SudokuGrader.h">
       <Filter>Core\Grading</Filter>
@@ -157,6 +172,24 @@
     </ClInclude>
     <ClInclude Include="src\SudokuPrerequisites.h">
       <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MinimizeMethod.h">
+      <Filter>Core\Generating</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MinimizeMethods\MinDefault.h">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MinimizeMethods\MinVertical.h">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MinimizeMethods\MinHorizontal.h">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MinimizeMethods\MinCorners.h">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MinimizeMethods\MinDiagonal.h">
+      <Filter>Core\Generating\Minimizers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
