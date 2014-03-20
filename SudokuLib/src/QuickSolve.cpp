@@ -14,73 +14,67 @@
 namespace sudoku
 {
 	template <int size>
-	QuickSolve<size>::QuickSolve()
-	{
+	QuickSolve<size>::QuickSolve() {
 		m_maxSolutions = 1;
 		m_solveTime = 0.0;
 	}
 
 	template <int size>
-	QuickSolve<size>::~QuickSolve()
-	{
+	QuickSolve<size>::~QuickSolve() {
 
 	}
 
 	template <>
-	int QuickSolve<3>::Solve(BoardAbstract<3>& board)
-	{
-		StartTimer();
+	int QuickSolve<3>::solve(BoardAbstract<3>& board) {
+
+		startTimer();
 		NakedSingle ns;
 		HiddenSingle hs;
 		int count = 1;
 
-		while(count > 0 && !board.isBoardFull() && m_maxSolutions == 1)
-		{
+		while(count > 0 && !board.isBoardFull() && m_maxSolutions == 1) {
 			count = 0;
 			count += ns.step(board);
 			count += hs.step(board);
 		}
 
-		int solutionCount = BacktrackSolve(board);
-		StopTimer();
+		int solutionCount = backtrackSolve(board);
+		stopTimer();
 
 		return solutionCount;
 	}
 
 	template <int size>
-	int QuickSolve<size>::Solve(BoardAbstract<size>& board)
-	{
-		StartTimer();
-		int solutionCount = BacktrackSolve(board);
-		StopTimer();
+	int QuickSolve<size>::solve(BoardAbstract<size>& board) {
+		startTimer();
+		int solutionCount = backtrackSolve(board);
+		stopTimer();
 
 		return solutionCount;
 	}
 		
 	template <int size>
-	void QuickSolve<size>::SetMaxSolutionCount(int count)
-	{
+	void QuickSolve<size>::setMaxSolutionCount(int count) {
 		m_maxSolutions = count;
 	}
 
 	template <int size>
-	int QuickSolve<size>::BacktrackSolve(BoardAbstract<size>& board)
-	{
+	int QuickSolve<size>::backtrackSolve(BoardAbstract<size>& board) {
 		if(board.isBoardFull()) return 1;
 
 		BITMASK val = 0;
 		CELL_INDEX pos = INT_MAX;
 		int solutionsFound = 0;
-		int count = FindSingles(board, pos, val);
+		int count = findSingles(board, pos, val);
 
 		if(count == 0) return 0;
 
-		for(int i = getLSB(val); val; i = getLSB(val))
-		{
+		for(int i = getLSB(val); val; i = getLSB(val)) {
 			board.set(pos, i);
-			solutionsFound += BacktrackSolve(board);
-			if(solutionsFound >= m_maxSolutions)
+			solutionsFound += backtrackSolve(board);
+			if(solutionsFound >= m_maxSolutions) {
 				return solutionsFound;
+			}
 			board.remove(pos);
 			val &= ~i;
 		}
@@ -89,8 +83,7 @@ namespace sudoku
 	}
 
 	template <int size>
-	int QuickSolve<size>::FindSingles(BoardAbstract<size>& board, CELL_INDEX& pos, BITMASK& value)
-	{
+	int QuickSolve<size>::findSingles(BoardAbstract<size>& board, CELL_INDEX& pos, BITMASK& value) {
 		int count;
 		int savePos = -1;
 		int saveCount = dim.UNIT + 1;
@@ -98,13 +91,13 @@ namespace sudoku
 
 		BITMASK saveVal = 0;
 
-		for(i = 0; i < dim.GRID; ++i)
-		{
+		for(i = 0; i < dim.GRID; ++i) {
 			// Update and get possibilities for cell i
 			board.updateCandidates(i);
 			
-			if(board.getValue(i) != 0)
+			if(board.getValue(i) != 0) {
 				continue;
+			}
 
 			BITMASK possible = board.getCandidates(i);
 
@@ -112,20 +105,17 @@ namespace sudoku
 			count = BITCOUNT(possible);
 			
 			// If cell is open and it has no possibilities, illegal board
-			if(count == 0)
-			{
+			if(count == 0) {
 				return 0;
 			}
 			// If cell has one possibility play it
-			else if(count == 1)
-			{
+			else if(count == 1) {
 				pos = i;
 				value = possible;
 				return 1;
 			}
 			// Else continue to try and find lowest count on a cell
-			else if(count < saveCount)
-			{
+			else if(count < saveCount) {
 				savePos = i;
 				saveVal = possible;
 				saveCount = count;
@@ -133,14 +123,12 @@ namespace sudoku
 		}
 
 
-		for(i = 0; i < dim.UNIT*3; ++i)
-		{
+		for(i = 0; i < dim.UNIT*3; ++i) {
 			BITMASK once = 0;
 			BITMASK twice = 0;
 			BITMASK all = 0;
 
-			for(j = 0; j < dim.UNIT; ++j)
-			{
+			for(j = 0; j < dim.UNIT; ++j) {
 				// Get the board position
 				x = board.Iterate(i, j);
 
@@ -153,21 +141,22 @@ namespace sudoku
 				once |= possible;
 			}
 
-			if(all != dim.MASK) // hidden zero, board is illegal
+			if(all != dim.MASK) { // hidden zero, board is illegal
 				return 0;
+			}
 
 			once &= ~twice;
 
-			if(!once) // If none are seen only once, continue
+			if(!once) { // If none are seen only once, continue
 				continue;
+			}
 			
 			// Find the hidden single
 			once = getLSB(once); // Get least set bit
-			for(j = 0; j < dim.UNIT; ++j)
-			{
+			for(j = 0; j < dim.UNIT; ++j) {
+
 				pos = board.Iterate(i, j);
-				if(board.getCandidates(pos) & once)
-				{
+				if(board.getCandidates(pos) & once) {
 					value = once;
 					return 1;
 				}

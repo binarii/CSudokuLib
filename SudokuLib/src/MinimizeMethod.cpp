@@ -47,7 +47,7 @@ namespace sudoku
 		QuickSolve<size> solver;
 		BoardAbstract<size> boardCpy(board);
 
-		solver.SetMaxSolutionCount(2);
+		solver.setMaxSolutionCount(2);
 
 		for(int i = 0; (i < n) && (board.getFilledCount() > m_minClueCount); i++) {
 			// Make a copy of the board
@@ -63,7 +63,7 @@ namespace sudoku
 
 
 			// Check if it is still unique
-			solutionCount = solver.Solve(boardCpy);
+			solutionCount = solver.solve(boardCpy);
 
 
 			// If it is unique

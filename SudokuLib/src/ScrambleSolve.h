@@ -8,22 +8,20 @@
  */
 
 #include "SudokuPrerequisites.h"
-#include "PuzzleDimensions.h"
 #include "SolveMethod.h"
 
 namespace sudoku
 {
 	template <int size>
-	class ScrambleSolve : public SolveMethod<size>
-	{
+	class ScrambleSolve : public SolveMethod<size> {
 	public:
 		ScrambleSolve();
 		~ScrambleSolve();
 
-		int Solve(BoardAbstract<size>& board);
+		int solve(BoardAbstract<size>& board);
 
 	private:
-		int BacktrackSolve(BoardAbstract<size>& board);
+		int backtrackSolve(BoardAbstract<size>& board);
 	};
 };
 

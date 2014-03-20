@@ -5,32 +5,29 @@
 namespace sudoku
 {	
 	template <int size>
-	ScrambleSolve<size>::ScrambleSolve()
-	{
+	ScrambleSolve<size>::ScrambleSolve() {
 		m_solveTime = 0.0;
 	}
 
 	template <int size>
-	ScrambleSolve<size>::~ScrambleSolve()
-	{
+	ScrambleSolve<size>::~ScrambleSolve() {
 
 	}
 
 	template <int size>
-	int ScrambleSolve<size>::Solve(BoardAbstract<size>& board)
-	{
-		StartTimer();
-		int solutionCount = BacktrackSolve(board);
-		StopTimer();
+	int ScrambleSolve<size>::solve(BoardAbstract<size>& board) {
+		startTimer();
+		int solutionCount = backtrackSolve(board);
+		stopTimer();
 
 		return solutionCount;
 	}
 
 	template <int size>
-	int ScrambleSolve<size>::BacktrackSolve(BoardAbstract<size>& board)
-	{
-		if(board.isBoardFull())
+	int ScrambleSolve<size>::backtrackSolve(BoardAbstract<size>& board) {
+		if(board.isBoardFull()) {
 			return 1;
+		}
 
 		int solutionsFound = 0;
 		CELL_INDEX pos = board.getFilledCount();
@@ -41,25 +38,28 @@ namespace sudoku
 
 		// Choose the order to try values
 		BITMASK cellOrder[dim.UNIT];
-		for(int i = 0; i < dim.UNIT; i++)
+		for(int i = 0; i < dim.UNIT; i++) {
 			cellOrder[i] = (1 << (i + 1));
+		}
+
 		util::ArrayShuffle<BITMASK>(cellOrder, dim.UNIT);
 
 		// Go through values and recursively try them
-		for(int i = 0; i < dim.UNIT; i++)
-		{
-			if(cellOrder[i] & possible)
-			{
+		for(int i = 0; i < dim.UNIT; i++) {
+			if(cellOrder[i] & possible) {
+
 				board.set(pos, cellOrder[i]);
-				solutionsFound = BacktrackSolve(board);
-				if(solutionsFound > 0)
+				solutionsFound = backtrackSolve(board);
+
+				if(solutionsFound > 0) {
 					return solutionsFound;
+				}
+
 				board.remove(pos);
 
 				possible &= ~cellOrder[i];
 			}
 		}
-
 		return 0;
 	}
 

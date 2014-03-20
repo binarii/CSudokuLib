@@ -8,14 +8,13 @@
 namespace sudoku
 {
 	template <int size>
-	class SolveMethod
-	{
+	class SolveMethod {
 	public:
-		virtual int Solve(BoardAbstract<size>& board) = 0;
+		virtual int solve(BoardAbstract<size>& board) = 0;
 
-		void StartTimer() { m_timer.StartTimer(); }
-		void StopTimer()  { m_solveTime = m_timer.GetTime(); }
-		double GetTime()  { return m_solveTime; }
+		void startTimer() { m_timer.StartTimer(); }
+		void stopTimer()  { m_solveTime = m_timer.GetTime(); }
+		double getTime()  { return m_solveTime; }
 
 	protected:
 		Timer m_timer;
