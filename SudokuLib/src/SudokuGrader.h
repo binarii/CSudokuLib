@@ -1,28 +1,28 @@
 #ifndef _SUDOKUGRADER_H_
 #define _SUDOKUGRADER_H_
 
-#include "Types.h"
 #include "Timer.h"
 #include "SudokuPrerequisites.h"
 
 #include <vector>
+#include <ostream>
 
 namespace sudoku
 {
-	class Grader
-	{
+	class Grader {
 	public:
 		Grader();
 		~Grader();
 
-		bool Evaluate(BoardAbstract<3>& board);
+		bool evaluate(Board& board);
+		void printAnalysis(std::ostream& out);
 
-		double GetSolveTime();
-		int GetDifficulty();
-		int GetMaxTechnique();
+		double getEvalTime();
+		int getDifficulty();
+		int getTechniqueLevel();
 
 	private:
-		void Reset();
+		void reset();
 
 	private:
 		std::vector<Technique*> m_techniques;
