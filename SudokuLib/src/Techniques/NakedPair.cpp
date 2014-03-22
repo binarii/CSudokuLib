@@ -19,7 +19,7 @@ namespace sudoku
 	{	
 		int useCount = 0;
 
-		useCount = findNakedSubset<2, board.UNIT>(board);
+		useCount = findNakedSubset<2>(board);
 		m_useCount += useCount;
 
 		return useCount;

@@ -75,9 +75,9 @@ namespace sudoku
 			}
 		}
 
-
+		bool solved = board.isBoardSolved();
 		m_solveTime = m_timer.GetTime();
-		return board.isBoardFull();
+		return solved;
 	}
 
 	void Grader::printAnalysis(std::ostream& out) {

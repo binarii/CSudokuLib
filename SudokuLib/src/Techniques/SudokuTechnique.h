@@ -15,6 +15,8 @@ namespace sudoku
 			m_cost = StrategyWeight[t];
 		}
 
+		virtual ~Technique() {}
+
 		virtual int step(Board& board) = 0;
 
 		void resetCount() { m_useCount = 0; }

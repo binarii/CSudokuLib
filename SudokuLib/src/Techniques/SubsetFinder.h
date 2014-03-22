@@ -11,18 +11,77 @@
 
 namespace sudoku
 {
-	template <int subsetSize, int UNIT>
-	int findNakedSubset(Board& board)
+	template <int subsetSize>
+	int findNakedSubset(Board& board) {
+		CELL_INDEX cells[4] = {-1, -1, -1, -1};
+
+		const BITMASK combined = 0;
+		const int lastCell = -1;
+
+		int count = 0;
+
+		for(int i = 0; i < board.UNIT * 3; i++) {
+			count += findNakedSingleHelper<subsetSize>(board, subsetSize, lastCell, i, combined, cells);
+		}
+
+		return count;
+	}
+
+	template <int subsetSize>
+	int findNakedSingleHelper(Board& board, const int size, int lastCell, int group, BITMASK combined, CELL_INDEX* cells) {
+		const int sizeLessOne = subsetSize - 1;
+		const int loopMax = (board.UNIT - sizeLessOne);
+
+		BITMASK candidates;
+		int count = 0;
+
+		for(int c = lastCell + 1; c < loopMax; c++) {
+			cells[sizeLessOne] = board.iterate(group, c);
+			candidates = board.getCandidates(cells[sizeLessOne]);
+
+			if(candidates == 0) {
+				continue;
+			}
+
+			count += findNakedSingleHelper<sizeLessOne>(board, size, c, group, combined | candidates, cells);
+		}
+
+		return count;
+	}
+	
+	template <>
+	inline int findNakedSingleHelper<0>(Board& board, const int size, const int lastCell, int group, BITMASK combined, CELL_INDEX* cells) {
+		if(BITCOUNT(combined) == size) {
+			BITMASK mask = 0;
+			for(int i = 0; i < board.UNIT; i++) {
+				CELL_INDEX pos = board.iterate(group, i);
+
+				if(pos == cells[0] || pos == cells[1] || pos == cells[2] || pos == cells[3]) {
+					continue;
+				}
+
+				mask |= board.getCandidates(pos) & combined;
+				board.mask(pos, combined);
+			}
+
+			return (mask) ? 1 : 0;
+		}
+
+		return 0;
+	}
+
+	template <int subsetSize>
+	int findNakedSubsetOld(Board& board)
 	{
 		CELL_INDEX cell1, cell2, cell3, cell4, x;
 		BITMASK poss1, poss2, poss3, poss4;
 		BITMASK combined;
 		int useCount = 0;
 
-		const int UNITmSIZE = UNIT - subsetSize;		
+		const int UNITmSIZE = board.UNIT - subsetSize;		
 
 		// For every group
-		for(int g = 0; g < UNIT*3; g++)
+		for(int g = 0; g < board.UNIT*3; g++)
 		{
 			for(int c1 = 0; c1 < (UNITmSIZE + 1) && subsetSize > 0; ++c1)
 			{
@@ -44,7 +103,7 @@ namespace sudoku
 						if(BITCOUNT(combined) == 2)
 						{
 							BITMASK mask = 0;
-							for(int i = 0; i < UNIT; ++i)
+							for(int i = 0; i < board.UNIT; ++i)
 							{
 								if(i == c1 || i == c2) continue;
 								x = board.iterate(g, i);
@@ -70,7 +129,7 @@ namespace sudoku
 							if(BITCOUNT(combined) == 3)
 							{
 								BITMASK mask = 0;
-								for(int i = 0; i < UNIT; ++i)
+								for(int i = 0; i < board.UNIT; ++i)
 								{
 									if(i == c1 || i == c2 || i == c3) continue;
 									x = board.iterate(g, i);
@@ -96,7 +155,7 @@ namespace sudoku
 								if(BITCOUNT(combined) == 4)
 								{
 									BITMASK mask = 0;
-									for(int i = 0; i < UNIT; ++i)
+									for(int i = 0; i < board.UNIT; ++i)
 									{
 										if(i == c1 || i == c2 || i == c3 || i == c4) continue;
 										x = board.iterate(g, i);
