@@ -85,6 +85,7 @@
     <ClCompile Include="src\Techniques\HiddenPair.cpp" />
     <ClCompile Include="src\Techniques\HiddenSingle.cpp" />
     <ClCompile Include="src\BitCount.cpp" />
+    <ClCompile Include="src\Techniques\HiddenSubsetFinder.cpp" />
     <ClCompile Include="src\Techniques\HiddenTriple.cpp" />
     <ClCompile Include="src\Techniques\NakedPair.cpp" />
     <ClCompile Include="src\Techniques\NakedQuad.cpp" />
@@ -98,6 +99,7 @@
     <ClCompile Include="src\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Techniques\HiddenSubsetFinder.h" />
     <ClInclude Include="src\Techniques\NakedSubsetFinder.h" />
     <ClInclude Include="src\BoardAbstract.h" />
     <ClInclude Include="src\MinimizeMethod.h" />
@@ -110,7 +112,6 @@
     <ClInclude Include="src\SolveMethod.h" />
     <ClInclude Include="src\Sudoku.h" />
     <ClInclude Include="src\Techniques\NakedQuad.h" />
-    <ClInclude Include="src\Techniques\SubsetFinder.h" />
     <ClInclude Include="src\Techniques\HiddenPair.h" />
     <ClInclude Include="src\Techniques\HiddenSingle.h" />
     <ClInclude Include="src\Techniques\HiddenTriple.h" />

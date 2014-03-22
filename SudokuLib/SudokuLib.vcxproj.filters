@@ -108,6 +108,9 @@
     <ClCompile Include="src\Techniques\NakedSubsetFinder.cpp">
       <Filter>Core\Grading\Techniques\Naked</Filter>
     </ClCompile>
+    <ClCompile Include="src\Techniques\HiddenSubsetFinder.cpp">
+      <Filter>Core\Grading\Techniques\Hidden</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BitCount.h">
@@ -133,9 +136,6 @@
     </ClInclude>
     <ClInclude Include="src\Techniques\TechniqueConstants.h">
       <Filter>Core\Grading</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Techniques\SubsetFinder.h">
-      <Filter>Core\Grading\Techniques</Filter>
     </ClInclude>
     <ClInclude Include="src\Techniques\HiddenPair.h">
       <Filter>Core\Grading\Techniques\Hidden</Filter>
@@ -202,6 +202,9 @@
     </ClInclude>
     <ClInclude Include="src\Techniques\NakedSubsetFinder.h">
       <Filter>Core\Grading\Techniques\Naked</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Techniques\HiddenSubsetFinder.h">
+      <Filter>Core\Grading\Techniques\Hidden</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
