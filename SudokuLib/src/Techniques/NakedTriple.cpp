@@ -1,6 +1,6 @@
 #include "NakedTriple.h"
 
-#include "SubsetFinder.h"
+#include "NakedSubsetFinder.h"
 
 namespace sudoku
 {
@@ -18,8 +18,9 @@ namespace sudoku
 	int NakedTriple::step(Board& board)
 	{	
 		int useCount = 0;
-
-		useCount = findNakedSubset<3>(board);
+		
+		NakedSubsetFinder nsFinder;
+		useCount = nsFinder.find<3>(board);
 		m_useCount += useCount;
 
 		return useCount;

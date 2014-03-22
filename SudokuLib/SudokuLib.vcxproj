@@ -89,6 +89,7 @@
     <ClCompile Include="src\Techniques\NakedPair.cpp" />
     <ClCompile Include="src\Techniques\NakedQuad.cpp" />
     <ClCompile Include="src\Techniques\NakedSingle.cpp" />
+    <ClCompile Include="src\Techniques\NakedSubsetFinder.cpp" />
     <ClCompile Include="src\Techniques\NakedTriple.cpp" />
     <ClCompile Include="src\QuickSolve.cpp" />
     <ClCompile Include="src\ScrambleSolve.cpp" />
@@ -97,6 +98,7 @@
     <ClCompile Include="src\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Techniques\NakedSubsetFinder.h" />
     <ClInclude Include="src\BoardAbstract.h" />
     <ClInclude Include="src\MinimizeMethod.h" />
     <ClInclude Include="src\MinimizeMethods\MinCorners.h" />

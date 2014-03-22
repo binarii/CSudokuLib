@@ -1,6 +1,6 @@
 #include "NakedPair.h"
 
-#include "SubsetFinder.h"
+#include "NakedSubsetFinder.h"
 
 namespace sudoku
 {
@@ -19,7 +19,8 @@ namespace sudoku
 	{	
 		int useCount = 0;
 
-		useCount = findNakedSubset<2>(board);
+		NakedSubsetFinder nsFinder;
+		useCount = nsFinder.find<2>(board);
 		m_useCount += useCount;
 
 		return useCount;

@@ -1,6 +1,6 @@
 #include "NakedQuad.h"
 
-#include "SubsetFinder.h"
+#include "NakedSubsetFinder.h"
 
 namespace sudoku
 {
@@ -18,8 +18,9 @@ namespace sudoku
 	int NakedQuad::step(Board& board)
 	{	
 		int useCount = 0;
-
-		useCount = findNakedSubset<4>(board);
+		
+		NakedSubsetFinder nsFinder;
+		useCount = nsFinder.find<4>(board);
 		m_useCount += useCount;
 
 		return useCount;

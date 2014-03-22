@@ -105,6 +105,9 @@
     <ClCompile Include="src\PuzzleFactory.cpp">
       <Filter>Core\Generating</Filter>
     </ClCompile>
+    <ClCompile Include="src\Techniques\NakedSubsetFinder.cpp">
+      <Filter>Core\Grading\Techniques\Naked</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BitCount.h">
@@ -196,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="src\Sudoku.h">
       <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Techniques\NakedSubsetFinder.h">
+      <Filter>Core\Grading\Techniques\Naked</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
