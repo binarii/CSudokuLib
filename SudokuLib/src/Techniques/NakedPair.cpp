@@ -1,12 +1,6 @@
 #include "NakedPair.h"
-#include "../NotchedBoard.h"
 
-#include "SubsetFinder.h"
-
-// Switch off using precomputed bitcount vs function
-// Should only be used in sudoku namespace
-#define BITCOUNT(x) \
-	((BOX < 4) ? bitcount::BitCountArray[x] : bitcount::BitCount(x))
+#include "NakedSubsetFinder.h"
 
 namespace sudoku
 {
@@ -21,11 +15,12 @@ namespace sudoku
 
 	}
 
-	int NakedPair::Step(NotchedBoard& board)
+	int NakedPair::step(Board& board)
 	{	
 		int useCount = 0;
 
-		useCount = FindNakedSubset<2, UNIT>(board);
+		NakedSubsetFinder nsFinder;
+		useCount = nsFinder.find<2>(board);
 		m_useCount += useCount;
 
 		return useCount;

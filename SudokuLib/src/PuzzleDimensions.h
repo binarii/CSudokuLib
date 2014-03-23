@@ -3,11 +3,10 @@
 
 namespace sudoku
 {
-	template <int boxSize>
-	class PuzzleDimensions
-	{
+	template <int size>
+	class PuzzleDimensions {
 	public:
-		static const int BOX = boxSize;
+		static const int BOX = size;
 		static const int UNIT = BOX * BOX;
 		static const int GRID = UNIT * UNIT;
 		static const BITMASK MASK = ((1 << (UNIT + 1)) - 2);

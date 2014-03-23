@@ -1,71 +1,65 @@
 #include "ScrambleSolve.h"
-#include "SudokuBoard.h"
+#include "BoardAbstract.h"
 #include "Util.h"
 
 namespace sudoku
 {	
-	template <int boxSize>
-	ScrambleSolve<boxSize>::ScrambleSolve()
-	{
+	template <int size>
+	ScrambleSolve<size>::ScrambleSolve() {
 		m_solveTime = 0.0;
 	}
 
-	template <int boxSize>
-	ScrambleSolve<boxSize>::~ScrambleSolve()
-	{
+	template <int size>
+	ScrambleSolve<size>::~ScrambleSolve() {
 
 	}
 
-	template <int boxSize>
-	int ScrambleSolve<boxSize>::solve(Board<boxSize>& board)
-	{
-		m_timer.StartTimer();
-		int solutionCount = BacktrackSolve(board);
-		m_solveTime = m_timer.GetTime();
+	template <int size>
+	int ScrambleSolve<size>::solve(BoardAbstract<size>& board) {
+		startTimer();
+		int solutionCount = backtrackSolve(board);
+		stopTimer();
 
 		return solutionCount;
 	}
 
-	template <int boxSize>
-	double ScrambleSolve<boxSize>::GetSolveTime()
-	{
-		return m_solveTime;
-	}
-
-	template <int boxSize>
-	int ScrambleSolve<boxSize>::BacktrackSolve(Board<boxSize>& board)
-	{
-		if(board.GetSetCount() == GRID)
+	template <int size>
+	int ScrambleSolve<size>::backtrackSolve(BoardAbstract<size>& board) {
+		if(board.isBoardFull()) {
 			return 1;
+		}
 
 		int solutionsFound = 0;
-		CELL_INDEX pos = board.GetSetCount();
+		CELL_INDEX pos = board.getFilledCount();
 
 		// Get the possible values for the cell
-		board.UpdateCellPossible(pos);
-		BITMASK possible = board.GetCellPossible(pos);
+		board.updateCandidates(pos);
+		BITMASK possible = board.getCandidates(pos);
 
 		// Choose the order to try values
-		BITMASK cellOrder[UNIT];
-		for(int i = 0; i < UNIT; i++)
+		BITMASK cellOrder[dim.UNIT];
+		for(int i = 0; i < dim.UNIT; i++) {
 			cellOrder[i] = (1 << (i + 1));
-		util::ArrayShuffle<BITMASK>(cellOrder, UNIT);
+		}
+
+		util::ArrayShuffle<BITMASK>(cellOrder, dim.UNIT);
 
 		// Go through values and recursively try them
-		for(int i = 0; i < UNIT; i++)
-		{
-			if(cellOrder[i] & possible)
-			{
-				board.SetCell(pos, cellOrder[i]);
-				solutionsFound = BacktrackSolve(board);
-				if(solutionsFound > 0)
+		for(int i = 0; i < dim.UNIT; i++) {
+			if(cellOrder[i] & possible) {
+
+				board.set(pos, cellOrder[i]);
+				solutionsFound = backtrackSolve(board);
+
+				if(solutionsFound > 0) {
 					return solutionsFound;
-				board.ClearCell(pos);
+				}
+
+				board.remove(pos);
 
 				possible &= ~cellOrder[i];
 			}
 		}
-
 		return 0;
 	}
 

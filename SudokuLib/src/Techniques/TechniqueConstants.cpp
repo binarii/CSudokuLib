@@ -1,8 +1,7 @@
 #include "TechniqueConstants.h"
 
 
-const char* StrategyName[ST_TOTAL] = 
-{
+const char* StrategyName[ST_TOTAL] = {
 	"Naked Single",
 	"Hidden Single",
 	"Naked Pair",
@@ -12,8 +11,7 @@ const char* StrategyName[ST_TOTAL] =
 	"Naked Quad",
 };
 
-const int StrategyWeight[ST_TOTAL] = 
-{
+const int StrategyWeight[ST_TOTAL] = {
 	1,
 	1,
 	5,

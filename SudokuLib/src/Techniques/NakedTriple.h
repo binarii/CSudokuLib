@@ -1,18 +1,16 @@
 #ifndef _NAKEDTRIPLE_H_
 #define _NAKEDTRIPLE_H_
 
-#include "../Types.h"
 #include "SudokuTechnique.h"
 
 namespace sudoku
 {
-	class NakedTriple : public Technique
-	{
+	class NakedTriple : public Technique {
 	public:
 		NakedTriple();
 		~NakedTriple();
 
-		int Step(NotchedBoard& board);
+		int step(Board& board);
 	};
 }
 

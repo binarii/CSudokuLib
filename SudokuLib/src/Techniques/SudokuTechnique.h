@@ -1,36 +1,32 @@
 #ifndef _SUDOKUTECHNIQUE_H_
 #define _SUDOKUTECHNIQUE_H_
 
-#include "../PuzzleDimensions.h"
+#include "../SudokuPrerequisites.h"
 #include "TechniqueConstants.h"
 
 namespace sudoku
 {
-	// Forward the board class
-	class NotchedBoard;
+	class Technique {
 
-	class Technique : public PuzzleDimensions<3>
-	{
 	public:
-		Technique(STRAT_TYPE t)
-		{
+		Technique(STRAT_TYPE t) {
 			m_useCount = 0;
 			m_name = StrategyName[t];
 			m_cost = StrategyWeight[t];
 		}
 
-		virtual int Step(NotchedBoard& board) = 0;
+		virtual ~Technique() {}
 
-		void ResetCount() { m_useCount = 0; }
-		int GetCount() { return m_useCount; }
-		int GetCost() { return m_cost; }
-		const char* GetName() { return m_name; }
+		virtual int step(Board& board) = 0;
+
+		void resetCount() { m_useCount = 0; }
+		int getCount()    { return m_useCount; }
+		int getCost()     { return m_cost; }
+		const char* getName() { return m_name; }
 	protected:
 		int m_useCount;
 		int m_cost;
-
 		const char* m_name;
-
 	};
 }
 

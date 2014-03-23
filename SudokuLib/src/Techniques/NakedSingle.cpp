@@ -1,10 +1,11 @@
 #include "NakedSingle.h"
-#include "../NotchedBoard.h"
 
-// Switch off using precomputed bitcount vs function
+#include "../BoardAbstract.h"
+#include "../BitCount.h"
+
 // Should only be used in sudoku namespace
 #define BITCOUNT(x) \
-	((BOX < 4) ? bitcount::BitCountArray[x] : bitcount::BitCount(x))
+	(bitcount::BitCountArray[x])
 
 namespace sudoku
 {	
@@ -18,19 +19,22 @@ namespace sudoku
 
 	}
 
-	int NakedSingle::Step(NotchedBoard& board)
+	int NakedSingle::step(Board& board)
 	{		
 		int count;
 		int useCount = 0;
 
 		BITMASK saveVal = 0;
 
-		for(int i = 0; i < GRID; ++i)
+		for(int i = 0; i < board.GRID; ++i)
 		{
-			if(board.GetCellValue(i) != 0)
+
+			board.updateCandidates(i);
+
+			if(board.getValue(i) != 0)
 				continue;
 
-			BITMASK possible = board.GetCellPossible(i);
+			BITMASK possible = board.getCandidates(i);
 
 			// Get the bit count for the cell
 			count = BITCOUNT(possible);
@@ -39,8 +43,7 @@ namespace sudoku
 			if(count == 1)
 			{
 				// Play move and clear possible
-				board.SetCell(i, possible);
-				board.MaskCell(i, MASK);
+				board.set(i, possible);
 
 				m_useCount++;
 				useCount++;

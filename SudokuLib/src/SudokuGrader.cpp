@@ -1,6 +1,7 @@
 #include "SudokuGrader.h"
-#include "SudokuBoard.h"
-#include "NotchedBoard.h"
+#include "BoardAbstract.h"
+
+#include <iomanip>
 
 // techniques
 #include "Techniques\NakedSingle.h"
@@ -11,14 +12,9 @@
 #include "Techniques\HiddenTriple.h"
 #include "Techniques\NakedQuad.h"
 
-#define GRID 81
-#define UNIT 9
-#define BOX 3
-
 namespace sudoku
 {	
-	Grader::Grader()
-	{
+	Grader::Grader() {
 		Technique* technique;
 
 		technique = new NakedSingle();
@@ -43,83 +39,107 @@ namespace sudoku
 		m_techniques.push_back(technique);
 	}
 
-	Grader::~Grader()
-	{
-		for(int i = 0; i < m_techniques.size(); i++)
-		{
+	Grader::~Grader() {
+		for(unsigned int i = 0; i < m_techniques.size(); i++) {
 			delete m_techniques[i];
 		}
 
 		m_techniques.clear();
 	}
 
-	bool Grader::Evaluate(Board<3>& board)
-	{
+	bool Grader::evaluate(Board& board) {
 		// Start the clock
 		m_timer.StartTimer();
-		Reset();
-
-		NotchedBoard copy(board);
+		reset();
 
 		// Get board in a good state
-		for(int i = 0; i < GRID; i++)
-		{
-			copy.UpdateCellPossible(i);
-			if(copy.GetCellValue(i) != 0)
-				copy.IgnoreCellPossible(i);
+		for(int i = 0; i < board.GRID; i++) {
+			board.updateCandidates(i);
 		}
 
 		int count = 1;
 
-		while((count > 0) && (copy.GetSetCount() != 81))
-		{
+		while((count > 0) && (!board.isBoardFull())) {
+
 			// Default cell updater
-			for(int i = 0; i < 81; i++)
-				copy.UpdateCellPossible(i);
+			for(int i = 0; i < board.GRID; i++) {
+				board.updateCandidates(i);
+			}
 
 			count = 0;
-			for(int i = 0; i < m_techniques.size(); i++)
-			{
-				count = m_techniques[i]->Step(copy);
-				if(count > 0)
+			for(unsigned int i = 0; i < m_techniques.size(); i++) {
+				count = m_techniques[i]->step(board);
+				if(count > 0) {
 					break;
+				}
 			}
 		}
 
-
+		bool solved = board.isBoardSolved();
 		m_solveTime = m_timer.GetTime();
-		return copy.GetSetCount() == GRID;
+		return solved;
 	}
 
-	double Grader::GetSolveTime()
-	{
+	void Grader::printAnalysis(std::ostream& out) {
+		out << std::endl;
+
+		out << std::left << std::setw(20) << "Technique";
+		out << std::setw(10) << "Cost";
+		out << std::setw(10) << "Count";
+		out << std::setw(15) << "Total Cost";
+		out << std::endl;
+
+		int totalDifficulty = 0;
+		for(unsigned int i = 0; i < m_techniques.size(); i++) {
+			int cost = m_techniques[i]->getCost();
+			int count = m_techniques[i]->getCount();
+			const char* name = m_techniques[i]->getName();
+
+			int difficultyCost = cost * count;
+			totalDifficulty += difficultyCost;
+
+			out << std::setw(20) << name;
+			out << std::setw(10) << cost;
+			out << std::setw(10) << count;
+			out << std::setw(15) << difficultyCost;
+			out << std::endl;
+		}
+
+		out << std::setw(20+10+10) << "TOTAL:";
+		out << totalDifficulty;
+		out << std::endl;
+	}
+
+	double Grader::getEvalTime() {
 		return m_solveTime;
 	}
 
-	int Grader::GetDifficulty()
-	{
+	int Grader::getDifficulty() {
 		int difficulty = 0;
 
-		for(int i = 0; i < m_techniques.size(); i++)
-			difficulty += m_techniques[i]->GetCost() * m_techniques[i]->GetCount();
+		for(unsigned int i = 0; i < m_techniques.size(); i++) {
+			difficulty += m_techniques[i]->getCost() * m_techniques[i]->getCount();
+		}
 
 		return difficulty;
 	}
 		
-	int Grader::GetMaxTechnique()
-	{
+	int Grader::getTechniqueLevel() {
 		int difficulty = 0;
 
-		for(int i = 0; i < m_techniques.size(); i++)
-			if(m_techniques[i]->GetCount() > 0)
-				difficulty = max(m_techniques[i]->GetCost(), difficulty);
+		for(unsigned int i = 0; i < m_techniques.size(); i++) {
+			if(m_techniques[i]->getCount() > 0) {
+				difficulty = max(m_techniques[i]->getCost(), difficulty);
+			}
+		}
 
 		return difficulty;
 	}
 
-	void Grader::Reset()
+	void Grader::reset()
 	{
-		for(int i = 0; i < m_techniques.size(); i++)
-			m_techniques[i]->ResetCount();
+		for(unsigned int i = 0; i < m_techniques.size(); i++) {
+			m_techniques[i]->resetCount();
+		}
 	}
 }

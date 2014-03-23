@@ -7,32 +7,21 @@
  * for use in generating puzzles.
  */
 
-#include "Types.h"
-#include "Timer.h"
-#include "PuzzleDimensions.h"
+#include "SudokuPrerequisites.h"
+#include "SolveMethod.h"
 
 namespace sudoku
 {
-	// Forward the board class
-	template <int boxSize>
-	class Board;
-
-	template <int boxSize>
-	class ScrambleSolve : public PuzzleDimensions<boxSize>
-	{
+	template <int size>
+	class ScrambleSolve : public SolveMethod<size> {
 	public:
 		ScrambleSolve();
 		~ScrambleSolve();
 
-		int solve(Board<boxSize>& board);
-		double GetSolveTime();
+		int solve(BoardAbstract<size>& board);
 
 	private:
-		int BacktrackSolve(Board<boxSize>& board);
-
-	private:
-		double m_solveTime;
-		Timer m_timer;
+		int backtrackSolve(BoardAbstract<size>& board);
 	};
 };
 

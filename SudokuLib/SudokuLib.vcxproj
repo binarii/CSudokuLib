@@ -74,33 +74,49 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\BoardAbstract.cpp" />
+    <ClCompile Include="src\MinimizeMethod.cpp" />
+    <ClCompile Include="src\MinimizeMethods\MinCorners.cpp" />
+    <ClCompile Include="src\MinimizeMethods\MinDefault.cpp" />
+    <ClCompile Include="src\MinimizeMethods\MinDiagonal.cpp" />
+    <ClCompile Include="src\MinimizeMethods\MinHorizontal.cpp" />
+    <ClCompile Include="src\MinimizeMethods\MinVertical.cpp" />
+    <ClCompile Include="src\PuzzleFactory.cpp" />
     <ClCompile Include="src\Techniques\HiddenPair.cpp" />
     <ClCompile Include="src\Techniques\HiddenSingle.cpp" />
-    <ClCompile Include="src\MinimizeBoard.cpp" />
     <ClCompile Include="src\BitCount.cpp" />
+    <ClCompile Include="src\Techniques\HiddenSubsetFinder.cpp" />
     <ClCompile Include="src\Techniques\HiddenTriple.cpp" />
     <ClCompile Include="src\Techniques\NakedPair.cpp" />
     <ClCompile Include="src\Techniques\NakedQuad.cpp" />
     <ClCompile Include="src\Techniques\NakedSingle.cpp" />
+    <ClCompile Include="src\Techniques\NakedSubsetFinder.cpp" />
     <ClCompile Include="src\Techniques\NakedTriple.cpp" />
-    <ClCompile Include="src\NotchedBoard.cpp" />
     <ClCompile Include="src\QuickSolve.cpp" />
     <ClCompile Include="src\ScrambleSolve.cpp" />
-    <ClCompile Include="src\SudokuBoard.cpp" />
     <ClCompile Include="src\SudokuGrader.cpp" />
     <ClCompile Include="src\Techniques\TechniqueConstants.cpp" />
     <ClCompile Include="src\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Techniques\HiddenSubsetFinder.h" />
+    <ClInclude Include="src\Techniques\NakedSubsetFinder.h" />
+    <ClInclude Include="src\BoardAbstract.h" />
+    <ClInclude Include="src\MinimizeMethod.h" />
+    <ClInclude Include="src\MinimizeMethods\MinCorners.h" />
+    <ClInclude Include="src\MinimizeMethods\MinDefault.h" />
+    <ClInclude Include="src\MinimizeMethods\MinDiagonal.h" />
+    <ClInclude Include="src\MinimizeMethods\MinHorizontal.h" />
+    <ClInclude Include="src\MinimizeMethods\MinVertical.h" />
+    <ClInclude Include="src\PuzzleFactory.h" />
+    <ClInclude Include="src\SolveMethod.h" />
+    <ClInclude Include="src\Sudoku.h" />
     <ClInclude Include="src\Techniques\NakedQuad.h" />
-    <ClInclude Include="src\Techniques\SubsetFinder.h" />
     <ClInclude Include="src\Techniques\HiddenPair.h" />
     <ClInclude Include="src\Techniques\HiddenSingle.h" />
     <ClInclude Include="src\Techniques\HiddenTriple.h" />
     <ClInclude Include="src\Techniques\NakedPair.h" />
     <ClInclude Include="src\Techniques\NakedTriple.h" />
-    <ClInclude Include="src\NotchedBoard.h" />
-    <ClInclude Include="src\MinimizeBoard.h" />
     <ClInclude Include="src\Techniques\NakedSingle.h" />
     <ClInclude Include="src\PuzzleDimensions.h" />
     <ClInclude Include="src\PuzzleIndexing.h" />
@@ -112,8 +128,8 @@
     <ClInclude Include="src\BitCount.h" />
     <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\Types.h" />
-    <ClInclude Include="src\SudokuBoard.h" />
     <ClInclude Include="src\QuickSolve.h" />
+    <ClInclude Include="src\SudokuPrerequisites.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,27 +3,24 @@
 
 #include <random>
 #include <time.h>
+#include "SudokuPrerequisites.h"
 
 namespace sudoku
 {	
-	// Forward the board class
-	template <int boxSize>
-	class Board;
-
 	namespace util
 	{
 		static bool Initialize()
 		{
 			srand((unsigned int)time(NULL));
-
 			return true;
 		}
 
-		void LoadBoard(Board<3>& board, std::string puzzle);
-		void PrintBoard(Board<3>& board, std::ostream& stream);
-		std::string GetBoardString(Board<3>& board);
+		// External operators to display or load boards
+		void LoadBoard(BoardAbstract<3>& board, std::string puzzle);
+		void PrintBoard(BoardAbstract<3>& board, std::ostream& stream);
+		std::string GetBoardString(BoardAbstract<3>& board);
 
-
+		// Fischer-Yates shuffle
 		template <class T>
 		static void ArrayShuffle(T* arr, int n)
 		{

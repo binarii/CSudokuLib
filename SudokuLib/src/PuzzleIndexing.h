@@ -6,20 +6,23 @@
 
 namespace sudoku
 {
-	template <int boxSize>
-	class PuzzleIndexing : public PuzzleDimensions<boxSize>
-	{
+	template <int size>
+	class PuzzleIndexing : public PuzzleDimensions<size> {
+
 	public:
-		void InitializeDimensions();
-		CELL_INDEX IterateGroups(UNIT_INDEX unit, UNIT_INDEX pos);
+		static void initialize();
+
+		CELL_INDEX iterate(UNIT_INDEX unit, UNIT_INDEX pos) const;
 
 	private:
 		static bool m_initialized;
 
 	protected:
-		static UNIT_INDEX m_rowReference[GRID]; // Stores the row unit index of cell i
-		static UNIT_INDEX m_colReference[GRID]; // Stores the col unit index of cell i
-		static UNIT_INDEX m_boxReference[GRID]; // Stores the box unit index of cell i
+		// Stores the row, col, and box reference for cell i
+		static CellReference m_cellReference[GRID]; 
+
+		static const int GROUP_COUNT = UNIT * 3;
+		static const int GROUP_WIDTH = UNIT;
 
 		/**
 		 * Helps iterate through units. The first index represents the unit
@@ -27,49 +30,45 @@ namespace sudoku
 		 * second value is the index into this array (typically 0-8), the 
 		 * result will be an index on the board of this element.
 		 */
-		static CELL_INDEX m_groups[UNIT*3][UNIT];
+		static CELL_INDEX m_groups[GROUP_COUNT * GROUP_WIDTH];
 	};
 	
-	template <int boxSize>
-	bool PuzzleIndexing<boxSize>::m_initialized = false;
 
-	template <int boxSize>
-	UNIT_INDEX PuzzleIndexing<boxSize>::m_rowReference[PuzzleIndexing<boxSize>::GRID];
+	template <int size>
+	bool PuzzleIndexing<size>::m_initialized = false;
 
-	template <int boxSize>
-	UNIT_INDEX PuzzleIndexing<boxSize>::m_colReference[PuzzleIndexing<boxSize>::GRID];
+	template <int size>
+	CellReference PuzzleIndexing<size>::m_cellReference[PuzzleIndexing<size>::GRID];
 
-	template <int boxSize>
-	UNIT_INDEX PuzzleIndexing<boxSize>::m_boxReference[PuzzleIndexing<boxSize>::GRID];
+	template <int size>
+	CELL_INDEX PuzzleIndexing<size>::m_groups[PuzzleIndexing<size>::GROUP_COUNT * PuzzleIndexing<size>::GROUP_WIDTH];
 
-	template <int boxSize>
-	UNIT_INDEX PuzzleIndexing<boxSize>::m_groups[PuzzleIndexing<boxSize>::UNIT * 3][PuzzleIndexing<boxSize>::UNIT];
 
-	template <int boxSize>
-	void PuzzleIndexing<boxSize>::InitializeDimensions()
+	template <int size>
+	void PuzzleIndexing<size>::initialize()
 	{
 		if(m_initialized)
 			return;
 
 		for(int i = 0; i < GRID; i++)
 		{
-			int col = i % UNIT;
-			int row = i / UNIT;
-			int box = ((col / BOX) * BOX) + (row / BOX);
-			int boxIndex = (col % BOX) + (row % BOX) * BOX;
-			m_rowReference[i] = row;
-			m_colReference[i] = col;
-			m_boxReference[i] = box;
-			m_groups[row + UNIT*0][col] = i;
-			m_groups[col + UNIT*1][row] = i;
-			m_groups[box + UNIT*2][boxIndex] = i;
+			CellReference ref;
+			ref.col = i % UNIT;
+			ref.row = i / UNIT;
+			ref.box = ((ref.col / BOX) * BOX) + (ref.row / BOX);
+
+			int boxIndex = (ref.col % BOX) + (ref.row % BOX) * BOX;
+			m_cellReference[i] = ref;
+			m_groups[(ref.row + UNIT*0) * GROUP_WIDTH + ref.col]  = i;
+			m_groups[(ref.col + UNIT*1) * GROUP_WIDTH + ref.row]  = i;
+			m_groups[(ref.box + UNIT*2) * GROUP_WIDTH + boxIndex] = i;
 		}
 	}
 	
-	template <int boxSize>
-	inline CELL_INDEX PuzzleIndexing<boxSize>::IterateGroups(UNIT_INDEX unit, UNIT_INDEX pos)
+	template <int size>
+	inline CELL_INDEX PuzzleIndexing<size>::iterate(UNIT_INDEX unit, UNIT_INDEX pos) const
 	{
-		return m_groups[unit][pos];
+		return m_groups[unit * GROUP_WIDTH + pos];
 	}
 }
 

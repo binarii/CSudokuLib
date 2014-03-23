@@ -19,14 +19,23 @@
     <Filter Include="Core\Grading\Techniques">
       <UniqueIdentifier>{56c0b594-67ef-4418-a872-dcfb5bb6f4e1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Constants">
-      <UniqueIdentifier>{fd2679d1-cd1f-4b0d-a753-8b22af611b53}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Grading\Techniques\Naked">
       <UniqueIdentifier>{7890931b-316a-4d24-821e-55b2c0e3c2e1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Grading\Techniques\Hidden">
       <UniqueIdentifier>{abfdc7f0-c6dc-4e2d-95db-a546266b4e14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities\Constants">
+      <UniqueIdentifier>{fd2679d1-cd1f-4b0d-a753-8b22af611b53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Board">
+      <UniqueIdentifier>{60b62f4d-e371-40fb-8b95-bc4e8a921d80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{df6dfd21-be87-4b18-98b6-1c0aa71c2583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Generating\Minimizers">
+      <UniqueIdentifier>{d47c8d71-9811-491c-b80c-cca31021205f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -36,22 +45,13 @@
     <ClCompile Include="src\BitCount.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="src\SudokuBoard.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="src\QuickSolve.cpp">
       <Filter>Core\Solving</Filter>
     </ClCompile>
     <ClCompile Include="src\ScrambleSolve.cpp">
       <Filter>Core\Solving</Filter>
     </ClCompile>
-    <ClCompile Include="src\MinimizeBoard.cpp">
-      <Filter>Core\Generating</Filter>
-    </ClCompile>
     <ClCompile Include="src\SudokuGrader.cpp">
-      <Filter>Core\Grading</Filter>
-    </ClCompile>
-    <ClCompile Include="src\NotchedBoard.cpp">
       <Filter>Core\Grading</Filter>
     </ClCompile>
     <ClCompile Include="src\Util.cpp">
@@ -81,14 +81,38 @@
     <ClCompile Include="src\Techniques\NakedTriple.cpp">
       <Filter>Core\Grading\Techniques\Naked</Filter>
     </ClCompile>
+    <ClCompile Include="src\BoardAbstract.cpp">
+      <Filter>Core\Board</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MinimizeMethod.cpp">
+      <Filter>Core\Generating</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MinimizeMethods\MinDefault.cpp">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MinimizeMethods\MinVertical.cpp">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MinimizeMethods\MinHorizontal.cpp">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MinimizeMethods\MinCorners.cpp">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MinimizeMethods\MinDiagonal.cpp">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PuzzleFactory.cpp">
+      <Filter>Core\Generating</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Techniques\NakedSubsetFinder.cpp">
+      <Filter>Core\Grading\Techniques\Naked</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Techniques\HiddenSubsetFinder.cpp">
+      <Filter>Core\Grading\Techniques\Hidden</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Types.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\SudokuBoard.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\BitCount.h">
       <Filter>Utilities</Filter>
     </ClInclude>
@@ -104,29 +128,14 @@
     <ClInclude Include="src\ScrambleSolve.h">
       <Filter>Core\Solving</Filter>
     </ClInclude>
-    <ClInclude Include="src\MinimizeBoard.h">
-      <Filter>Core\Generating</Filter>
-    </ClInclude>
     <ClInclude Include="src\SudokuGrader.h">
       <Filter>Core\Grading</Filter>
-    </ClInclude>
-    <ClInclude Include="src\NotchedBoard.h">
-      <Filter>Core\Grading</Filter>
-    </ClInclude>
-    <ClInclude Include="src\PuzzleDimensions.h">
-      <Filter>Core\Constants</Filter>
-    </ClInclude>
-    <ClInclude Include="src\PuzzleIndexing.h">
-      <Filter>Core\Constants</Filter>
     </ClInclude>
     <ClInclude Include="src\Techniques\SudokuTechnique.h">
       <Filter>Core\Grading</Filter>
     </ClInclude>
     <ClInclude Include="src\Techniques\TechniqueConstants.h">
       <Filter>Core\Grading</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Techniques\SubsetFinder.h">
-      <Filter>Core\Grading\Techniques</Filter>
     </ClInclude>
     <ClInclude Include="src\Techniques\HiddenPair.h">
       <Filter>Core\Grading\Techniques\Hidden</Filter>
@@ -148,6 +157,54 @@
     </ClInclude>
     <ClInclude Include="src\Techniques\NakedTriple.h">
       <Filter>Core\Grading\Techniques\Naked</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PuzzleIndexing.h">
+      <Filter>Utilities\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PuzzleDimensions.h">
+      <Filter>Utilities\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SolveMethod.h">
+      <Filter>Core\Solving</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BoardAbstract.h">
+      <Filter>Core\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Types.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SudokuPrerequisites.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MinimizeMethod.h">
+      <Filter>Core\Generating</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MinimizeMethods\MinDefault.h">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MinimizeMethods\MinVertical.h">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MinimizeMethods\MinHorizontal.h">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MinimizeMethods\MinCorners.h">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MinimizeMethods\MinDiagonal.h">
+      <Filter>Core\Generating\Minimizers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PuzzleFactory.h">
+      <Filter>Core\Generating</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sudoku.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Techniques\NakedSubsetFinder.h">
+      <Filter>Core\Grading\Techniques\Naked</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Techniques\HiddenSubsetFinder.h">
+      <Filter>Core\Grading\Techniques\Hidden</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
