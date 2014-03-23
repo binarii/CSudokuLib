@@ -1,16 +1,14 @@
 #include "SolveInterface.h"
 
-#include <SudokuBoard.h>
-#include <QuickSolve.h>
-#include <Util.h>
+#include <Sudoku.h>
 
 #include <iomanip>
 #include <fstream>
 
 namespace
 {	
-	sudoku::Board<3> board;
-	sudoku::Board<3> boardCopy;
+	sudoku::Board board;
+	sudoku::Board boardCopy;
 	sudoku::QuickSolve<3> solver;
 }
 
@@ -19,13 +17,13 @@ bool SolveSingle(CLI_Input& input, int index, double& timeAccum)
 {
 
 	if(input.validCheck)
-		solver.SetMaxSolutionCount(2);
+		solver.setMaxSolutionCount(2);
 
 	sudoku::util::LoadBoard(board, input.puzzle);
-	boardCopy.Copy(board);
+	boardCopy.copy(board);
 
-	int solutions = solver.Solve(board);
-	double time = solver.GetSolveTime();
+	int solutions = solver.solve(board);
+	double time = solver.getTime();
 	timeAccum += time;
 
 	if(input.singleLine)

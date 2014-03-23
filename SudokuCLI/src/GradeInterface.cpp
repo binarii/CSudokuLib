@@ -1,27 +1,25 @@
 #include "GradeInterface.h"
 
-#include <SudokuBoard.h>
-#include <SudokuGrader.h>
-#include <Util.h>
+#include <Sudoku.h>
 
 #include <iomanip>
 #include <fstream>
 
 namespace 
 {	
-	sudoku::Board<3> board;
+	sudoku::Board board;
 	sudoku::Grader grader;
 }
 
 int GradeSingle(CLI_Input& input, int index, double& timeAccum)
 {	
 	sudoku::util::LoadBoard(board, input.puzzle);
-	sudoku::Board<3> boardCopy(board);
+	sudoku::Board boardCopy(board);
 
-	bool solution = grader.Evaluate(board);
-	double time = grader.GetSolveTime();
-	int difficulty = solution ? grader.GetDifficulty() : -1;
-	int grade = grader.GetMaxTechnique();
+	bool solution = grader.evaluate(board);
+	double time = grader.getEvalTime();
+	int difficulty = solution ? grader.getDifficulty() : -1;
+	int grade = grader.getTechniqueLevel();
 	timeAccum += time;
 
 	if(input.singleLine)
