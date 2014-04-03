@@ -3,8 +3,7 @@
 #include "GenerationInterface.h"
 #include "ParseCLI.h"
 
-#include <BitCount.h>
-#include <Util.h>
+#include <Sudoku.h>
 
 #include <stdio.h>
 #include <iostream>
@@ -15,8 +14,7 @@
 
 int main(int argc, char** stringArgs)
 {
-	sudoku::bitcount::Initialize();
-	sudoku::util::Initialize();
+	sudoku::Initialize();
 
 	std::vector<std::string> args;
 	std::ofstream file;
@@ -24,13 +22,13 @@ int main(int argc, char** stringArgs)
 	for(int i = 1; i < argc; i++)
 		args.push_back(std::string(stringArgs[i]));
 
-	/**
-	args.push_back("grade");
-	args.push_back("-f");
-	args.push_back("gen.txt");
-	args.push_back("-o");
-	args.push_back("stats.txt");
-	args.push_back("-sl");
+	//**
+	args.push_back("generate");
+	//args.push_back("-f");
+	//args.push_back("gen.txt");
+	//args.push_back("-o");
+	//args.push_back("stats.txt");
+	//args.push_back("-sl");
 	//args.push_back("-p");
 	//args.push_back("409716000610389040070245169000964021004173690196852030960421070030698000040537906");
 	//args.push_back("-o");
