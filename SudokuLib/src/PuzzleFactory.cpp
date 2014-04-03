@@ -46,18 +46,18 @@ namespace sudoku
 	}
 
 	TEMPLATE
-	double TCLASS::generate(BoardAbstract<size> board, SYMMETRY_TYPE symm, int minClues) {
+	double TCLASS::generate(BoardAbstract<size>& board, SYMMETRY_TYPE symm, int minClues) {
 		board.reset();
 
 		ScrambleSolve<size> solver;
 
 		solver.solve(board);
 
-		return solver.getTime() + minimize(board, symm, minClues);
+		return solver.getTime();
 	}
 
 	TEMPLATE
-	double TCLASS::minimize(BoardAbstract<size> board, SYMMETRY_TYPE symm, int minClues) {
+	double TCLASS::minimize(BoardAbstract<size>& board, SYMMETRY_TYPE symm, int minClues) {
 		MinMethod* minimizer = getMinimizer(symm);
 
 		if(minimizer == NULL) {

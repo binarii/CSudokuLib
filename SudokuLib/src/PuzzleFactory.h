@@ -22,8 +22,8 @@ namespace sudoku
 		PuzzleFactory();
 		~PuzzleFactory();
 
-		double generate(BoardAbstract<size> board, SYMMETRY_TYPE symm, int minClues = 0);
-		double minimize(BoardAbstract<size> board, SYMMETRY_TYPE symm, int minClues = 0);
+		double generate(BoardAbstract<size>& board, SYMMETRY_TYPE symm, int minClues = 0);
+		double minimize(BoardAbstract<size>& board, SYMMETRY_TYPE symm, int minClues = 0);
 
 	private:
 		typedef MinimizeMethod<size> MinMethod;
