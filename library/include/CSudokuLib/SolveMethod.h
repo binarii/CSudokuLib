@@ -7,7 +7,7 @@ namespace sudoku {
     template<int size>
     class SolveMethod {
     public:
-        virtual int solve(AbstractBoard<size> &board) = 0;
+        virtual int solve(AbstractBoard <size> &board) = 0;
     };
 }
 

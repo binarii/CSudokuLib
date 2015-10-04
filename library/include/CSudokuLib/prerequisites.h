@@ -5,10 +5,10 @@
 
 namespace sudoku {
 
-    template <int size>
+    template<int size>
     class AbstractBoard;
 
-    template <int size>
+    template<int size>
     class SolveMethod;
 
     typedef AbstractBoard<3> Board;

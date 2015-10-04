@@ -9,6 +9,10 @@
 
 namespace sudoku {
 
+    /**
+     * Iterate a file reading each line into a board. The board will be reused
+     * for each iteration and is returned by reference.
+     */
     class BoardIterator {
     public:
         BoardIterator(std::ifstream &f, bool isEnd);
@@ -24,6 +28,10 @@ namespace sudoku {
         bool eof;
     };
 
+
+    /**
+     * Initialize reading a board file.
+     */
     class BoardReader {
     public:
         BoardReader(std::string filename);

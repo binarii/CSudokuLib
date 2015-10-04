@@ -5,8 +5,8 @@
 #include "Indexing.h"
 
 namespace sudoku {
-    template <int size>
-    class QuickSolve : public Indexing<size> {
+    template<int size>
+    class QuickSolve : public SolveMethod<size>, Indexing<size> {
     public:
         QuickSolve();
         ~QuickSolve();
@@ -16,7 +16,7 @@ namespace sudoku {
 
     private:
         int backtrack_solve(AbstractBoard<size> &board);
-        int find_single(AbstractBoard<size> &board, cell_t& pos, bitmask_t& value);
+        int find_single(AbstractBoard<size> &board, cell_t &pos, bitmask_t &value);
 
     protected: // Make sure we can see imported symbols
         using Indexing<size>::BOX;

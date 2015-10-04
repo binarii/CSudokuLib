@@ -1,6 +1,8 @@
 SET(LIB_SRC
         src/AbstractBoard.cpp
-        src/util.cpp src/QuickSolve.cpp)
+        src/util.cpp
+        src/QuickSolve.cpp
+        src/ScrambleSolve.cpp)
 
 SET(LIB_HEADER
         include/CSudokuLib/AbstractBoard.h
@@ -8,10 +10,13 @@ SET(LIB_HEADER
         include/CSudokuLib/Dimensions.h
         include/CSudokuLib/Indexing.h
         include/CSudokuLib/util.h
-        include/CSudokuLib/prerequisites.h src/util.cpp
+        include/CSudokuLib/prerequisites.h
         include/CSudokuLib/SolveMethod.h
         include/CSudokuLib/QuickSolve.h
-        include/CSudokuLib/sudoku.h src/QuickSolve.cpp include/CSudokuLib/Stopwatch.h include/CSudokuLib/BoardReader.h src/BoardReader.cpp)
+        include/CSudokuLib/sudoku.h
+        include/CSudokuLib/Stopwatch.h
+        include/CSudokuLib/BoardReader.h
+        include/CSudokuLib/ScrambleSolve.h)
 
 
 add_library(SudokuLib STATIC ${LIB_SRC} ${LIB_HEADER})
