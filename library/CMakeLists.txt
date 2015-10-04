@@ -1,5 +1,6 @@
 SET(LIB_SRC
         src/AbstractBoard.cpp
+        src/BoardReader.cpp
         src/util.cpp
         src/QuickSolve.cpp
         src/ScrambleSolve.cpp)

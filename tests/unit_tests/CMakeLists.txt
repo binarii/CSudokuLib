@@ -1,6 +1,7 @@
 SET(TEST_SRC
         Main.cpp
-        Util.cpp QuickSolve.cpp)
+        Util.cpp
+        Solvers.cpp)
 
 add_executable(SudokuTest
         ${TEST_SRC})
