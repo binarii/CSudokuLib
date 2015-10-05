@@ -31,6 +31,7 @@ namespace sudoku {
         bool is_valid() const;
         bool is_solved() const;
         int get_filled_count() const;
+        bool is_cell_empty(cell_t cell) const;
 
     protected: // Make sure we can see imported symbols
         using Indexing<size>::BOX;
@@ -131,6 +132,11 @@ namespace sudoku {
     TMPL
     inline int TCL::get_filled_count() const {
         return setCount;
+    }
+
+    TMPL
+    inline bool TCL::is_cell_empty(cell_t cell) const {
+        return gameBoard[cell] == 0;
     }
 
 #undef TMPL
