@@ -15,6 +15,8 @@ namespace sudoku {
 
         bool reduce_board(AbstractBoard<size> &board);
 
+        void set_target(int count) { targetCount = count; }
+
     private:
         int targetCount;
         std::vector<std::vector<cell_t>> order;
