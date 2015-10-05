@@ -12,8 +12,8 @@ using sudoku::util::get_lsb;
     ((BOX < 4) ? sudoku::util::bitcount_cached(x) : sudoku::util::bitcount(x))
 
 namespace sudoku {
-    TMPL TCL::QuickSolve() {
-        maxSolnCount = 1;
+    TMPL TCL::QuickSolve(int maxSolnCount) {
+        this->maxSolnCount = maxSolnCount;
     }
 
     TMPL TCL::~QuickSolve() {

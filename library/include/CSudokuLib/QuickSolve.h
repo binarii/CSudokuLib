@@ -8,7 +8,7 @@ namespace sudoku {
     template<int size>
     class QuickSolve : public SolveMethod<size>, Indexing<size> {
     public:
-        QuickSolve();
+        QuickSolve(int maxSolnCount = 1);
         ~QuickSolve();
 
         int solve(AbstractBoard<size> &board);
