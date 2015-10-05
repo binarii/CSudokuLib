@@ -3,7 +3,7 @@ SET(LIB_SRC
         src/BoardReader.cpp
         src/util.cpp
         src/QuickSolve.cpp
-        src/ScrambleSolve.cpp)
+        src/ScrambleSolve.cpp src/BoardReducer.cpp)
 
 SET(LIB_HEADER
         include/CSudokuLib/AbstractBoard.h
@@ -17,7 +17,7 @@ SET(LIB_HEADER
         include/CSudokuLib/sudoku.h
         include/CSudokuLib/Stopwatch.h
         include/CSudokuLib/BoardReader.h
-        include/CSudokuLib/ScrambleSolve.h)
+        include/CSudokuLib/ScrambleSolve.h include/CSudokuLib/CellChooser.h include/CSudokuLib/BoardReducer.h)
 
 
 add_library(SudokuLib STATIC ${LIB_SRC} ${LIB_HEADER})

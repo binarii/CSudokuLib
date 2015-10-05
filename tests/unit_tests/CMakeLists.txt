@@ -1,7 +1,7 @@
 SET(TEST_SRC
         Main.cpp
         Util.cpp
-        Solvers.cpp)
+        Solvers.cpp Generator.cpp)
 
 add_executable(SudokuTest
         ${TEST_SRC})
