@@ -3,6 +3,7 @@
 #include <CSudokuLib/BoardReader.h>
 #include <CSudokuLib/ScrambleSolve.h>
 #include <CSudokuLib/BoardReducer.h>
+#include <CSudokuLib/BoardFactory.h>
 
 #include <CSudokuLib/Minimizers.h>
 
@@ -44,6 +45,21 @@ TEST_CASE("Board reducer should give legal boards", "[BoardReducer]") {
 
             // Either target is >= 17 or we have to fail
             REQUIRE((!success || (i >= 17)));
+        }
+    }
+
+    SECTION("Generate unique-solution boards with board factory") {
+        BoardFactory<3> factory;
+        QuickSolve<3> quickSolve;
+
+        for (int i = 0; i < 25; i++) {
+            auto board = factory.create();
+
+            // Ensure its removing some cells
+            REQUIRE(board.get_filled_count() < 60);
+
+            // Ensure unique solution
+            REQUIRE(quickSolve.solve(board) == 1);
         }
     }
 }
