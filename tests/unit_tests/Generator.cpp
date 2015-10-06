@@ -4,6 +4,8 @@
 #include <CSudokuLib/ScrambleSolve.h>
 #include <CSudokuLib/BoardReducer.h>
 
+#include <CSudokuLib/Minimizers.h>
+
 TEST_CASE("Board reducer should give legal boards", "[BoardReducer]") {
     using namespace sudoku;
     util::initialize();
@@ -29,8 +31,9 @@ TEST_CASE("Board reducer should give legal boards", "[BoardReducer]") {
 
     SECTION("Generate boards with low (<17) clues will fail") {
         Board board;
+        SymmetryNone<3> min;
         ScrambleSolve<3> solver;
-        BoardReducer<3> reducer(1);
+        BoardReducer<3> reducer(&min, 1);
         QuickSolve<3> quickSolve(2);
 
         for (int i = 15; i < 24; i++) {

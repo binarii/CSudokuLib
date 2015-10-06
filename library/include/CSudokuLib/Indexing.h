@@ -10,6 +10,7 @@ namespace sudoku {
     class Indexing : public Dimensions<size> {
     public:
         Indexing();
+        cell_t to_cell(int row, int col) const;
         cell_ref_t ref_for(int index) const;
         cell_t iterate(int unit, int offset) const;
 
@@ -71,6 +72,11 @@ namespace sudoku {
                 groups[(ref.box + UNIT * 2) * GROUP_SIZE + boxIndex] = i;
             }
         }
+    }
+
+    template<int size>
+    inline cell_t Indexing<size>::to_cell(int row, int col) const {
+        return (cell_t) (row * UNIT + col);
     }
 
     template<int size>

@@ -9,7 +9,7 @@ namespace sudoku {
     template<int size>
     class CellChooser {
     public:
-        virtual const std::vector<std::vector<cell_t>> &pickCells() = 0;
+        virtual std::vector<std::vector<cell_t>> pickCells() = 0;
     };
 }
 
