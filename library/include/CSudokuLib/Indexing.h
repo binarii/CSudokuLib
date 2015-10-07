@@ -14,7 +14,7 @@ namespace sudoku {
         cell_ref_t ref_for(int index) const;
         cell_t iterate(int unit, int offset) const;
 
-    protected: // make sure we can see the imported symbols
+    public: // make sure we can see the imported symbols
         using Dimensions<size>::BOX;
         using Dimensions<size>::UNIT;
         using Dimensions<size>::GRID;

@@ -33,7 +33,7 @@ namespace sudoku {
         int get_filled_count() const;
         bool is_cell_empty(cell_t cell) const;
 
-    protected: // Make sure we can see imported symbols
+    public: // Make sure we can see imported symbols
         using Indexing<size>::BOX;
         using Indexing<size>::UNIT;
         using Indexing<size>::GRID;
