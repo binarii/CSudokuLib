@@ -24,12 +24,19 @@ namespace sudoku {
 
     TMPL void TCL::create(AbstractBoard<size> &board) {
         int trialNum = 0;
+        int lowest = board.GRID;
+        AbstractBoard<size> tester;
 
         BoardReducer<size> reducer(chooser, minClues);
         while (trialNum++ < trialCount) {
-            board.reset();
-            solver.solve(board);
-            reducer.reduce_board(board);
+            tester.reset();
+            solver.solve(tester);
+            reducer.reduce_board(tester);
+
+            if (tester.get_filled_count() < lowest) {
+                lowest = tester.get_filled_count();
+                board.copy(tester);
+            }
 
             if (board.get_filled_count() <= minClues) {
                 break;

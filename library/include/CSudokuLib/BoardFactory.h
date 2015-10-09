@@ -19,7 +19,7 @@ namespace sudoku {
     template<int size>
     class BoardFactory {
     public:
-        BoardFactory(int minClues = 30, SYMMETRY_TYPE type = ST_NONE, int trials = 100);
+        BoardFactory(int minClues = 18, SYMMETRY_TYPE type = ST_NONE, int trials = 10);
         ~BoardFactory();
 
         void create(AbstractBoard<size> &board);

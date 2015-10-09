@@ -18,8 +18,9 @@ namespace sudoku {
         //---------------------------------------------------------------------
         // Board IO
         //---------------------------------------------------------------------
+        std::string pretty_board(const Board &board);
         void print_board(const Board &board, std::ostream &stream);
-        void decode_board(Board &board, const std::string &puzzle);
+        bool decode_board(Board &board, const std::string &puzzle);
         std::string encode_board(const Board &board, const char zeroVal = '.');
 
         int mask_to_int(sudoku::bitmask_t mask);

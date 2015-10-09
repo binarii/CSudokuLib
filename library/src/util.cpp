@@ -1,3 +1,4 @@
+#include <sstream>
 #include "util.h"
 #include "AbstractBoard.h"
 
@@ -45,10 +46,18 @@ namespace sudoku {
             stream << std::endl;
         }
 
-        void decode_board(Board &board, const std::string &puzzle) {
+        std::string pretty_board(const Board &board) {
+            std::stringstream stream;
+            print_board(board, stream);
+            std::string out = stream.str();
+            out.pop_back();
+            return out;
+        }
+
+        bool decode_board(Board &board, const std::string &puzzle) {
             const int GRID = Dimensions<3>::GRID;
             if (puzzle.length() != GRID) {
-                return;
+                return false;
             }
 
             board.reset();
@@ -60,6 +69,8 @@ namespace sudoku {
                     board.set(i, int_to_mask(c - 'a' + 10));
                 }
             }
+
+            return true;
         }
 
         std::string encode_board(const Board &board, const char zeroVal) {
