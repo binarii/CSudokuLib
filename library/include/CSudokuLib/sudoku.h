@@ -8,5 +8,6 @@
 #include "AbstractBoard.h"
 #include "SolveMethod.h"
 #include "QuickSolve.h"
+#include "BoardFactory.h"
 
 #endif //CSUDOKU_SUDOKU_H

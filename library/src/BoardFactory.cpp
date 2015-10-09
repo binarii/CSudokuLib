@@ -26,10 +26,14 @@ namespace sudoku {
         int trialNum = 0;
 
         BoardReducer<size> reducer(chooser, minClues);
-        while ((trialNum++ < trialCount) && (board.get_filled_count() > minClues)) {
+        while (trialNum++ < trialCount) {
             board.reset();
             solver.solve(board);
             reducer.reduce_board(board);
+
+            if (board.get_filled_count() <= minClues) {
+                break;
+            }
         }
     }
 
@@ -79,17 +83,11 @@ namespace sudoku {
         minClues = min;
     }
 
-    template
-    class BoardFactory<2>;
 
     template
     class BoardFactory<3>;
 
-    template
-    class BoardFactory<4>;
 
-    template
-    class BoardFactory<5>;
 }
 
 #undef TMPL

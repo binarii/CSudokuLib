@@ -50,7 +50,7 @@ TEST_CASE("Board reducer should give legal boards", "[BoardReducer]") {
 
     SECTION("Generate unique-solution boards with board factory") {
         BoardFactory<3> factory;
-        QuickSolve<3> quickSolve;
+        QuickSolve<3> quickSolve(2);
 
         for (int i = 0; i < 25; i++) {
             auto board = factory.create();
