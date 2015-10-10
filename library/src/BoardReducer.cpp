@@ -5,6 +5,22 @@
 #define TMPL template <int size>
 #define TCL BoardReducer<size>
 
+namespace {
+    using namespace sudoku;
+
+    template<int size>
+    inline bool remove_from_board(AbstractBoard<size> &board, const std::vector<cell_t> &cells) {
+        bool result = false;
+        for (auto j : cells) {
+            if (!board.is_cell_empty(j)) {
+                board.remove(j);
+                result = true;
+            }
+        }
+        return result;
+    }
+}
+
 namespace sudoku {
     TMPL TCL::BoardReducer(int targetCount) {
         this->targetCount = targetCount;
@@ -25,7 +41,7 @@ namespace sudoku {
     TMPL
     bool TCL::reduce_board(AbstractBoard<size> &board) {
         int solutionCount;
-        QuickSolve<size> solver(2);
+        QuickSolve<size> solver(1);
         AbstractBoard<size> boardCopy(board);
 
         for (auto cellsToDig : order) {
@@ -33,27 +49,33 @@ namespace sudoku {
                 break;
             }
 
-            // Dig out cells in copy
-            for (auto j : cellsToDig) {
-                if (!boardCopy.is_cell_empty(j)) {
-                    boardCopy.remove(j);
-                }
-            }
-
-            // Check if copy is still unique
-            solutionCount = solver.solve(boardCopy);
-
-            // If so, remove cells in original
-            if (solutionCount == 1) {
-                for (auto j : cellsToDig) {
-                    if (!board.is_cell_empty(j)) {
-                        board.remove(j);
-                    }
-                }
-            }
-
             // Recopy the board
             boardCopy.copy(board);
+
+            // Dig out cells in copy
+            remove_from_board(boardCopy, cellsToDig);
+
+            bool unique = true;
+            for (auto j : cellsToDig) {
+                // Observe that if the solution is not unique, then an alternate solution will
+                // have a different value in place of one of the values we removed. Thus, we
+                // can mask each one sequentially, and see if one of the values, when removed
+                // as a possibility from the solution still gives a solved board.
+                auto mask = board.get_val(j);
+
+                boardCopy.mask(j, mask);
+                solutionCount = solver.solve(boardCopy);
+                if (solutionCount == 1) {
+                    unique = false;
+                    break;
+                } else {
+                    boardCopy.clear_mask(j);
+                }
+            }
+
+            if (unique) {
+                remove_from_board(board, cellsToDig);
+            }
         }
 
         return board.get_filled_count() <= targetCount;
