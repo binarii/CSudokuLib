@@ -1,11 +1,12 @@
 SET(LIB_SRC
+        src/util.cpp
         src/AbstractBoard.cpp
         src/BoardReader.cpp
-        src/util.cpp
         src/QuickSolve.cpp
         src/ScrambleSolve.cpp
         src/BoardReducer.cpp
-        src/BoardFactory.cpp)
+        src/BoardFactory.cpp
+        src/NakedSubset.cpp src/HiddenSubset.cpp src/BoardGrader.cpp)
 
 SET(LIB_HEADER
         include/CSudokuLib/AbstractBoard.h
@@ -23,7 +24,10 @@ SET(LIB_HEADER
         include/CSudokuLib/CellChooser.h
         include/CSudokuLib/BoardReducer.h
         include/CSudokuLib/Minimizers.h
-        include/CSudokuLib/BoardFactory.h)
+        include/CSudokuLib/BoardFactory.h
+        include/CSudokuLib/technique/NakedSubset.h
+        include/CSudokuLib/technique/Technique.h
+        include/CSudokuLib/technique/HiddenSubset.h include/CSudokuLib/BoardGrader.h)
 
 
 add_library(SudokuLib STATIC ${LIB_SRC} ${LIB_HEADER})

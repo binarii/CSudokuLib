@@ -9,5 +9,6 @@
 #include "SolveMethod.h"
 #include "QuickSolve.h"
 #include "BoardFactory.h"
+#include "BoardGrader.h"
 
 #endif //CSUDOKU_SUDOKU_H
