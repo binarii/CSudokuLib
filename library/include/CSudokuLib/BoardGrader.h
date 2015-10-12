@@ -18,12 +18,14 @@ namespace sudoku {
     // Store the count of each used technique
     struct GradeReport {
     public:
-        GradeReport() { }
+        GradeReport() : wasSolved(false) { }
 
+        bool isSolved();
         int totalScore();
-        void print(std::ostream &out);
+        std::string toString();
 
     public:
+        bool wasSolved;
         std::vector<std::pair<TechniqueDesc, int>> counts;
     };
 

@@ -5,12 +5,19 @@
 
 #include <iomanip>
 #include <ostream>
+#include <sstream>
 
 #define ADD_TECHNIQUE(clazz, cost) techniques.push_back({cost, #clazz, new clazz ()})
 
 namespace sudoku {
 
+    bool GradeReport::isSolved() {
+        return wasSolved;
+    }
+
     int GradeReport::totalScore() {
+        if (!wasSolved) return -1;
+
         int score = 0;
         for (auto tech : counts) {
             score += tech.first.cost * tech.second;
@@ -19,7 +26,8 @@ namespace sudoku {
         return score;
     }
 
-    void GradeReport::print(std::ostream &out) {
+    std::string GradeReport::toString() {
+        std::stringstream out;
         out << std::left << std::setw(20) << "Technique";
         out << std::setw(10) << "Cost";
         out << std::setw(10) << "Count";
@@ -44,6 +52,8 @@ namespace sudoku {
 
         out << std::setw(20 + 10 + 10) << "TOTAL:";
         out << total << std::endl;
+
+        return out.str();
     }
 
     BoardGrader::BoardGrader() {
@@ -65,8 +75,8 @@ namespace sudoku {
     }
 
     bool BoardGrader::can_solve(Board &board) {
-        this->grade(board);
-        return board.is_solved();
+        auto report = this->grade(board);
+        return report.isSolved();
     }
 
     GradeReport BoardGrader::grade(Board &board) {
@@ -93,6 +103,7 @@ namespace sudoku {
             }
         }
 
+        report.wasSolved = board.is_solved();
         return report;
     }
 }
