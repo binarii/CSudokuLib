@@ -11,14 +11,14 @@ $ sudoku gen -n 3
 83.2...49............6.5..8.8...37.5...7..6...9.5....1.24..9..35............3....
 ```
 
-Use the power of linux pipes to compose commands:
+##### Use the power of linux pipes to compose commands:
 ```
 $ sudoku gen | sudoke solve -f "{{unsolvedBoard}}\n{{board}}"
 ...9...3.......2..96..7.4....72.4..52..6..8...3....9..5..3....8.....7.42.418.9...
 425918736718463259963572481897234615254691873136785924572346198689157342341829567
 ```
 
-The included format option allows for wildly customized output:
+##### The included format option allows for wildly customized output:
 ```
 $ sudoku gen -f "Clue Count: {{count}}\nDifficulty: {{grade}}\nEncoded Board: {{board}}\n\nGRADE BREAKDOWN\n{{gradeInfo}}\n\nPRETTY BOARD\n{{pretty}}"
 Clue Count: 23
