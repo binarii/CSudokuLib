@@ -9,6 +9,7 @@
 *.sln
 *.suo
 *.opensdf
+*.idea
 [Bb]in/*
 [Oo]bj/*
 [Dd]oxygen/*
